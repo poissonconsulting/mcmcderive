@@ -1,0 +1,98 @@
+{
+  "@context": [
+    "http://purl.org/codemeta/2.0",
+    "http://schema.org"
+  ],
+  "@type": "SoftwareSourceCode",
+  "identifier": "mcmcderive",
+  "description": "Generates derived parameters from Monte Carlo Markov Chain (MCMC) samples.",
+  "name": "mcmcderive: Derive MCMC Parameters",
+  "datePublished": "2018-02-20",
+  "license": "https://spdx.org/licenses/MIT",
+  "version": "0.0.0.9045",
+  "programmingLanguage": {
+    "@type": "ComputerLanguage",
+    "name": "R",
+    "version": "3.4.3",
+    "url": "https://r-project.org"
+  },
+  "runtimePlatform": "R version 3.4.3 Patched (2017-12-05 r73849)",
+  "author": [
+    {
+      "@type": "Person",
+      "givenName": "Joe",
+      "familyName": "Thorley",
+      "email": "joe@poissonconsulting.ca"
+    }
+  ],
+  "maintainer": {
+    "@type": "Person",
+    "givenName": "Joe",
+    "familyName": "Thorley",
+    "email": "joe@poissonconsulting.ca"
+  },
+  "softwareSuggestions": [
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "covr",
+      "name": "covr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Central R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "testthat",
+      "name": "testthat",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Central R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      }
+    }
+  ],
+  "softwareRequirements": [
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "checkr",
+      "name": "checkr",
+      "version": "0.0.2",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Central R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "mcmcr",
+      "name": "mcmcr"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "plyr",
+      "name": "plyr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Central R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "R",
+      "name": "R",
+      "version": "3.2.0"
+    }
+  ],
+  "fileSize": "133.855KB",
+  "codeRepository": "https://github.com/poissonconsulting/mcmcderive",
+  "contIntegration": "https://travis-ci.org/poissonconsulting/mcmcderive",
+  "readme": "https://github.com/poissonconsulting/mcmcderive/blob/master/README.md"
+}

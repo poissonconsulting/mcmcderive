@@ -4,7 +4,13 @@ output: github_document
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "tools/README-"
+)
+```
 
  [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 [![Travis-CI Build Status](https://travis-ci.org/poissonconsulting/mcmcderive.svg?branch=master)](https://travis-ci.org/poissonconsulting/mcmcderive)
@@ -21,19 +27,14 @@ No more rerunning a model because you forget to include a derived parameter!
 
 ## Demonstration
 
-
-```r
+```{r}
 library(mcmcderive)
 
 mcmcr_example <- mcmcr:::mcmcr_example
-#> Error in get(name, envir = asNamespace(pkg), inherits = FALSE): object 'mcmcr_example' not found
 mcmcr_example
-#> Error in eval(expr, envir, enclos): object 'mcmcr_example' not found
 
 gamma <- mcmc_derive(mcmcr_example, "gamma <- sum(alpha) * sigma")
-#> Error in mcmc_derive(mcmcr_example, "gamma <- sum(alpha) * sigma"): object 'mcmcr_example' not found
 gamma
-#> function (x)  .Primitive("gamma")
 ```
 
 ## Installation
@@ -46,22 +47,8 @@ devtools::install_github("poissonconsulting/mcmcderive")
 
 ## Citation
 
-
-```
-
-To cite package 'mcmcderive' in publications use:
-
-  Joe Thorley (2018). mcmcderive: Derive MCMC Parameters. R
-  package version 0.0.0.9045.
-
-A BibTeX entry for LaTeX users is
-
-  @Manual{,
-    title = {mcmcderive: Derive MCMC Parameters},
-    author = {Joe Thorley},
-    year = {2018},
-    note = {R package version 0.0.0.9045},
-  }
+```{r, comment="", echo=FALSE}
+citation(package = "mcmcderive")
 ```
 
 ## Contribution
