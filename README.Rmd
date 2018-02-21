@@ -25,6 +25,11 @@ knitr::opts_chunk$set(
 `mcmcderive` is an R package to generate derived parameters from Monte Carlo Markov Chain (MCMC) samples.
 No more rerunning a model because you forget to include a derived parameter!
 
+The `mcmcderive` package also provides the R equivalent to functions such as `pow()`, `logit() <- `
+that often occur in JAGS/BUGS, STAN, ADMB/TMB model code.
+This allows you to mimic template code in your R expression.
+
+
 ## Demonstration
 
 ```{r}

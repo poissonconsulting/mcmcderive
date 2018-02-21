@@ -59,34 +59,35 @@
 <section id="mcmcderive" class="level1"><div class="page-header"><h1>mcmcderive</h1></div>
 <section id="introduction" class="level2"><h2>Introduction</h2>
 <p><code>mcmcderive</code> is an R package to generate derived parameters from Monte Carlo Markov Chain (MCMC) samples. No more rerunning a model because you forget to include a derived parameter!</p>
+<p>The <code>mcmcderive</code> package also provides the R equivalent to functions such as <code><a href="reference/pow.html">pow()</a></code>, <code>logit() &lt;-</code> that often occur in JAGS/BUGS, STAN, ADMB/TMB model code. This allows you to mimic template code in your R expression.</p>
 </section><section id="demonstration" class="level2"><h2>Demonstration</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(mcmcderive)</a>
 <a class="sourceLine" id="cb1-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb1-3" data-line-number="3">mcmcr_example &lt;-<span class="st"> </span>mcmcr<span class="op">::</span>mcmcr_example</a>
 <a class="sourceLine" id="cb1-4" data-line-number="4">mcmcr_example</a>
 <a class="sourceLine" id="cb1-5" data-line-number="5"><span class="co">#&gt; $alpha</span></a>
-<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="co">#&gt; [1] 3.01883 4.01883</span></a>
+<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="co">#&gt; [1] 3.718025 4.718025</span></a>
 <a class="sourceLine" id="cb1-7" data-line-number="7"><span class="co">#&gt; nchains:  2 </span></a>
-<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="co">#&gt; niters:  200 </span></a>
+<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="co">#&gt; niters:  400 </span></a>
 <a class="sourceLine" id="cb1-9" data-line-number="9"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb1-10" data-line-number="10"><span class="co">#&gt; $beta</span></a>
-<a class="sourceLine" id="cb1-11" data-line-number="11"><span class="co">#&gt;         [,1]    [,2]</span></a>
-<a class="sourceLine" id="cb1-12" data-line-number="12"><span class="co">#&gt; [1,] 0.79625 1.79625</span></a>
-<a class="sourceLine" id="cb1-13" data-line-number="13"><span class="co">#&gt; [2,] 1.79625 2.79625</span></a>
+<a class="sourceLine" id="cb1-11" data-line-number="11"><span class="co">#&gt;           [,1]     [,2]</span></a>
+<a class="sourceLine" id="cb1-12" data-line-number="12"><span class="co">#&gt; [1,] 0.9716535 1.971654</span></a>
+<a class="sourceLine" id="cb1-13" data-line-number="13"><span class="co">#&gt; [2,] 1.9716535 2.971654</span></a>
 <a class="sourceLine" id="cb1-14" data-line-number="14"><span class="co">#&gt; nchains:  2 </span></a>
-<a class="sourceLine" id="cb1-15" data-line-number="15"><span class="co">#&gt; niters:  200 </span></a>
+<a class="sourceLine" id="cb1-15" data-line-number="15"><span class="co">#&gt; niters:  400 </span></a>
 <a class="sourceLine" id="cb1-16" data-line-number="16"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb1-17" data-line-number="17"><span class="co">#&gt; $sigma</span></a>
 <a class="sourceLine" id="cb1-18" data-line-number="18"><span class="co">#&gt; [1] 0.7911975</span></a>
 <a class="sourceLine" id="cb1-19" data-line-number="19"><span class="co">#&gt; nchains:  2 </span></a>
-<a class="sourceLine" id="cb1-20" data-line-number="20"><span class="co">#&gt; niters:  200</span></a>
+<a class="sourceLine" id="cb1-20" data-line-number="20"><span class="co">#&gt; niters:  400</span></a>
 <a class="sourceLine" id="cb1-21" data-line-number="21"></a>
 <a class="sourceLine" id="cb1-22" data-line-number="22">gamma &lt;-<span class="st"> </span><span class="kw"><a href="reference/mcmc_derive.html">mcmc_derive</a></span>(mcmcr_example, <span class="st">"gamma &lt;- sum(alpha) * sigma"</span>)</a>
 <a class="sourceLine" id="cb1-23" data-line-number="23">gamma</a>
 <a class="sourceLine" id="cb1-24" data-line-number="24"><span class="co">#&gt; $gamma</span></a>
-<a class="sourceLine" id="cb1-25" data-line-number="25"><span class="co">#&gt; [1] 5.576104</span></a>
+<a class="sourceLine" id="cb1-25" data-line-number="25"><span class="co">#&gt; [1] 6.60742</span></a>
 <a class="sourceLine" id="cb1-26" data-line-number="26"><span class="co">#&gt; nchains:  2 </span></a>
-<a class="sourceLine" id="cb1-27" data-line-number="27"><span class="co">#&gt; niters:  200</span></a></code></pre></div>
+<a class="sourceLine" id="cb1-27" data-line-number="27"><span class="co">#&gt; niters:  400</span></a></code></pre></div>
 </section><section id="installation" class="level2"><h2>Installation</h2>
 <p>To install the latest version from GitHub</p>
 <pre><code><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github"># install.packages("devtools")
@@ -96,7 +97,7 @@ devtools::install_github("poissonconsulting/mcmcderive")</a></code></pre>
 To cite package 'mcmcderive' in publications use:
 
   Joe Thorley (2018). mcmcderive: Derive MCMC Parameters. R
-  package version 0.0.0.9045.
+  package version 0.0.0.9001.
 
 A BibTeX entry for LaTeX users is
 
@@ -104,7 +105,7 @@ A BibTeX entry for LaTeX users is
     title = {mcmcderive: Derive MCMC Parameters},
     author = {Joe Thorley},
     year = {2018},
-    note = {R package version 0.0.0.9045},
+    note = {R package version 0.0.0.9001},
   }</code></pre>
 </section><section id="contribution" class="level2"><h2>Contribution</h2>
 <p>Please report any <a href="https://github.com/poissonconsulting/mcmcderive/issues">issues</a>.</p>

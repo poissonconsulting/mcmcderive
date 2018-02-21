@@ -19,6 +19,11 @@ MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org
 Carlo Markov Chain (MCMC) samples. No more rerunning a model because you
 forget to include a derived parameter\!
 
+The `mcmcderive` package also provides the R equivalent to functions
+such as `pow()`, `logit() <-` that often occur in JAGS/BUGS, STAN,
+ADMB/TMB model code. This allows you to mimic template code in your R
+expression.
+
 ## Demonstration
 
 ``` r
@@ -27,28 +32,28 @@ library(mcmcderive)
 mcmcr_example <- mcmcr::mcmcr_example
 mcmcr_example
 #> $alpha
-#> [1] 3.01883 4.01883
+#> [1] 3.718025 4.718025
 #> nchains:  2 
-#> niters:  200 
+#> niters:  400 
 #> 
 #> $beta
-#>         [,1]    [,2]
-#> [1,] 0.79625 1.79625
-#> [2,] 1.79625 2.79625
+#>           [,1]     [,2]
+#> [1,] 0.9716535 1.971654
+#> [2,] 1.9716535 2.971654
 #> nchains:  2 
-#> niters:  200 
+#> niters:  400 
 #> 
 #> $sigma
 #> [1] 0.7911975
 #> nchains:  2 
-#> niters:  200
+#> niters:  400
 
 gamma <- mcmc_derive(mcmcr_example, "gamma <- sum(alpha) * sigma")
 gamma
 #> $gamma
-#> [1] 5.576104
+#> [1] 6.60742
 #> nchains:  2 
-#> niters:  200
+#> niters:  400
 ```
 
 ## Installation
@@ -65,7 +70,7 @@ To install the latest version from GitHub
 To cite package 'mcmcderive' in publications use:
 
   Joe Thorley (2018). mcmcderive: Derive MCMC Parameters. R
-  package version 0.0.0.9045.
+  package version 0.0.0.9001.
 
 A BibTeX entry for LaTeX users is
 
@@ -73,7 +78,7 @@ A BibTeX entry for LaTeX users is
     title = {mcmcderive: Derive MCMC Parameters},
     author = {Joe Thorley},
     year = {2018},
-    note = {R package version 0.0.0.9045},
+    note = {R package version 0.0.0.9001},
   }
 ```
 
