@@ -12,7 +12,7 @@ knitr::opts_chunk$set(
 )
 ```
 
- [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+[![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![Travis-CI Build Status](https://travis-ci.org/poissonconsulting/mcmcderive.svg?branch=master)](https://travis-ci.org/poissonconsulting/mcmcderive)
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/poissonconsulting/mcmcderive?branch=master&svg=true)](https://ci.appveyor.com/project/poissonconsulting/mcmcderive)
 [![Coverage Status](https://img.shields.io/codecov/c/github/poissonconsulting/mcmcderive/master.svg)](https://codecov.io/github/poissonconsulting/mcmcderive?branch=master)
@@ -30,7 +30,7 @@ No more rerunning a model because you forget to include a derived parameter!
 ```{r}
 library(mcmcderive)
 
-mcmcr_example <- mcmcr:::mcmcr_example
+mcmcr_example <- mcmcr::mcmcr_example
 mcmcr_example
 
 gamma <- mcmc_derive(mcmcr_example, "gamma <- sum(alpha) * sigma")

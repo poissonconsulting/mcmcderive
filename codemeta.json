@@ -9,7 +9,7 @@
   "name": "mcmcderive: Derive MCMC Parameters",
   "datePublished": "2018-02-20",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.0.0.9045",
+  "version": "0.0.0.9001",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -91,8 +91,8 @@
       "version": "3.2.0"
     }
   ],
-  "fileSize": "133.855KB",
-  "codeRepository": "https://github.com/poissonconsulting/mcmcderive",
+  "fileSize": "133.875KB",
   "contIntegration": "https://travis-ci.org/poissonconsulting/mcmcderive",
-  "readme": "https://github.com/poissonconsulting/mcmcderive/blob/master/README.md"
+  "readme": "https://github.com/poissonconsulting/mcmcderive/blob/master/README.md",
+  "codeRepository": "https://github.com/poissonconsulting/mcmcderive"
 }
