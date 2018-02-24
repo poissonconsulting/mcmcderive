@@ -7,9 +7,9 @@
   "identifier": "mcmcderive",
   "description": "Generates derived parameters from Monte Carlo Markov Chain (MCMC) samples.",
   "name": "mcmcderive: Derive MCMC Parameters",
-  "datePublished": "2018-02-20",
+  "datePublished": "2018-02-24",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.0.0.9001",
+  "version": "0.0.0.9002",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -91,7 +91,7 @@
       "version": "3.2.0"
     }
   ],
-  "fileSize": "135.207KB",
+  "fileSize": "135.253KB",
   "contIntegration": "https://travis-ci.org/poissonconsulting/mcmcderive",
   "readme": "https://github.com/poissonconsulting/mcmcderive/blob/master/README.md",
   "codeRepository": "https://github.com/poissonconsulting/mcmcderive"

@@ -1,7 +1,7 @@
 Package: mcmcderive
 Title: Derive MCMC Parameters
-Version: 0.0.0.9001
-Date: 2018-02-20
+Version: 0.0.0.9002
+Date: 2018-02-24
 Authors@R: person("Joe", "Thorley", email = "joe@poissonconsulting.ca", role = c("aut", "cre"))
 Description: Generates derived parameters from Monte Carlo Markov Chain (MCMC) samples.
 License: MIT + file LICENSE

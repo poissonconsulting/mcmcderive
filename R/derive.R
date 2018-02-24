@@ -10,6 +10,11 @@ mcmc_derive <- function(object, ...) {
   UseMethod("mcmc_derive")
 }
 
+#' @export
+mcmc_derive.default <- function(object, expr, values = list(), monitor = ".*", parallel = FALSE, ...) {
+  mcmc_derive(as.mcmcr(object), expr = expr, values = values, monitor = monitor, parallel = parallel) 
+}
+
 #' derive
 #'
 #' Calculate derived parameters.

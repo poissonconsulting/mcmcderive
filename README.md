@@ -70,7 +70,7 @@ To install the latest version from GitHub
 To cite package 'mcmcderive' in publications use:
 
   Joe Thorley (2018). mcmcderive: Derive MCMC Parameters. R
-  package version 0.0.0.9001.
+  package version 0.0.0.9002.
 
 A BibTeX entry for LaTeX users is
 
@@ -78,7 +78,7 @@ A BibTeX entry for LaTeX users is
     title = {mcmcderive: Derive MCMC Parameters},
     author = {Joe Thorley},
     year = {2018},
-    note = {R package version 0.0.0.9001},
+    note = {R package version 0.0.0.9002},
   }
 ```
 
