@@ -33,6 +33,7 @@ mcmcr_example <- mcmcr::mcmcr_example
 mcmcr_example
 #> $alpha
 #> [1] 3.718025 4.718025
+#> 
 #> nchains:  2 
 #> niters:  400 
 #> 
@@ -40,11 +41,13 @@ mcmcr_example
 #>           [,1]     [,2]
 #> [1,] 0.9716535 1.971654
 #> [2,] 1.9716535 2.971654
+#> 
 #> nchains:  2 
 #> niters:  400 
 #> 
 #> $sigma
 #> [1] 0.7911975
+#> 
 #> nchains:  2 
 #> niters:  400
 
@@ -52,16 +55,25 @@ gamma <- mcmc_derive(mcmcr_example, "gamma <- sum(alpha) * sigma")
 gamma
 #> $gamma
 #> [1] 6.60742
+#> 
 #> nchains:  2 
 #> niters:  400
 ```
 
 ## Installation
 
-To install the latest version from GitHub
+To install the latest development version from
+[GitHub](https://github.com/poissonconsulting/mcmcderive)
 
     # install.packages("devtools")
     devtools::install_github("poissonconsulting/mcmcderive")
+
+To install the latest development version from the Poisson drat
+[repository](https://github.com/poissonconsulting/drat)
+
+    # install.packages("drat")
+    drat::addRepo("poissonconsulting")
+    install.packages("mcmcderive")
 
 ## Citation
 

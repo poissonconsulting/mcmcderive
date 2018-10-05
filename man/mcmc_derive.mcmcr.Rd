@@ -4,8 +4,8 @@
 \alias{mcmc_derive.mcmcr}
 \title{derive}
 \usage{
-\method{mcmc_derive}{mcmcr}(object, expr, values = list(), monitor = ".*",
-  parallel = FALSE, ...)
+\method{mcmc_derive}{mcmcr}(object, expr, values = list(),
+  monitor = ".*", parallel = FALSE, ...)
 }
 \arguments{
 \item{object}{The mcmcr object.}

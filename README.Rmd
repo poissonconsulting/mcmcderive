@@ -44,10 +44,17 @@ gamma
 
 ## Installation
 
-To install the latest version from GitHub
+To install the latest development version from [GitHub](https://github.com/poissonconsulting/mcmcderive)
 ```
 # install.packages("devtools")
 devtools::install_github("poissonconsulting/mcmcderive")
+```
+
+To install the latest development version from the Poisson drat [repository](https://github.com/poissonconsulting/drat)
+```
+# install.packages("drat")
+drat::addRepo("poissonconsulting")
+install.packages("mcmcderive")
 ```
 
 ## Citation
