@@ -12,7 +12,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-[![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 [![Travis-CI Build Status](https://travis-ci.org/poissonconsulting/mcmcderive.svg?branch=master)](https://travis-ci.org/poissonconsulting/mcmcderive)
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/poissonconsulting/mcmcderive?branch=master&svg=true)](https://ci.appveyor.com/project/poissonconsulting/mcmcderive)
 [![Coverage Status](https://img.shields.io/codecov/c/github/poissonconsulting/mcmcderive/master.svg)](https://codecov.io/github/poissonconsulting/mcmcderive?branch=master)
@@ -22,45 +22,40 @@ knitr::opts_chunk$set(
 
 ## Introduction
 
-`mcmcderive` is an R package to generate derived parameters from Monte Carlo Markov Chain (MCMC) samples.
-No more rerunning a model because you forget to include a derived parameter!
+`mcmcderive` is an R package to generate derived parameters from Monte Carlo Markov Chain (MCMC) samples using R code.
+The derived parameters are returned as an [`mcmcr`](https://github.com/poissonconsulting/mcmcr) object.
 
-The `mcmcderive` package also provides the R equivalent to functions such as `pow()`, `logit() <- `
-that often occur in JAGS/BUGS, STAN, ADMB/TMB model code.
-This allows you to mimic template code in your R expression.
+The `mcmcderive` package also provides the R equivalent to functions such as 
 
+- `pow()`
+- `phi()`
+- `log() <- `
+- `logit() <- `
+
+that often occur in template model code.
 
 ## Demonstration
 
 ```{r}
 library(mcmcderive)
 
-mcmcr_example <- mcmcr::mcmcr_example
-mcmcr_example
+mcmcr::mcmcr_example
 
-gamma <- mcmc_derive(mcmcr_example, "gamma <- sum(alpha) * sigma")
-gamma
+expr <- "
+  log(alpha2) <- alpha
+  gamma <- sum(alpha) * sigma
+"
+
+mcmc_derive(mcmcr::mcmcr_example, expr)
 ```
 
 ## Installation
 
-To install the latest development version from [GitHub](https://github.com/poissonconsulting/mcmcderive)
-```
-# install.packages("devtools")
-devtools::install_github("poissonconsulting/mcmcderive")
-```
-
 To install the latest development version from the Poisson drat [repository](https://github.com/poissonconsulting/drat)
-```
+``` r
 # install.packages("drat")
 drat::addRepo("poissonconsulting")
 install.packages("mcmcderive")
-```
-
-## Citation
-
-```{r, comment="", echo=FALSE}
-citation(package = "mcmcderive")
 ```
 
 ## Contribution

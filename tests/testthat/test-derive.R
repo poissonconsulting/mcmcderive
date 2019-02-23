@@ -39,3 +39,27 @@ test_that("derive", {
 
     expect_error(mcmc_derive(mcmcr_example, expr, values = list(x = NA), monitor = "alpha3"), paste0("monitor 'alpha3' must not include missing values in expr\n\n    gamma "))
 })
+
+test_that("derive matrix", {
+
+  mcmcr_example <- mcmcr::mcmcr_example
+  mcmcr <- subset(mcmcr_example, 1:2, 1:10, parameters = "beta")
+
+  expr <- "
+    x <- Z
+    for(i in 1:nrow(beta)) {
+      for(j in 1:ncol(beta)) {
+        x[i,j] <- beta[i,j]
+      }
+    }
+  "
+
+  Z <- matrix(0, 2, 2)
+
+  values <- list(Z = Z)
+
+  derived <- mcmc_derive(mcmcr, expr, values = values, monitor = "x")
+  
+  names(derived) <- "beta"
+  expect_identical(derived, mcmcr)
+})

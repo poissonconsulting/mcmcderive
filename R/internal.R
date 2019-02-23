@@ -1,5 +1,3 @@
-error <- function(...) stop(..., call. = FALSE)
-
 derive_sample <- function(i, object, expr, values, monitor) {
   object <- subset(object, iterations = i)
   object <- estimates(object)

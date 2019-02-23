@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-[![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 [![Travis-CI Build
 Status](https://travis-ci.org/poissonconsulting/mcmcderive.svg?branch=master)](https://travis-ci.org/poissonconsulting/mcmcderive)
 [![AppVeyor Build
@@ -16,21 +16,26 @@ MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org
 ## Introduction
 
 `mcmcderive` is an R package to generate derived parameters from Monte
-Carlo Markov Chain (MCMC) samples. No more rerunning a model because you
-forget to include a derived parameter\!
+Carlo Markov Chain (MCMC) samples using R code. The derived parameters
+are returned as an [`mcmcr`](https://github.com/poissonconsulting/mcmcr)
+object.
 
 The `mcmcderive` package also provides the R equivalent to functions
-such as `pow()`, `logit() <-` that often occur in JAGS/BUGS, STAN,
-ADMB/TMB model code. This allows you to mimic template code in your R
-expression.
+such as
+
+  - `pow()`
+  - `phi()`
+  - `log() <-`
+  - `logit() <-`
+
+that often occur in template model code.
 
 ## Demonstration
 
 ``` r
 library(mcmcderive)
 
-mcmcr_example <- mcmcr::mcmcr_example
-mcmcr_example
+mcmcr::mcmcr_example
 #> $alpha
 #> [1] 3.718025 4.718025
 #> 
@@ -51,8 +56,18 @@ mcmcr_example
 #> nchains:  2 
 #> niters:  400
 
-gamma <- mcmc_derive(mcmcr_example, "gamma <- sum(alpha) * sigma")
-gamma
+expr <- "
+  log(alpha2) <- alpha
+  gamma <- sum(alpha) * sigma
+"
+
+mcmc_derive(mcmcr::mcmcr_example, expr)
+#> $alpha2
+#> [1]  41.18352 111.94841
+#> 
+#> nchains:  2 
+#> niters:  400 
+#> 
 #> $gamma
 #> [1] 6.60742
 #> 
@@ -62,36 +77,13 @@ gamma
 
 ## Installation
 
-To install the latest development version from
-[GitHub](https://github.com/poissonconsulting/mcmcderive)
-
-    # install.packages("devtools")
-    devtools::install_github("poissonconsulting/mcmcderive")
-
 To install the latest development version from the Poisson drat
 [repository](https://github.com/poissonconsulting/drat)
 
-    # install.packages("drat")
-    drat::addRepo("poissonconsulting")
-    install.packages("mcmcderive")
-
-## Citation
-
-``` 
-
-To cite package 'mcmcderive' in publications use:
-
-  Joe Thorley (2018). mcmcderive: Derive MCMC Parameters. R
-  package version 0.0.0.9002.
-
-A BibTeX entry for LaTeX users is
-
-  @Manual{,
-    title = {mcmcderive: Derive MCMC Parameters},
-    author = {Joe Thorley},
-    year = {2018},
-    note = {R package version 0.0.0.9002},
-  }
+``` r
+# install.packages("drat")
+drat::addRepo("poissonconsulting")
+install.packages("mcmcderive")
 ```
 
 ## Contribution
