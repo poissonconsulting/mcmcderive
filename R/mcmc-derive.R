@@ -1,6 +1,10 @@
 #' MCMC Derive
 #'
 #' Calculate derived parameters for an MCMC object.
+#' 
+#' In the case of an mcmc_data object, values includes the vectors 
+#' in the associated data frame. 
+#' The mcmcr parameter is named estimate (and this is the default variable to monitor).
 #'
 #' @param object The MCMC object.
 #' @param expr A string of the R expression to evaluate.
@@ -75,4 +79,23 @@ mcmc_derive.mcmcr <- function(object, expr, values = list(), monitor = ".*", par
   if (anyNA(object))
     err("monitor '", monitor, "' must not include missing values in expr\n", expr)
   object
+}
+
+#' @describeIn mcmc_derive MCMC Derive for an mcmc_data object
+#' @export
+mcmc_derive.mcmc_data <- function(object, expr = "prediction <- estimate", 
+                                  values = list(), 
+                                  monitor = "prediction", parallel = FALSE, ...) {
+  check_string(expr)
+  check_string(monitor)
+  check_flag(parallel)
+  check_unused(...)
+  
+  data <- as.data.frame(object)
+  mcmc <- as.mcmcr(object)
+  parameters(mcmc) <- "estimate"
+  values <- c(values, as.list(data))
+  mcmc <- mcmc_derive(mcmc, expr = expr, monitor = monitor, values = values, 
+                      parallel = parallel)
+  mcmc_data(mcmc, data)
 }

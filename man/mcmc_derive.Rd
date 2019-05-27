@@ -3,12 +3,16 @@
 \name{mcmc_derive}
 \alias{mcmc_derive}
 \alias{mcmc_derive.mcmcr}
+\alias{mcmc_derive.mcmc_data}
 \title{MCMC Derive}
 \usage{
 mcmc_derive(object, ...)
 
 \method{mcmc_derive}{mcmcr}(object, expr, values = list(),
   monitor = ".*", parallel = FALSE, ...)
+
+\method{mcmc_derive}{mcmc_data}(object, expr, values = list(),
+  monitor = "prediction", parallel = FALSE, ...)
 }
 \arguments{
 \item{object}{The MCMC object.}
@@ -29,9 +33,16 @@ An \code{\link[mcmcr]{mcmcr}} object of the derived parameter(s).
 \description{
 Calculate derived parameters for an MCMC object.
 }
+\details{
+In the case of an mcmc_data object, values includes the vectors 
+in the associated data frame. 
+The mcmcr parameter is named estimate (and this is the default variable to monitor).
+}
 \section{Methods (by class)}{
 \itemize{
 \item \code{mcmcr}: MCMC Derive for an mcmcr object
+
+\item \code{mcmc_data}: MCMC Derive for an mcmc_data object
 }}
 
 \examples{
