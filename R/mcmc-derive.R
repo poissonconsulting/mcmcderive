@@ -1,79 +1,60 @@
 #' MCMC Derive
 #'
-#' Calculate derived parameters for an MCMC object.
-#' 
-#' The mcmcr parameter is named estimate (and this is the default variable to monitor).
+#' Generate an mcmcr object of derived parameter(s) from an original MCMC object.
 #'
-#' @param object The MCMC object.
-#' @param expr A string of the R expression to evaluate.
-#' @param values A named list of additional values to evaluate in the R expression.
-#' @param monitor A regular expression specifying the new variables to monitor.
-#' @param parallel A flag indicating whether to derive samples in parallel using foreach backend.
+#' @param object The original MCMC object (which is converted to an mcmcr object using \code{\link[mcmcr]{as.mcmcr}()}).
+#' @param expr A string of the R code defining the values of the derived parameter(s) with respect to the parameters in object.
+#' @param values A named list of additional R objects to evaluate in the R expression.
+#' @param monitor A regular expression specifying the derived parameter(s) in expr.
 #' @param ... Unused.
 #' @return An \code{\link[mcmcr]{mcmcr}} object of the derived parameter(s).
 #' @export
 #' @examples
 #' mcmc_derive(mcmcr::mcmcr_example, "prediction <- (alpha + beta) / sigma")
+#' 
+#' expr <- "
+#'  log(alpha2) <- alpha
+#'  gamma <- sum(alpha) * sigma"
+#'  
+#' mcmc_derive(mcmcr::mcmcr_example, expr)
+#' 
+#' mcmc_derive(mcmcr::mcmcr_example, expr, monitor = "gamma")
+#' 
 mcmc_derive <- function(object, ...) {
   UseMethod("mcmc_derive")
 }
 
+#' @describeIn mcmc_derive MCMC Derive for an object that can be coerced to an mcmcr object
 #' @export
-mcmc_derive.default <- function(object, expr, values = list(), monitor = ".*", parallel = FALSE, ...) {
+mcmc_derive.default <- function(object, expr, values = list(), monitor = ".*", silent = FALSE, ...) {
   check_unused(...)
-  mcmc_derive(as.mcmcr(object), expr = expr, values = values, monitor = monitor, parallel = parallel) 
+  mcmc_derive(as.mcmcr(object), expr = expr, values = values, monitor = monitor, silent = silent) 
 }
 
 #' @describeIn mcmc_derive MCMC Derive for an mcmcr object
 #' @export
-mcmc_derive.mcmcr <- function(object, expr, values = list(), monitor = ".*", parallel = FALSE, ...) {
+mcmc_derive.mcmcr <- function(object, expr, values = list(), monitor = ".*", silent = FALSE, ...) {
   check_string(expr)
   check_list(values)
   check_string(monitor)
-  check_flag(parallel)
+  check_flag(silent)
   check_unused(...)
   
-  values <- convert_values(values)
-
-  parameters <- parameters(object)
-  names_values <- names(values)
-  variables_expr <- all.vars(parse(text = expr))
-
   if (length(values)) {
-    if (is.null(names_values)) err("values must be named")
-    if (anyDuplicated(names_values)) err("values names must be unique")
-
-    parameters <- parameters[!parameters %in% names_values]
-
-    values <- values[intersect(names_values, variables_expr)]
+    values <- convert_values(values) # needs more work - can't be missing and must be numeric...
+    object <- drop_overridden_parameters(object, values, silent = silent)
+    values <- drop_absent_values(values, expr, silent = silent)
   }
-
-  parameters <- intersect(parameters, variables_expr)
-
-  if (!length(parameters)) err("expr must include at least one object parameter")
-
-  object <- subset(object, parameters = parameters)
-
-  variables_expr <- setdiff(variables_expr, parameters)
-  variables_expr <- setdiff(variables_expr, names(values))
-
-  if (!length(variables_expr)) err("expr must include at least one new variable")
-
-  values[variables_expr] <- NA
-
-  if (!length(variables_expr[grepl(monitor, variables_expr)]))
-    err("monitor '", monitor, "' must match at least one new variable in expr\n", expr)
-
-  monitor <- variables_expr[grepl(monitor, variables_expr)]
-
-  monitor <- sort(monitor)
-
-  object <- plyr::llply(1:nchains(object), derive_chain, object = object,
-                     .parallel = parallel, expr = parse(text = expr),
-                  values = values, monitor = monitor)
-
+  object <- drop_absent_parameters(object, expr, silent = silent)
+  values <- add_new_variables(values, object, expr, silent = silent)
+  monitor <- monitor_variables(monitor, values)
+  
+  object <- lapply(1:nchains(object), derive_chain, object = object,
+                   expr = parse(text = expr),
+                   values = values, monitor = monitor)
+  
   object <- Reduce(bind_chains, object)
-
+  
   if (anyNA(object))
     err("monitor '", monitor, "' must not include missing values in expr\n", expr)
   object

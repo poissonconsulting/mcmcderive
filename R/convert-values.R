@@ -5,6 +5,7 @@ factors_to_integers <- function(values, warn = FALSE) {
 }
 
 convert_values <- function(values) {
+  check_named(values, unique = TRUE)
   values <- factors_to_integers(values)
   values
 }

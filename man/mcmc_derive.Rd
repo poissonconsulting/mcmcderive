@@ -2,41 +2,51 @@
 % Please edit documentation in R/mcmc-derive.R
 \name{mcmc_derive}
 \alias{mcmc_derive}
+\alias{mcmc_derive.default}
 \alias{mcmc_derive.mcmcr}
 \title{MCMC Derive}
 \usage{
 mcmc_derive(object, ...)
 
+\method{mcmc_derive}{default}(object, expr, values = list(),
+  monitor = ".*", silent = FALSE, ...)
+
 \method{mcmc_derive}{mcmcr}(object, expr, values = list(),
-  monitor = ".*", parallel = FALSE, ...)
+  monitor = ".*", silent = FALSE, ...)
 }
 \arguments{
-\item{object}{The MCMC object.}
+\item{object}{The original MCMC object (which is converted to an mcmcr object using \code{\link[mcmcr]{as.mcmcr}()}).}
 
 \item{...}{Unused.}
 
-\item{expr}{A string of the R expression to evaluate.}
+\item{expr}{A string of the R code defining the values of the derived parameter(s) with respect to the parameters in object.}
 
-\item{values}{A named list of additional values to evaluate in the R expression.}
+\item{values}{A named list of additional R objects to evaluate in the R expression.}
 
-\item{monitor}{A regular expression specifying the new variables to monitor.}
-
-\item{parallel}{A flag indicating whether to derive samples in parallel using foreach backend.}
+\item{monitor}{A regular expression specifying the derived parameter(s) in expr.}
 }
 \value{
 An \code{\link[mcmcr]{mcmcr}} object of the derived parameter(s).
 }
 \description{
-Calculate derived parameters for an MCMC object.
-}
-\details{
-The mcmcr parameter is named estimate (and this is the default variable to monitor).
+Generate an mcmcr object of derived parameter(s) from an original MCMC object.
 }
 \section{Methods (by class)}{
 \itemize{
+\item \code{default}: MCMC Derive for an object that can be coerced to an mcmcr object
+
 \item \code{mcmcr}: MCMC Derive for an mcmcr object
 }}
 
 \examples{
 mcmc_derive(mcmcr::mcmcr_example, "prediction <- (alpha + beta) / sigma")
+
+expr <- "
+ log(alpha2) <- alpha
+ gamma <- sum(alpha) * sigma"
+ 
+mcmc_derive(mcmcr::mcmcr_example, expr)
+
+mcmc_derive(mcmcr::mcmcr_example, expr, monitor = "gamma")
+
 }

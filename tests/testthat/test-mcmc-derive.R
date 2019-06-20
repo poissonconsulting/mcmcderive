@@ -1,5 +1,14 @@
 context("derive")
 
+test_that("derive.mcmcarray", {
+  mcmc_list <- coda::as.mcmc.list(subset(mcmcr::mcmcr_example, 1:2, 1:10))
+  derived <- mcmc_derive(mcmc_list, "gamma <- alpha + beta")
+  expect_identical(parameters(derived), "gamma")
+  expect_identical(nchains(derived), 2L)
+  expect_identical(niters(derived), 10L)
+  expect_identical(nterms(derived), 4L)
+})
+
 test_that("derive", {
 
   mcmcr_example <- mcmcr::mcmcr_example

@@ -1,7 +1,8 @@
 Package: mcmcderive
 Title: Derive MCMC Parameters
 Version: 0.0.0.9006
-Authors@R: person("Joe", "Thorley", email = "joe@poissonconsulting.ca", role = c("aut", "cre"))
+Authors@R: 
+  person("Joe", "Thorley", role = c("aut", "cre"), email = "joe@poissonconsulting.ca", comment = c(ORCID = "0000-0002-7683-4592"))
 Description: Generates derived parameters from Monte Carlo Markov Chain (MCMC) samples.
 License: MIT + file LICENSE
 Depends:
@@ -9,10 +10,10 @@ Depends:
 Imports:
     err,
     checkr,
-    mcmcr,
-    plyr
+    mcmcr
 Suggests:
     covr,
+    coda,
     testthat
 URL: https://github.com/poissonconsulting/mcmcderive
 BugReports: https://github.com/poissonconsulting/mcmcderive/issues
