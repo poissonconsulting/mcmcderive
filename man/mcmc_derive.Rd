@@ -24,6 +24,8 @@ mcmc_derive(object, ...)
 \item{values}{A named list of additional R objects to evaluate in the R expression.}
 
 \item{monitor}{A regular expression specifying the derived parameter(s) in expr.}
+
+\item{silent}{A flag specifying whether to suppress warnings.}
 }
 \value{
 An \code{\link[mcmcr]{mcmcr}} object of the derived parameter(s).

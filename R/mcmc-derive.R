@@ -6,6 +6,7 @@
 #' @param expr A string of the R code defining the values of the derived parameter(s) with respect to the parameters in object.
 #' @param values A named list of additional R objects to evaluate in the R expression.
 #' @param monitor A regular expression specifying the derived parameter(s) in expr.
+#' @param silent A flag specifying whether to suppress warnings.
 #' @param ... Unused.
 #' @return An \code{\link[mcmcr]{mcmcr}} object of the derived parameter(s).
 #' @export
