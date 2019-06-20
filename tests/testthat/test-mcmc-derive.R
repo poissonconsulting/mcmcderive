@@ -2,6 +2,7 @@ context("derive")
 
 test_that("derive.mcmcarray", {
   mcmc_list <- coda::as.mcmc.list(subset(mcmcr::mcmcr_example, 1:2, 1:10))
+  
   expect_warning(mcmc_derive(mcmc_list, "gamma <- alpha + beta"), 
                  "the following parameter was not in expr and so was dropped from object: 'sigma'")
   derived <- mcmc_derive(mcmc_list, "gamma <- alpha + beta", silent = TRUE)
@@ -11,10 +12,9 @@ test_that("derive.mcmcarray", {
   expect_identical(nterms(derived), 4L)
 })
 
-test_that("derive", {
-  mcmcr_example <- mcmcr::mcmcr_example
-  mcmcr <- subset(mcmcr_example, 1:2, 1:10)
-  
+test_that("derive.mcmcr simple", {
+  mcmcr <- subset(mcmcr::mcmcr_example, 1:2, 1:10)
+
   expect_warning(mcmc_derive(mcmcr, "gamma <- alpha + beta"), 
                  "the following parameter was not in expr and so was dropped from object: 'sigma'")
   
@@ -25,10 +25,9 @@ test_that("derive", {
   expect_identical(nterms(derived), 4L)
 })
 
-test_that("derive", {
+test_that("derive.mcmcr more complex", {
   
-  mcmcr_example <- mcmcr::mcmcr_example
-  mcmcr <- subset(mcmcr_example, 1:2, 1:10)
+  mcmcr <- subset(mcmcr::mcmcr_example, 1:2, 1:10)
   
   expr <- "
     gamma <- alpha + beta
@@ -48,18 +47,13 @@ test_that("derive", {
   expect_identical(niters(derived), 10L)
   expect_identical(nterms(derived), 15L)
   
-  expect_error(mcmc_derive(mcmcr_example, expr, values = values, monitor = "something",
+  expect_error(mcmc_derive(mcmcr, expr, values = values, monitor = "something",
                            silent = TRUE), 
                "monitor 'something' must match at least one of the following variables in expr: 'gamma', 'alpha2', 'znot', 'i' or 'alpha3'")
-  
-#  expect_error(mcmc_derive(mcmcr_example, expr, values = list(x = NA), monitor = "alpha3"), paste0("monitor 'alpha3' must not include missing values in expr\n\n    gamma "))
-  
 })
 
-test_that("derive matrix", {
-  
-  mcmcr_example <- mcmcr::mcmcr_example
-  mcmcr <- subset(mcmcr_example, 1:2, 1:10, parameters = "beta")
+test_that("derive.mcmcr matrix", {
+  mcmcr <- subset( mcmcr::mcmcr_example, 1:2, 1:10, parameters = "beta")
   
   expr <- "
     x <- Z
@@ -78,5 +72,11 @@ test_that("derive matrix", {
   
   names(derived) <- "beta"
   expect_identical(derived, mcmcr)
+})
+
+test_that("derive.mcmcr problems", {
+  
+  #  expect_error(mcmc_derive(mcmcr_example, expr, values = list(x = NA), monitor = "alpha3"), paste0("monitor 'alpha3' must not include missing values in expr\n\n    gamma "))
+
 })
 
