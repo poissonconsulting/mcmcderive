@@ -43,7 +43,7 @@ mcmc_derive.mcmcr <- function(object, expr, values = list(), monitor = ".*", sil
   check_unused(...)
   
   if (length(values)) {
-    values <- convert_values(values) # needs more work - can't be missing and must be numeric...
+    check_named(values, unique = TRUE)
     object <- drop_overridden_parameters(object, values, silent = silent)
     values <- drop_absent_values(values, expr, silent = silent)
   }
