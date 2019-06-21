@@ -43,7 +43,7 @@ expr <- "
   gamma <- sum(alpha) * sigma
 "
 
-mcmc_derive(mcmcr::mcmcr_example, expr)
+mcmc_derive(mcmcr::mcmcr_example, expr, silent = TRUE)
 ```
 
 ## Installation
@@ -62,4 +62,4 @@ Please report any [issues](https://github.com/poissonconsulting/mcmcderive/issue
 [Pull requests](https://github.com/poissonconsulting/mcmcderive/pulls) are always welcome.
 
 Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md).
-By participating in this project you agree to abide by its terms.
+By participating in this project you agree to abide by its terms

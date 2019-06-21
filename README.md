@@ -61,7 +61,7 @@ expr <- "
   gamma <- sum(alpha) * sigma
 "
 
-mcmc_derive(mcmcr::mcmcr_example, expr)
+mcmc_derive(mcmcr::mcmcr_example, expr, silent = TRUE)
 #> $alpha2
 #> [1]  41.18352 111.94841
 #> 
@@ -96,4 +96,4 @@ are always welcome.
 
 Please note that this project is released with a [Contributor Code of
 Conduct](CONDUCT.md). By participating in this project you agree to
-abide by its terms.
+abide by its terms
