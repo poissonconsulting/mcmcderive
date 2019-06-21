@@ -50,6 +50,8 @@ mcmc_derive.mcmcr <- function(object, expr, values = list(), monitor = ".*", sil
   object <- drop_absent_parameters(object, expr, silent = silent)
   values <- add_new_variables(values, object, expr, silent = silent)
   monitor <- monitor_variables(monitor, values)
+#  expr <- expand_indexed_parameters(expr, object, monitor)
+#  print(expr)
   
   derive(object, expr, values, monitor)
 }
