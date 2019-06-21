@@ -33,6 +33,7 @@ derive <- function(object, expr, values, monitor) {
 
 derive2 <- function(object, expr, values, monitor) {
 
+  object <- lapply(object, as.mcarray)
   object <- lapply(object, unclass)
   values <- c(object, values)
   print(values)
