@@ -12,13 +12,23 @@ test_that("derive.mcmcarray", {
   expect_identical(nterms(derived), 4L)
 })
 
+test_that("derive.mcmcr very simple", {
+  mcmcr <- subset(mcmcr::mcmcr_example, 1:2, 1:10)
+
+  derived <- mcmc_derive(mcmcr, "gamma <- alpha", silent = TRUE)
+  expect_identical(parameters(derived), "gamma")
+  expect_identical(nchains(derived), 2L)
+  expect_identical(niters(derived), 10L)
+  expect_identical(nterms(derived), 4L)
+})
+
 test_that("derive.mcmcr simple", {
   mcmcr <- subset(mcmcr::mcmcr_example, 1:2, 1:10)
 
   expect_warning(mcmc_derive(mcmcr, "gamma <- alpha + beta"), 
                  "the following parameter was not in expr and so was dropped from object: 'sigma'")
   
-  derived <- mcmc_derive(mcmcr, "gamma <- alpha + beta", silent = TRUE)
+  derived <- mcmc_derive(mcmcr, "gamma[ ] <- alpha[ ] + beta[, ]", silent = TRUE)
   expect_identical(parameters(derived), "gamma")
   expect_identical(nchains(derived), 2L)
   expect_identical(niters(derived), 10L)

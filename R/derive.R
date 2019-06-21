@@ -30,3 +30,20 @@ derive <- function(object, expr, values, monitor) {
   
   check_no_missing_values(object)
 }
+
+derive2 <- function(object, expr, values, monitor) {
+
+  object <- lapply(object, unclass)
+  values <- c(object, values)
+  print(values)
+  print(expr)
+  object <- within(values, eval(parse(text = expr)))
+  print(object)
+  object <- object[monitor]
+
+  # missing values
+  object <- lapply(object, set_class, "mcmcarray")
+  object <- as.mcmcr(object)
+  check_mcmcr(object)
+  object
+}
