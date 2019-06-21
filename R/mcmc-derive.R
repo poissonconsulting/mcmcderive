@@ -55,7 +55,8 @@ mcmc_derive.mcmcr <- function(object, expr, values = list(), monitor = ".*", sil
                    values = values, monitor = monitor)
   
   object <- Reduce(bind_chains, object)
-  
+ 
+  # need to identify parameters with missing values 
   if (anyNA(object))
     err("monitor '", monitor, "' must not include missing values in expr\n", expr)
   object

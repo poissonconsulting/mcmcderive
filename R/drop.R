@@ -6,8 +6,10 @@ drop_overridden_parameters <- function(object, values, silent) {
       err("all the parameters in object are also in values")
     
     if(!silent) {
-      wrn(co(drop, "the following parameter was also in values and so was dropped from object: %c",
+      wrn(co(drop, 
+             "the following parameter was also in values and so was dropped from object: %c",
              "the following %n parameters were also in values and so were dropped from object: %c"))
+      
     }
     object <- subset(object, parameters = setdiff(parameters, drop))
   }
