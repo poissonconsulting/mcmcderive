@@ -104,6 +104,6 @@ test_that("derive.mcmcr problems", {
                "monitor 'alpha3' must match at least one of the following variable in expr: 'alpha2'")
   
   expect_error(mcmc_derive(mcmcr, expr = "alpha2 <- beta * sigma * alpha * alpha3", monitor = "2$"),
-               "monitor 'alpha2' must not include missing values in expr")
+               "the following derived parameter includes missing values: 'alpha2'")
 })
 

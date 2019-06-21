@@ -35,6 +35,7 @@ mcmc_derive.default <- function(object, expr, values = list(), monitor = ".*", s
 #' @describeIn mcmc_derive MCMC Derive for an mcmcr object
 #' @export
 mcmc_derive.mcmcr <- function(object, expr, values = list(), monitor = ".*", silent = FALSE, ...) {
+  check_mcmcr(object)
   check_string(expr)
   check_list(values)
   check_string(monitor)
@@ -50,14 +51,12 @@ mcmc_derive.mcmcr <- function(object, expr, values = list(), monitor = ".*", sil
   values <- add_new_variables(values, object, expr, silent = silent)
   monitor <- monitor_variables(monitor, values)
   
+  # need to optimize this part...
   object <- lapply(1:nchains(object), derive_chain, object = object,
                    expr = parse(text = expr),
                    values = values, monitor = monitor)
   
   object <- Reduce(bind_chains, object)
- 
-  # need to identify parameters with missing values 
-  if (anyNA(object))
-    err("monitor '", monitor, "' must not include missing values in expr\n", expr)
-  object
+  
+  check_no_missing_values(object)
 }
