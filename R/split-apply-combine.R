@@ -16,7 +16,7 @@ split_apply_combine_chain <- function(i, object, expr, values, monitor) {
   
   object <- lapply(1:niters(object), FUN = split_apply_combine_sample, object = object,
                    expr = expr, values = values, monitor = monitor)
-  object <- Reduce(bind_iterations, object)
+  object <- Reduce(bind_iterations_mcmcr, object)
   object
 }
 
