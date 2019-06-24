@@ -8,14 +8,15 @@ License: MIT + file LICENSE
 Depends:
     R (>= 3.4.0)
 Imports:
+    abind,
     err,
     checkr,
-    mcmcr,
-    abind,
-    plyr
+    mcmcr
 Suggests:
     covr,
     coda,
+    plyr,
+    foreach,
     testthat
 Remotes:
     poissonconsulting/mcmcr

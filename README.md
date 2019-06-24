@@ -18,16 +18,40 @@ status](https://www.r-pkg.org/badges/version/mcmcderive)](https://cran.r-project
 
 # mcmcderive
 
-## Introduction
+## Why `mcmcderive`?
 
 `mcmcderive` is an R package to generate derived parameter(s) from Monte
 Carlo Markov Chain (MCMC) samples using R code. This is useful because
 it means Bayesian models can be fitted without the inclusion of derived
 parameters which add unnecessary complexity and slow model fitting.
 
-The `mcmc_derive()` function accepts (and returns) `mcmc.list` and
-[`mcmcr`](https://github.com/poissonconsulting/mcmcr) objects. All other
-MCMC objects are first converted into `mcmcr` objects.
+The `mcmc_derive()` function accepts (and returns) an
+[`mcmcr`](https://poissonconsulting.github.io/mcmcr/reference/mcmcr-object.html)
+or
+[`mcmcrs`](https://poissonconsulting.github.io/mcmcr/reference/mcmcrs-object.html)
+object.
+
+as defined in the package. All other MCMC objects are first converted
+into `mcmcr` objects.
+
+### Parallel Chains
+
+If the MCMC objects have multiple chains the run time can be
+substantially reduced by generating the derived parameters for each
+chain in parallel. In order for this to work it is necessary to:
+
+1)  Ensure plyr and foreach are installed.
+2)  Register a parallel backend using `foreach`.
+3)  Set `parallel = TRUE` in the call to `mcmc_derive()`.
+
+A parallel backend can be registered using
+
+``` r
+if (getDoParWorkers() == 1)
+  registerDoParallel(4)
+```
+
+### Extras
 
 To facilitate the translation of model code into R code the `mcmcderive`
 package also provides the R equivalent to common model functions such as

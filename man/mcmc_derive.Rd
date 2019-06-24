@@ -2,54 +2,64 @@
 % Please edit documentation in R/mcmc-derive.R
 \name{mcmc_derive}
 \alias{mcmc_derive}
-\alias{mcmc_derive.default}
 \alias{mcmc_derive.mcmcr}
+\alias{mcmc_derive.mcmc.list}
+\alias{mcmc_derive.mcmcrs}
 \title{MCMC Derive}
 \usage{
 mcmc_derive(object, ...)
 
-\method{mcmc_derive}{default}(object, expr, values = list(),
+\method{mcmc_derive}{mcmcr}(object, expr, values = list(),
   monitor = ".*", parallel = FALSE, silent = FALSE, ...)
 
-\method{mcmc_derive}{mcmcr}(object, expr, values = list(),
+\method{mcmc_derive}{mcmc.list}(object, expr, values = list(),
+  monitor = ".*", parallel = FALSE, silent = FALSE, ...)
+
+\method{mcmc_derive}{mcmcrs}(object, expr, values = list(),
   monitor = ".*", parallel = FALSE, silent = FALSE, ...)
 }
 \arguments{
-\item{object}{The original MCMC object (which is converted to an mcmcr object using \code{\link[mcmcr]{as.mcmcr}()}).}
+\item{object}{The original MCMC object.}
 
 \item{...}{Unused.}
 
-\item{expr}{A string of the R code defining the values of the derived parameter(s) with respect to the parameters in object.}
+\item{expr}{A string of the R code defining the values of the 
+derived parameter(s) with respect to the parameters in object.}
 
 \item{values}{A named list of additional R objects to evaluate in the R expression.}
 
-\item{monitor}{A regular expression specifying the derived parameter(s) in expr to monitor.}
+\item{monitor}{A regular expression specifying the 
+derived parameter(s) in expr to monitor.}
 
-\item{parallel}{A flag specifying whether to apply to each chain in parallel.}
+\item{parallel}{A flag specifying whether to generate the derived parameters 
+for each chain in parallel.}
 
-\item{silent}{A flag specifying whether to suppress warnings.}
+\item{silent}{A flag specifying whether to suppress messages and warnings.}
 }
 \value{
-An \code{\link[mcmcr]{mcmcr}} object of the derived parameter(s).
+An MCMC object 
+of the derived parameter(s).
 }
 \description{
-Generate an mcmcr object of derived parameter(s) from an original MCMC object.
+Generate an MCMC object of derived parameter(s) from an MCMC
+an \code{\link[mcmcr]{mcmcr}}, \code{\link[coda]{mcmc.list}} or
+\code{\link[mcmcr]{mcmcrs}} object.
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{default}: MCMC Derive for an object that can be coerced to an mcmcr object
-
 \item \code{mcmcr}: MCMC Derive for an mcmcr object
+
+\item \code{mcmc.list}: MCMC Derive for an mcmc.list object
+
+\item \code{mcmcrs}: MCMC Derive for an mcmcrs object
 }}
 
 \examples{
-mcmc_derive(mcmcr::mcmcr_example, "prediction <- (alpha + beta) / sigma")
+mcmcr::mcmcr_example
 
 expr <- "
  log(alpha2) <- alpha
  gamma <- sum(alpha) * sigma"
- 
-mcmc_derive(mcmcr::mcmcr_example, expr)
 
-mcmc_derive(mcmcr::mcmcr_example, expr, monitor = "gamma")
+mcmc_derive(mcmcr::mcmcr_example, expr, silent = TRUE)
 }
