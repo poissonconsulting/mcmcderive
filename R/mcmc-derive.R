@@ -5,24 +5,23 @@
 #' @param object The original MCMC object (which is converted to an mcmcr object using \code{\link[mcmcr]{as.mcmcr}()}).
 #' @param expr A string of the R code defining the values of the derived parameter(s) with respect to the parameters in object.
 #' @param values A named list of additional R objects to evaluate in the R expression.
-#' @param monitor A regular expression specifying the derived parameter(s) in expr.
+#' @param monitor A regular expression specifying the derived parameter(s) in expr to monitor.
 #' @param split A flag specifying whether to adopt the slower split-apply-combine strategy.
-#' @param parallel A flag specifying whether to generate for each chain in parallel.
+#' @param parallel A flag specifying whether to apply to each chain in parallel.
 #' @param silent A flag specifying whether to suppress warnings.
 #' @param ... Unused.
 #' @return An \code{\link[mcmcr]{mcmcr}} object of the derived parameter(s).
 #' @export
 #' @examples
-#' mcmcr <- subset(mcmcr::mcmcr_example, 1:2, 1:10)
-#' mcmc_derive(mcmcr, "prediction <- (alpha + beta) / sigma")
+#' mcmc_derive(mcmcr::mcmcr_example, "prediction <- (alpha + beta) / sigma")
 #' 
 #' expr <- "
 #'  log(alpha2) <- alpha
 #'  gamma <- sum(alpha) * sigma"
 #'  
-#' mcmc_derive(mcmcr, expr)
+#' mcmc_derive(mcmcr::mcmcr_example, expr)
 #' 
-#' mcmc_derive(mcmcr, expr, monitor = "gamma")
+#' mcmc_derive(mcmcr::mcmcr_example, expr, monitor = "gamma")
 mcmc_derive <- function(object, ...) {
   UseMethod("mcmc_derive")
 }

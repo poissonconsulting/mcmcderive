@@ -11,6 +11,7 @@ Imports:
     err,
     checkr,
     mcmcr,
+    abind,
     plyr
 Suggests:
     covr,

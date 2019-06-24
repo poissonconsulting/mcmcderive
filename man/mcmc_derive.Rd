@@ -25,11 +25,11 @@ mcmc_derive(object, ...)
 
 \item{values}{A named list of additional R objects to evaluate in the R expression.}
 
-\item{monitor}{A regular expression specifying the derived parameter(s) in expr.}
+\item{monitor}{A regular expression specifying the derived parameter(s) in expr to monitor.}
 
 \item{split}{A flag specifying whether to adopt the slower split-apply-combine strategy.}
 
-\item{parallel}{A flag specifying whether to generate for each chain in parallel.}
+\item{parallel}{A flag specifying whether to apply to each chain in parallel.}
 
 \item{silent}{A flag specifying whether to suppress warnings.}
 }
@@ -47,14 +47,13 @@ Generate an mcmcr object of derived parameter(s) from an original MCMC object.
 }}
 
 \examples{
-mcmcr <- subset(mcmcr::mcmcr_example, 1:2, 1:10)
-mcmc_derive(mcmcr, "prediction <- (alpha + beta) / sigma")
+mcmc_derive(mcmcr::mcmcr_example, "prediction <- (alpha + beta) / sigma")
 
 expr <- "
  log(alpha2) <- alpha
  gamma <- sum(alpha) * sigma"
  
-mcmc_derive(mcmcr, expr)
+mcmc_derive(mcmcr::mcmcr_example, expr)
 
-mcmc_derive(mcmcr, expr, monitor = "gamma")
+mcmc_derive(mcmcr::mcmcr_example, expr, monitor = "gamma")
 }
