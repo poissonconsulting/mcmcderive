@@ -6,7 +6,6 @@
 #' @param expr A string of the R code defining the values of the derived parameter(s) with respect to the parameters in object.
 #' @param values A named list of additional R objects to evaluate in the R expression.
 #' @param monitor A regular expression specifying the derived parameter(s) in expr to monitor.
-#' @param split A flag specifying whether to adopt the slower split-apply-combine strategy.
 #' @param parallel A flag specifying whether to apply to each chain in parallel.
 #' @param silent A flag specifying whether to suppress warnings.
 #' @param ... Unused.
@@ -29,21 +28,20 @@ mcmc_derive <- function(object, ...) {
 #' @describeIn mcmc_derive MCMC Derive for an object that can be coerced to an mcmcr object
 #' @export
 mcmc_derive.default <- function(object, expr, values = list(), monitor = ".*", 
-                                split = TRUE, parallel = FALSE, silent = FALSE, ...) {
+                                parallel = FALSE, silent = FALSE, ...) {
   check_unused(...)
-  mcmc_derive(as.mcmcr(object), expr = expr, values = values, split = split, 
+  mcmc_derive(as.mcmcr(object), expr = expr, values = values, 
               parallel = parallel, monitor = monitor, silent = silent) 
 }
 
 #' @describeIn mcmc_derive MCMC Derive for an mcmcr object
 #' @export
 mcmc_derive.mcmcr <- function(object, expr, values = list(), monitor = ".*", 
-                              split = TRUE, parallel = FALSE, silent = FALSE, ...) {
+                              parallel = FALSE, silent = FALSE, ...) {
   check_mcmcr(object)
   check_string(expr)
   check_list(values)
   check_string(monitor)
-  check_flag(split)
   check_flag(parallel)
   check_flag(silent)
   check_unused(...)
@@ -57,8 +55,5 @@ mcmc_derive.mcmcr <- function(object, expr, values = list(), monitor = ".*",
   values <- add_new_variables(values, object, expr, silent = silent)
   monitor <- monitor_variables(monitor, values)
   
-  if(split)
-    return(split_apply_combine(object, expr, values, monitor, parallel))
-#  expr <- expand_indexed_parameters(expr, object, monitor)
-#  derive2(object, expr, values, monitor)
+  split_apply_combine(object, expr, values, monitor, parallel)
 }

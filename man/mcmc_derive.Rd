@@ -9,12 +9,10 @@
 mcmc_derive(object, ...)
 
 \method{mcmc_derive}{default}(object, expr, values = list(),
-  monitor = ".*", split = TRUE, parallel = FALSE, silent = FALSE,
-  ...)
+  monitor = ".*", parallel = FALSE, silent = FALSE, ...)
 
 \method{mcmc_derive}{mcmcr}(object, expr, values = list(),
-  monitor = ".*", split = TRUE, parallel = FALSE, silent = FALSE,
-  ...)
+  monitor = ".*", parallel = FALSE, silent = FALSE, ...)
 }
 \arguments{
 \item{object}{The original MCMC object (which is converted to an mcmcr object using \code{\link[mcmcr]{as.mcmcr}()}).}
@@ -26,8 +24,6 @@ mcmc_derive(object, ...)
 \item{values}{A named list of additional R objects to evaluate in the R expression.}
 
 \item{monitor}{A regular expression specifying the derived parameter(s) in expr to monitor.}
-
-\item{split}{A flag specifying whether to adopt the slower split-apply-combine strategy.}
 
 \item{parallel}{A flag specifying whether to apply to each chain in parallel.}
 

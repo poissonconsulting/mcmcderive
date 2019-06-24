@@ -25,11 +25,13 @@ knitr::opts_chunk$set(
 
 ## Introduction
 
-`mcmcderive` is an R package to generate derived parameters from Monte Carlo Markov Chain (MCMC) samples using R code.
+`mcmcderive` is an R package to generate derived parameter(s) from Monte Carlo Markov Chain (MCMC) samples using R code.
+This is useful because it means Bayesian models can be fitted without the inclusion of derived parameters which add unnecessary complexity and slow model fitting.
+
+The `mcmc_derive()` function accepts (and returns) `mcmc.list` and [`mcmcr`](https://github.com/poissonconsulting/mcmcr) objects. 
+All other MCMC objects are first converted into `mcmcr` objects.
 
 To facilitate the translation of model code into R code the `mcmcderive` package also provides the R equivalent to common model functions such as `pow()`, `phi()` and `log() <- `.
-
-The derived parameters are returned as an [`mcmcr`](https://github.com/poissonconsulting/mcmcr) object.
 
 ## Demonstration
 
