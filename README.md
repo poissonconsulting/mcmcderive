@@ -25,31 +25,17 @@ Carlo Markov Chain (MCMC) samples using R code. This is useful because
 it means Bayesian models can be fitted without the inclusion of derived
 parameters which add unnecessary complexity and slow model fitting.
 
-The `mcmc_derive()` function accepts (and returns) an
-[`mcmcr`](https://poissonconsulting.github.io/mcmcr/reference/mcmcr-object.html)
-or
-[`mcmcrs`](https://poissonconsulting.github.io/mcmcr/reference/mcmcrs-object.html)
-object.
-
-as defined in the package. All other MCMC objects are first converted
-into `mcmcr` objects.
-
 ### Parallel Chains
 
-If the MCMC objects have multiple chains the run time can be
-substantially reduced by generating the derived parameters for each
-chain in parallel. In order for this to work it is necessary to:
+If the MCMC object has multiple chains the run time can be substantially
+reduced by generating the derived parameters for each chain in parallel.
+In order for this to work it is necessary to:
 
-1)  Ensure plyr and foreach are installed.
-2)  Register a parallel backend using `foreach`.
+1)  Ensure plyr and doParallel are installed using
+    `install.packages(c("plyr", "doParallel"))`.
+2)  Register a parallel backend using
+    `doParallel::registerDoParallel(4)`.
 3)  Set `parallel = TRUE` in the call to `mcmc_derive()`.
-
-A parallel backend can be registered using
-
-``` r
-if (getDoParWorkers() == 1)
-  registerDoParallel(4)
-```
 
 ### Extras
 

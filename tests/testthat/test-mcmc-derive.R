@@ -67,6 +67,8 @@ test_that("mcmc_derive in parallel", {
   
   values <- list(x = 2:10)
   
+  doParallel::registerDoParallel(2)
+  
   derived <- mcmc_derive(mcmcr, expr, values = values, monitor = "^g|^a", 
                          parallel = TRUE,silent = TRUE)
   

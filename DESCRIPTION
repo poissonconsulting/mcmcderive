@@ -16,7 +16,7 @@ Suggests:
     covr,
     coda,
     plyr,
-    foreach,
+    doParallel,
     testthat
 Remotes:
     poissonconsulting/mcmcr
