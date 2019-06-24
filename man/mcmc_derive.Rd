@@ -9,10 +9,12 @@
 mcmc_derive(object, ...)
 
 \method{mcmc_derive}{default}(object, expr, values = list(),
-  monitor = ".*", silent = FALSE, ...)
+  monitor = ".*", split = TRUE, parallel = FALSE, silent = FALSE,
+  ...)
 
 \method{mcmc_derive}{mcmcr}(object, expr, values = list(),
-  monitor = ".*", silent = FALSE, ...)
+  monitor = ".*", split = TRUE, parallel = FALSE, silent = FALSE,
+  ...)
 }
 \arguments{
 \item{object}{The original MCMC object (which is converted to an mcmcr object using \code{\link[mcmcr]{as.mcmcr}()}).}
@@ -24,6 +26,10 @@ mcmc_derive(object, ...)
 \item{values}{A named list of additional R objects to evaluate in the R expression.}
 
 \item{monitor}{A regular expression specifying the derived parameter(s) in expr.}
+
+\item{split}{A flag specifying whether to adopt the slower split-apply-combine strategy.}
+
+\item{parallel}{A flag specifying whether to generate for each chain in parallel.}
 
 \item{silent}{A flag specifying whether to suppress warnings.}
 }
@@ -41,14 +47,14 @@ Generate an mcmcr object of derived parameter(s) from an original MCMC object.
 }}
 
 \examples{
-mcmc_derive(mcmcr::mcmcr_example, "prediction <- (alpha + beta) / sigma")
+mcmcr <- subset(mcmcr::mcmcr_example, 1:2, 1:10)
+mcmc_derive(mcmcr, "prediction <- (alpha + beta) / sigma")
 
 expr <- "
  log(alpha2) <- alpha
  gamma <- sum(alpha) * sigma"
  
-mcmc_derive(mcmcr::mcmcr_example, expr)
+mcmc_derive(mcmcr, expr)
 
-mcmc_derive(mcmcr::mcmcr_example, expr, monitor = "gamma")
-
+mcmc_derive(mcmcr, expr, monitor = "gamma")
 }

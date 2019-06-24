@@ -10,7 +10,8 @@ Depends:
 Imports:
     err,
     checkr,
-    mcmcr
+    mcmcr,
+    plyr
 Suggests:
     covr,
     coda,

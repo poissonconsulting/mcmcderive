@@ -6,39 +6,46 @@
 #' @param expr A string of the R code defining the values of the derived parameter(s) with respect to the parameters in object.
 #' @param values A named list of additional R objects to evaluate in the R expression.
 #' @param monitor A regular expression specifying the derived parameter(s) in expr.
+#' @param split A flag specifying whether to adopt the slower split-apply-combine strategy.
+#' @param parallel A flag specifying whether to generate for each chain in parallel.
 #' @param silent A flag specifying whether to suppress warnings.
 #' @param ... Unused.
 #' @return An \code{\link[mcmcr]{mcmcr}} object of the derived parameter(s).
 #' @export
 #' @examples
-#' mcmc_derive(mcmcr::mcmcr_example, "prediction <- (alpha + beta) / sigma")
+#' mcmcr <- subset(mcmcr::mcmcr_example, 1:2, 1:10)
+#' mcmc_derive(mcmcr, "prediction <- (alpha + beta) / sigma")
 #' 
 #' expr <- "
 #'  log(alpha2) <- alpha
 #'  gamma <- sum(alpha) * sigma"
 #'  
-#' mcmc_derive(mcmcr::mcmcr_example, expr)
+#' mcmc_derive(mcmcr, expr)
 #' 
-#' mcmc_derive(mcmcr::mcmcr_example, expr, monitor = "gamma")
-#' 
+#' mcmc_derive(mcmcr, expr, monitor = "gamma")
 mcmc_derive <- function(object, ...) {
   UseMethod("mcmc_derive")
 }
 
 #' @describeIn mcmc_derive MCMC Derive for an object that can be coerced to an mcmcr object
 #' @export
-mcmc_derive.default <- function(object, expr, values = list(), monitor = ".*", silent = FALSE, ...) {
+mcmc_derive.default <- function(object, expr, values = list(), monitor = ".*", 
+                                split = TRUE, parallel = FALSE, silent = FALSE, ...) {
   check_unused(...)
-  mcmc_derive(as.mcmcr(object), expr = expr, values = values, monitor = monitor, silent = silent) 
+  mcmc_derive(as.mcmcr(object), expr = expr, values = values, split = split, 
+              parallel = parallel, monitor = monitor, silent = silent) 
 }
 
 #' @describeIn mcmc_derive MCMC Derive for an mcmcr object
 #' @export
-mcmc_derive.mcmcr <- function(object, expr, values = list(), monitor = ".*", silent = FALSE, ...) {
+mcmc_derive.mcmcr <- function(object, expr, values = list(), monitor = ".*", 
+                              split = TRUE, parallel = FALSE, silent = FALSE, ...) {
   check_mcmcr(object)
   check_string(expr)
   check_list(values)
   check_string(monitor)
+  check_flag(split)
+  check_flag(parallel)
   check_flag(silent)
   check_unused(...)
   
@@ -51,7 +58,8 @@ mcmc_derive.mcmcr <- function(object, expr, values = list(), monitor = ".*", sil
   values <- add_new_variables(values, object, expr, silent = silent)
   monitor <- monitor_variables(monitor, values)
   
-#  return(derive(object, expr, values, monitor))
-  expr <- expand_indexed_parameters(expr, object, monitor)
-  derive2(object, expr, values, monitor)
+  if(split)
+    return(split_apply_combine(object, expr, values, monitor, parallel))
+#  expr <- expand_indexed_parameters(expr, object, monitor)
+#  derive2(object, expr, values, monitor)
 }

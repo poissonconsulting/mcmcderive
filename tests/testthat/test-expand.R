@@ -2,7 +2,7 @@ context("expand")
 
 test_that("expand",{
   expect_identical(expand_indexed_parameter("par[1] <- par[2]", "par"),
-                   "par[,,1] <- par[,,2]")
+                   "par[1,,] <- par[2,,]")
   
   expect_identical(expand_indexed_parameter("par[] <- par[,]", "par"),
                    "par[] <- par[,,,]")

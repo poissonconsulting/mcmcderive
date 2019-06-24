@@ -19,7 +19,7 @@ test_that("derive.mcmcr very simple", {
   expect_identical(parameters(derived), "gamma")
   expect_identical(nchains(derived), 2L)
   expect_identical(niters(derived), 10L)
-  expect_identical(nterms(derived), 4L)
+  expect_identical(nterms(derived), 2L)
 })
 
 test_that("derive.mcmcr simple", {
@@ -32,7 +32,7 @@ test_that("derive.mcmcr simple", {
   expect_identical(parameters(derived), "gamma")
   expect_identical(nchains(derived), 2L)
   expect_identical(niters(derived), 10L)
-  expect_identical(nterms(derived), 4L)
+  expect_identical(nterms(derived), 1L)
 })
 
 test_that("derive.mcmcr more complex", {
