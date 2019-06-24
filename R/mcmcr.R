@@ -1,3 +1,9 @@
+abind <- function(x, x2, along, dimnames = TRUE) {
+  x <- abind::abind(x, x2, along = along)
+  if(!isTRUE(dimnames)) dimnames(x) <- NULL
+  x
+}
+
 subset_mcmcarray <- function(x, chains = NULL, iterations = NULL) {			
   if (!is.null(chains)) x <- abind::asub(x, chains, 1L, drop = FALSE)			
   if (!is.null(iterations)) x <- abind::asub(x, iterations, 2L, drop = FALSE)			
@@ -22,7 +28,14 @@ estimates_mcmcr <- function(object) {
   lapply(object, estimates_mcmcarray)			
 }
 
+bind_iterations_mcmcarray <- function(x, x2, ...) {		
+  x <- abind::abind(x, x2, along = 2)
+  dimnames(x) <- NULL		
+  set_class(x, "mcmcarray")			
+}			
+
+
 bind_iterations_mcmcr <- function(x, x2, ...) {			
-  x <- mapply(x, x2, FUN = bind_iterations, SIMPLIFY = FALSE)			
+  x <- mapply(x, x2, FUN = bind_iterations_mcmcarray, SIMPLIFY = FALSE)			
   set_class(x, "mcmcr")			
 }
