@@ -22,6 +22,8 @@ Suggests:
     plyr,
     doParallel,
     testthat
+Remotes:
+    poissonconsulting/mcmcr
 URL: https://github.com/poissonconsulting/mcmcderive
 BugReports: https://github.com/poissonconsulting/mcmcderive/issues
 Encoding: UTF-8
