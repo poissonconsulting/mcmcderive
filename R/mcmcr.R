@@ -4,18 +4,27 @@ abind <- function(x, x2, along, dimnames = TRUE) {
   x
 }
 
-subset_mcmcarray <- function(x, chains = NULL, iterations = NULL) {			
-  if (!is.null(chains)) x <- abind::asub(x, chains, 1L, drop = FALSE)			
-  if (!is.null(iterations)) x <- abind::asub(x, iterations, 2L, drop = FALSE)			
+subset_mcmcarray_chains <- function(x, chains) {			
+ x <- abind::asub(x, chains, 1L, drop = FALSE)			
   set_class(x, "mcmcarray")
 }
 
-subset_mcmcr <- function(x, chains = NULL, iterations = NULL) {			
-  x <- lapply(x, subset_mcmcarray, chains = chains, iterations = iterations)	  
+subset_mcmcarray_iterations <- function(x, iterations) {			
+  x <- abind::asub(x, iterations, 2L, drop = FALSE)			
+  set_class(x, "mcmcarray")
+}
+
+subset_mcmcr_iterations <- function(x, iterations) {			
+  x <- lapply(x, subset_mcmcarray_iterations, iterations = iterations)	  
   set_class(x, "mcmcr")
 }
 
-subset_mcmcr_parameters <- function(x, parameters = NULL) {
+subset_mcmcr_chains <- function(x, chains) {			
+  x <- lapply(x, subset_mcmcarray_chains, chains = chains)	  
+  set_class(x, "mcmcr")
+}
+
+subset_mcmcr_parameters <- function(x, parameters) {
   x <- x[parameters]
   set_class(x, "mcmcr")
 }

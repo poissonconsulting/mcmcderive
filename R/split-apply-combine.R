@@ -1,5 +1,5 @@
 split_apply_combine_sample <- function(i, object, expr, values, monitor) {
-  object <- subset_mcmcr(object, iterations = i)
+  object <- subset_mcmcr_iterations(object, iterations = i)
   object <- estimates_mcmcr(object)
   object <- c(object, values)
   object <- within(object, eval(expr))
@@ -12,7 +12,7 @@ split_apply_combine_sample <- function(i, object, expr, values, monitor) {
 }
 
 split_apply_combine_chain <- function(i, object, expr, values, monitor) {
-  object <- subset_mcmcr(object, chains = i)
+  object <- subset_mcmcr_chains(object, chains = i)
   
   object <- lapply(1:niters(object), FUN = split_apply_combine_sample, object = object,
                    expr = expr, values = values, monitor = monitor)
