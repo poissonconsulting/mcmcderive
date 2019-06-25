@@ -10,7 +10,8 @@ subset_mcmcarray_chains <- function(x, chains) {
 }
 
 subset_mcmcarray_iterations <- function(x, iterations) {			
-  x <- abind::asub(x, iterations, 2L, drop = FALSE)			
+  x <- abind::asub(x, iterations, 2L, drop = FALSE)	
+  x <- apply(x, 3:ndims(x), FUN = identity)
   set_class(x, "mcmcarray")
 }
 
@@ -27,14 +28,6 @@ subset_mcmcr_chains <- function(x, chains) {
 subset_mcmcr_parameters <- function(x, parameters) {
   x <- x[parameters]
   set_class(x, "mcmcr")
-}
-
-estimates_mcmcarray <- function(object) {			
-  apply(object, 3:ndims(object), FUN = identity)			
-}			
-
-estimates_mcmcr <- function(object) {			
-  lapply(object, estimates_mcmcarray)			
 }
 
 bind_iterations_mcmcarray <- function(x, x2, ...) {		

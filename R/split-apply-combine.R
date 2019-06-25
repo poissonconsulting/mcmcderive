@@ -1,6 +1,5 @@
 split_apply_combine_sample <- function(i, object, expr, values, monitor) {
   object <- subset_mcmcr_iterations(object, iterations = i)
-  object <- estimates_mcmcr(object)
   object <- c(object, values)
   object <- within(object, eval(expr))
   object <- object[monitor]
