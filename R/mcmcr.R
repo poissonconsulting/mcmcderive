@@ -5,7 +5,9 @@ subset_mcmcarray_chains <- function(x, chains) {
 
 subset_mcmcarray_iterations <- function(x, iterations) {			
   x <- abind::asub(x, iterations, 2L, drop = FALSE)	
-  x <- apply(x, 3:ndims(x), FUN = identity)
+  dim <- dim(x)[-c(1,2)]
+  if(length(dim) == 1) dim <- NULL
+  dim(x) <- dim
   set_class(x, "mcmcarray")
 }
 
