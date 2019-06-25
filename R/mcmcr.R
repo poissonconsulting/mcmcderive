@@ -8,12 +8,11 @@ subset_mcmcarray_iterations <- function(x, iterations) {
   dim <- dim(x)[-c(1,2)]
   if(length(dim) == 1) dim <- NULL
   dim(x) <- dim
-  set_class(x, "mcmcarray")
+  x
 }
 
 subset_mcmcr_iterations <- function(x, iterations) {			
-  x <- lapply(x, subset_mcmcarray_iterations, iterations = iterations)	  
-  set_class(x, "mcmcr")
+  lapply(x, subset_mcmcarray_iterations, iterations = iterations)	  
 }
 
 subset_mcmcr_chains <- function(x, chains) {			
