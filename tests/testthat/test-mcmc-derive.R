@@ -143,6 +143,10 @@ test_that("mcmc_derive warnings and errors", {
   expect_warning(mcmc_derive(mcmcr, expr = "alpha2 <- beta * alpha"),
                  "the following parameter was not in expr and so was dropped from object: 'sigma'") 
   
+  expect_error(mcmc_derive(mcmcr, expr = "unknown <- unknowable"),
+               "none of the parameters in object are in expr")
+
+  
   expect_error(mcmc_derive(mcmcr, expr = "alpha <- beta * sigma"),
                "expr must include at least one variable that is not in object or values")
   
