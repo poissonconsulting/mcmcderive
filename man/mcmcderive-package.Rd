@@ -6,7 +6,10 @@
 \alias{mcmcderive-package}
 \title{mcmcderive: Derive MCMC Parameters}
 \description{
-Generates derived parameter(s) from Monte Carlo Markov Chain (MCMC) samples using R code.
+Generates derived parameter(s) from Monte Carlo Markov Chain (MCMC) 
+    samples using R code. This allows Bayesian models to be fitted without the 
+    inclusion of derived parameters which add unnecessary complexity and 
+    slow model fitting.
 }
 \seealso{
 Useful links:
