@@ -12,3 +12,4 @@
 ^docs$
 ^build\.R$
 ^codemeta\.json$
+^cran-comments\.md$
