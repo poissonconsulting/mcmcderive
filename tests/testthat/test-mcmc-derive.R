@@ -124,6 +124,9 @@ test_that("mcmc_derive warnings and errors", {
   
   mcmcr <- subset(mcmcr::mcmcr_example, 1:2, 1:10)
   
+  expect_error(mcmc_derive(mcmcr, expr = "garbage r code"),
+               "garbage r")
+  
   expect_error(mcmc_derive(mcmcr, expr = "alpha <- beta", 
                            values = list(alpha = 1, beta = 2, sigma = 3)),
                "all the parameters in object are also in values")
@@ -145,7 +148,7 @@ test_that("mcmc_derive warnings and errors", {
   
   expect_error(mcmc_derive(mcmcr, expr = "unknown <- unknowable"),
                "none of the parameters in object are in expr")
-
+  
   
   expect_error(mcmc_derive(mcmcr, expr = "alpha <- beta * sigma"),
                "expr must include at least one variable that is not in object or values")
