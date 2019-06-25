@@ -11,7 +11,8 @@ Imports:
     abind,
     err,
     checkr,
-    mcmcr
+    mcmcr,
+    purrr
 Suggests:
     covr,
     coda,

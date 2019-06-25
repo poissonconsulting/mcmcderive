@@ -3,9 +3,6 @@ split_apply_combine_sample <- function(i, object, expr, values, monitor) {
   object <- c(object, values)
   object <- within(object, eval(expr))
   object <- object[monitor]
-  object <- lapply(object, function(x) { dim(x) <- c(1L, 1L, dims(x)); class(x) <- "mcmcarray"; x})
-  
-  class(object) <- "mcmcr"
   
   object
 }
@@ -15,7 +12,7 @@ split_apply_combine_chain <- function(i, object, expr, values, monitor) {
   
   object <- lapply(1:niters(object), FUN = split_apply_combine_sample, object = object,
                    expr = expr, values = values, monitor = monitor)
-  object <- Reduce(bind_iterations_mcmcr, object)
+  object <- bind_iterations_mcmcrs(object)
   object
 }
 
