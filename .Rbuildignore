@@ -13,3 +13,4 @@
 ^build\.R$
 ^codemeta\.json$
 ^cran-comments\.md$
+^CODE_OF_CONDUCT\.md$

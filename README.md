@@ -90,15 +90,16 @@ mcmc_derive(mcmcr::mcmcr_example, expr, silent = TRUE)
 
 ## Installation
 
-To install the latest official release from
-[CRAN](https://CRAN.R-project.org/package=mcmcderive)
+To install the latest development version from
+[GitHub](https://github.com/poissonconsulting/mcmcderive)
 
-    install.packages("mcmcderive")
+    remotes::install_github("poissonconsulting/mcmcderive")
 
 To install the latest development version from the Poisson drat
 [repository](https://github.com/poissonconsulting/drat)
 
-    install.packages("mcmcderive", repos = "http://poissonconsulting.github.io/drat")
+    drat::addRepo("poissonconsulting")
+    install.packages("mcmcderive")
 
 ## Contribution
 
@@ -108,6 +109,6 @@ Please report any
 [Pull requests](https://github.com/poissonconsulting/mcmcderive/pulls)
 are always welcome.
 
-Please note that this project is released with a [Contributor Code of
-Conduct](CONDUCT.md). By participating in this project you agree to
-abide by its terms
+Please note that the ‘mcmcderive’ project is released with a
+[Contributor Code of Conduct](CODE_OF_CONDUCT.md). By contributing to
+this project, you agree to abide by its terms.
