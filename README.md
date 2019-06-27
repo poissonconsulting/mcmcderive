@@ -110,5 +110,6 @@ Please report any
 are always welcome.
 
 Please note that the ‘mcmcderive’ project is released with a
-[Contributor Code of Conduct](CODE_OF_CONDUCT.md). By contributing to
-this project, you agree to abide by its terms.
+[Contributor Code of
+Conduct](https://poissonconsulting.github.io/mcmcderive/CODE_OF_CONDUCT.html).
+By contributing to this project, you agree to abide by its terms.
