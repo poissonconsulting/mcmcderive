@@ -23,7 +23,8 @@ status](https://www.r-pkg.org/badges/version/mcmcderive)](https://cran.r-project
 `mcmcderive` is an R package to generate derived parameter(s) from Monte
 Carlo Markov Chain (MCMC) samples using R code. This is useful because
 it means Bayesian models can be fitted without the inclusion of derived
-parameters which add unnecessary complexity and slow model fitting.
+parameters which add unnecessary clutter and slow model fitting. For
+more information on MCMC samples see Brooks et al. (2011)
 
 ### Parallel Chains
 
@@ -113,3 +114,8 @@ Please note that the ‘mcmcderive’ project is released with a
 [Contributor Code of
 Conduct](https://poissonconsulting.github.io/mcmcderive/CODE_OF_CONDUCT.html).
 By contributing to this project, you agree to abide by its terms.
+
+## References
+
+Brooks, S., Gelman, A., Jones, G.L., and Meng, X.-L. (Editors). 2011.
+Handbook for Markov Chain Monte Carlo. Taylor & Francis, Boca Raton.

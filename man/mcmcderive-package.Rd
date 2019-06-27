@@ -8,8 +8,9 @@
 \description{
 Generates derived parameter(s) from Monte Carlo Markov Chain (MCMC) 
     samples using R code. This allows Bayesian models to be fitted without the 
-    inclusion of derived parameters which add unnecessary complexity and 
-    slow model fitting.
+    inclusion of derived parameters which add unnecessary clutter and 
+    slow model fitting. For more information on MCMC samples see 
+    Brooks et al. (2011) <isbn:978-1-4200-7941-8>.
 }
 \seealso{
 Useful links:
