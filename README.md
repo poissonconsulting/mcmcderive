@@ -12,6 +12,8 @@ Status](https://ci.appveyor.com/api/projects/status/github/poissonconsulting/mcm
 Status](https://img.shields.io/codecov/c/github/poissonconsulting/mcmcderive/master.svg)](https://codecov.io/github/poissonconsulting/mcmcderive?branch=master)
 [![License:
 MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[![Tinyverse
+status](https://tinyverse.netlify.com/badge/mcmcderive)](https://CRAN.R-project.org/package=mcmcderive)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/mcmcderive)](https://cran.r-project.org/package=mcmcderive)
 <!-- badges: end -->
@@ -24,25 +26,19 @@ status](https://www.r-pkg.org/badges/version/mcmcderive)](https://cran.r-project
 Carlo Markov Chain (MCMC) samples using R code. This is useful because
 it means Bayesian models can be fitted without the inclusion of derived
 parameters which add unnecessary clutter and slow model fitting. For
-more information on MCMC samples see Brooks et al. (2011)
+more information on MCMC samples see Brooks et al. (2011).
 
-### Parallel Chains
+## Installation
 
-If the MCMC object has multiple chains the run time can be substantially
-reduced by generating the derived parameters for each chain in parallel.
-In order for this to work it is necessary to:
+To install the latest release version from
+[CRAN](https://cran.r-project.org/package=mcmcderive)
 
-1)  Ensure plyr and doParallel are installed using
-    `install.packages(c("plyr", "doParallel"))`.
-2)  Register a parallel backend using
-    `doParallel::registerDoParallel(4)`.
-3)  Set `parallel = TRUE` in the call to `mcmc_derive()`.
+    install.packages("mcmcderive")
 
-### Extras
+To install the latest development version from
+[GitHub](https://github.com/poissonconsulting/mcmcderive)
 
-To facilitate the translation of model code into R code the `mcmcderive`
-package also provides the R equivalent to common model functions such as
-`pow()`, `phi()` and `log() <-`.
+    remotes::install_github("poissonconsulting/mcmcderive")
 
 ## Demonstration
 
@@ -89,18 +85,23 @@ mcmc_derive(mcmcr::mcmcr_example, expr, silent = TRUE)
 #> niters:  400
 ```
 
-## Installation
+### Parallel Chains
 
-To install the latest development version from
-[GitHub](https://github.com/poissonconsulting/mcmcderive)
+If the MCMC object has multiple chains the run time can be substantially
+reduced by generating the derived parameters for each chain in parallel.
+In order for this to work it is necessary to:
 
-    remotes::install_github("poissonconsulting/mcmcderive")
+1)  Ensure plyr and doParallel are installed using
+    `install.packages(c("plyr", "doParallel"))`.
+2)  Register a parallel backend using
+    `doParallel::registerDoParallel(4)`.
+3)  Set `parallel = TRUE` in the call to `mcmc_derive()`.
 
-To install the latest development version from the Poisson drat
-[repository](https://github.com/poissonconsulting/drat)
+### Extras
 
-    drat::addRepo("poissonconsulting")
-    install.packages("mcmcderive")
+To facilitate the translation of model code into R code the `mcmcderive`
+package also provides the R equivalent to common model functions such as
+`pow()`, `phi()` and `log() <-`.
 
 ## Contribution
 
