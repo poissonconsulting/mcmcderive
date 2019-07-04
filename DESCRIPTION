@@ -16,6 +16,7 @@ Imports:
     err,
     checkr,
     term,
+    nlist,
     mcmcr,
     purrr
 Suggests:
@@ -26,6 +27,7 @@ Suggests:
     testthat
 Remotes:
     poissonconsulting/term,
+    poissonconsulting/nlist,
     poissonconsulting/mcmcr
 URL: https://github.com/poissonconsulting/mcmcderive
 BugReports: https://github.com/poissonconsulting/mcmcderive/issues
@@ -33,4 +35,3 @@ Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
 Language: en-US
-
