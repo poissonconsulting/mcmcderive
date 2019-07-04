@@ -15,6 +15,7 @@ Imports:
     abind,
     err,
     checkr,
+    term,
     mcmcr,
     purrr
 Suggests:
@@ -23,6 +24,9 @@ Suggests:
     plyr,
     doParallel,
     testthat
+Remotes:
+    poissonconsulting/term
+    poissonconsulting/mcmcr
 URL: https://github.com/poissonconsulting/mcmcderive
 BugReports: https://github.com/poissonconsulting/mcmcderive/issues
 Encoding: UTF-8
