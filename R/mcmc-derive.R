@@ -1,10 +1,8 @@
 #' MCMC Derive
 #'
-#' Generate an MCMC object of derived parameter(s) from an MCMC
-#' an \code{\link[mcmcr]{mcmcr}}, \code{\link[coda]{mcmc.list}} or
-#' \code{\link[mcmcr]{mcmcrs}} object.
+#' Generate an MCMC object with derived parameters from an MCMC object.
 #'
-#' @param object The original MCMC object.
+#' @param object An MCMC object.
 #' @param expr A string of the R code defining the values of the 
 #' derived parameter(s) with respect to the parameters in object.
 #' @param values A named list of additional R objects to evaluate in the R expression.
@@ -14,8 +12,7 @@
 #' for each chain in parallel.
 #' @param silent A flag specifying whether to suppress messages and warnings.
 #' @param ... Unused.
-#' @return An MCMC object 
-#' of the derived parameter(s).
+#' @return An MCMC object with the derived parameter(s).
 #' @export
 #' @examples
 #' mcmcr::mcmcr_example
@@ -29,7 +26,51 @@ mcmc_derive <- function(object, ...) {
   UseMethod("mcmc_derive")
 }
 
-#' @describeIn mcmc_derive MCMC Derive for an mcmcr object
+#' @describeIn mcmc_derive Get derived parameters for an \code{\link[nlist]{nlist-object}}
+#' @export
+mcmc_derive.nlist <- function(object, expr, values = list(), monitor = ".*", 
+                                  silent = FALSE, ...) {
+  check_unused(...)
+  object <- as.mcmcr(object)
+  object <- mcmc_derive(object, expr = expr, values = values, 
+                        monitor = monitor, silent = silent)
+  nlist::as.nlist(object)
+}
+
+#' @describeIn mcmc_derive Get derived parameters for an \code{\link[nlist]{nlists-object}}
+#' @export
+mcmc_derive.nlists <- function(object, expr, values = list(), monitor = ".*", 
+                                  silent = FALSE, ...) {
+  check_unused(...)
+  object <- as.mcmcr(object)
+  object <- mcmc_derive(object, expr = expr, values = values, 
+                        monitor = monitor, silent = silent)
+  nlist::as.nlists(object)
+}
+
+#' @describeIn mcmc_derive Get derived parameters for an \code{\link[coda]{mcmc}} object
+#' @export
+mcmc_derive.mcmc <- function(object, expr, values = list(), monitor = ".*", 
+                                  silent = FALSE, ...) {
+  check_unused(...)
+  object <- as.mcmcr(object)
+  object <- mcmc_derive(object, expr = expr, values = values, 
+                        monitor = monitor, silent = silent)
+  coda::as.mcmc(object)
+}
+
+#' @describeIn mcmc_derive Get derived parameters for an \code{\link[coda]{mcmc.list}} object
+#' @export
+mcmc_derive.mcmc.list <- function(object, expr, values = list(), monitor = ".*", 
+                                  parallel = FALSE, silent = FALSE, ...) {
+  check_unused(...)
+  object <- as.mcmcr(object)
+  object <- mcmc_derive(object, expr = expr, values = values, 
+                        monitor = monitor, parallel = parallel, silent = silent)
+  coda::as.mcmc.list(object)
+}
+
+#' @describeIn mcmc_derive Get derived parameters for an \code{\link[mcmcr]{mcmcr-object}}
 #' @export
 mcmc_derive.mcmcr <- function(object, expr, values = list(), monitor = ".*", 
                               parallel = FALSE, silent = FALSE, ...) {
@@ -53,18 +94,7 @@ mcmc_derive.mcmcr <- function(object, expr, values = list(), monitor = ".*",
   split_apply_combine(object, expr, values, monitor, parallel)
 }
 
-#' @describeIn mcmc_derive MCMC Derive for an mcmc.list object
-#' @export
-mcmc_derive.mcmc.list <- function(object, expr, values = list(), monitor = ".*", 
-                                  parallel = FALSE, silent = FALSE, ...) {
-  check_unused(...)
-  object <- as.mcmcr(object)
-  object <- mcmc_derive(object, expr = expr, values = values, 
-                        monitor = monitor, parallel = parallel, silent = silent)
-  coda::as.mcmc.list(object)
-}
-
-#' @describeIn mcmc_derive MCMC Derive for an mcmcrs object
+#' @describeIn mcmc_derive Get derived parameters for an \code{\link[mcmcr]{mcmcrs-object}}
 #' @export
 mcmc_derive.mcmcrs <- function(object, expr, values = list(), monitor = ".*", 
                                parallel = FALSE, silent = FALSE, ...) {

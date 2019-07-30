@@ -2,24 +2,36 @@
 % Please edit documentation in R/mcmc-derive.R
 \name{mcmc_derive}
 \alias{mcmc_derive}
-\alias{mcmc_derive.mcmcr}
+\alias{mcmc_derive.nlist}
+\alias{mcmc_derive.nlists}
+\alias{mcmc_derive.mcmc}
 \alias{mcmc_derive.mcmc.list}
+\alias{mcmc_derive.mcmcr}
 \alias{mcmc_derive.mcmcrs}
 \title{MCMC Derive}
 \usage{
 mcmc_derive(object, ...)
 
-\method{mcmc_derive}{mcmcr}(object, expr, values = list(),
-  monitor = ".*", parallel = FALSE, silent = FALSE, ...)
+\method{mcmc_derive}{nlist}(object, expr, values = list(),
+  monitor = ".*", silent = FALSE, ...)
+
+\method{mcmc_derive}{nlists}(object, expr, values = list(),
+  monitor = ".*", silent = FALSE, ...)
+
+\method{mcmc_derive}{mcmc}(object, expr, values = list(),
+  monitor = ".*", silent = FALSE, ...)
 
 \method{mcmc_derive}{mcmc.list}(object, expr, values = list(),
+  monitor = ".*", parallel = FALSE, silent = FALSE, ...)
+
+\method{mcmc_derive}{mcmcr}(object, expr, values = list(),
   monitor = ".*", parallel = FALSE, silent = FALSE, ...)
 
 \method{mcmc_derive}{mcmcrs}(object, expr, values = list(),
   monitor = ".*", parallel = FALSE, silent = FALSE, ...)
 }
 \arguments{
-\item{object}{The original MCMC object.}
+\item{object}{An MCMC object.}
 
 \item{...}{Unused.}
 
@@ -31,27 +43,30 @@ derived parameter(s) with respect to the parameters in object.}
 \item{monitor}{A regular expression specifying the 
 derived parameter(s) in expr to monitor.}
 
+\item{silent}{A flag specifying whether to suppress messages and warnings.}
+
 \item{parallel}{A flag specifying whether to generate the derived parameters 
 for each chain in parallel.}
-
-\item{silent}{A flag specifying whether to suppress messages and warnings.}
 }
 \value{
-An MCMC object 
-of the derived parameter(s).
+An MCMC object with the derived parameter(s).
 }
 \description{
-Generate an MCMC object of derived parameter(s) from an MCMC
-an \code{\link[mcmcr]{mcmcr}}, \code{\link[coda]{mcmc.list}} or
-\code{\link[mcmcr]{mcmcrs}} object.
+Generate an MCMC object with derived parameters from an MCMC object.
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{mcmcr}: MCMC Derive for an mcmcr object
+\item \code{nlist}: Get derived parameters for an \code{\link[nlist]{nlist-object}}
 
-\item \code{mcmc.list}: MCMC Derive for an mcmc.list object
+\item \code{nlists}: Get derived parameters for an \code{\link[nlist]{nlists-object}}
 
-\item \code{mcmcrs}: MCMC Derive for an mcmcrs object
+\item \code{mcmc}: Get derived parameters for an \code{\link[coda]{mcmc}} object
+
+\item \code{mcmc.list}: Get derived parameters for an \code{\link[coda]{mcmc.list}} object
+
+\item \code{mcmcr}: Get derived parameters for an \code{\link[mcmcr]{mcmcr-object}}
+
+\item \code{mcmcrs}: Get derived parameters for an \code{\link[mcmcr]{mcmcrs-object}}
 }}
 
 \examples{
