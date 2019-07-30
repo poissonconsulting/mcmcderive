@@ -1,6 +1,6 @@
 add_new_variables <- function(values, object, expr, silent) {
   names_values <- names(values)
-  parameters <- parameters(object)
+  parameters <- pars(object)
   variables <- variables(expr)
   
   variables <- setdiff(variables, union(parameters, names_values))

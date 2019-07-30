@@ -17,7 +17,7 @@ test_that("mcmc_derive", {
   
   derived <- mcmc_derive(mcmcr, expr, values = values, monitor = "^g|^a", silent = TRUE)
   
-  expect_identical(parameters(derived), c("alpha2", "alpha3", "gamma"))
+  expect_identical(pars(derived), c("alpha2", "alpha3", "gamma"))
   expect_identical(nchains(derived), 2L)
   expect_identical(niters(derived), 10L)
   expect_identical(nterms(derived), 15L)
@@ -40,7 +40,7 @@ test_that("mcmc_derive.mcmc.list", {
   expect_warning(mcmc_derive(mcmc_list, "gamma <- alpha + beta"), 
                  "the following parameter was not in expr and so was dropped from object: 'sigma'")
   derived <- mcmc_derive(mcmc_list, "gamma <- alpha + beta", silent = TRUE)
-  expect_identical(parameters(derived), "gamma")
+  expect_identical(pars(derived), "gamma")
   expect_identical(nchains(derived), 2L)
   expect_identical(niters(derived), 10L)
   expect_identical(nterms(derived), 4L)
@@ -53,7 +53,7 @@ test_that("mcmc_derive.mcmcr", {
   expect_warning(mcmc_derive(mcmcrs, "gamma <- alpha + beta"), 
                  "the following parameter was not in expr and so was dropped from object: 'sigma'")
   derived <- mcmc_derive(mcmcrs, "gamma <- alpha + beta", silent = TRUE)
-  expect_identical(parameters(derived), "gamma")
+  expect_identical(pars(derived), "gamma")
   expect_identical(nchains(derived), 2L)
   expect_identical(niters(derived), 10L)
   expect_identical(nterms(derived), 4L)
@@ -79,7 +79,7 @@ test_that("mcmc_derive in parallel", {
   derived <- mcmc_derive(mcmcr, expr, values = values, monitor = "^g|^a", 
                          parallel = TRUE,silent = TRUE)
   
-  expect_identical(parameters(derived), c("alpha2", "alpha3", "gamma"))
+  expect_identical(pars(derived), c("alpha2", "alpha3", "gamma"))
   expect_identical(nchains(derived), 2L)
   expect_identical(niters(derived), 10L)
   expect_identical(nterms(derived), 15L)
@@ -99,7 +99,7 @@ test_that("mcmc_derive in parallel", {
 
 
 test_that("mcmc_derive matrix in values", {
-  mcmcr <- subset( mcmcr::mcmcr_example, 1:2, 1:10, parameters = "beta")
+  mcmcr <- subset( mcmcr::mcmcr_example, 1:2, 1:10, pars = "beta")
   
   expr <- "
     x <- Z

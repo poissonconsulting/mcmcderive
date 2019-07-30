@@ -1,5 +1,5 @@
 drop_overridden_parameters <- function(object, values, silent) {
-  parameters <- parameters(object)
+  parameters <- pars(object)
   drop <- parameters[parameters %in% names(values)]
   if(length(drop)) {
     if(all(parameters %in% drop)) 
@@ -11,7 +11,7 @@ drop_overridden_parameters <- function(object, values, silent) {
              "the following %n parameters were also in values and so were dropped from object: %c"))
       
     }
-    object <- subset_mcmcr_parameters(object, parameters = setdiff(parameters, drop))
+    object <- subset(object, pars = setdiff(parameters, drop))
   }
   object
 }
@@ -36,7 +36,7 @@ drop_absent_values <- function(values, expr, silent) {
 
 drop_absent_parameters <- function(object, expr, silent) {
   variables <- variables(expr)
-  parameters <- parameters(object)
+  parameters <- pars(object)
   drop <- parameters[!parameters %in% variables]
   if(length(drop)) {
     if(all(parameters %in% drop)) err("none of the parameters in object are in expr")
@@ -44,7 +44,7 @@ drop_absent_parameters <- function(object, expr, silent) {
       wrn(co(drop, "the following parameter was not in expr and so was dropped from object: %c",
              "the following %n parameters were not in expr and so were dropped from object: %c"))
     }
-    object <- subset_mcmcr_parameters(object, parameters = setdiff(parameters, drop))
+    object <- subset(object, pars = setdiff(parameters, drop))
   }
   object  
 }
