@@ -1,2 +1,2 @@
-#' @import err checkr term mcmcr
+#' @import chk term mcmcr
 NULL

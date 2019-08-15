@@ -3,9 +3,9 @@ monitor_variables <- function(monitor, values) {
   
   match <- variables[grepl(monitor, variables)]
   if(!length(match)) {
-    err(co_or(variables, p0(
-      "monitor '", monitor, 
-      "' must match at least one of the following variable%s in expr: %c")))
+    err("monitor '", monitor, 
+        "' must match at least one of the following variables in expr: ", 
+        cc(variables, " or "))
   }
   sort(match)
 }

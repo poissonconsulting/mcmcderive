@@ -14,9 +14,8 @@ License: MIT + file LICENSE
 Depends:
     R (>= 3.4.0)
 Imports:
+    chk,
     abind,
-    err,
-    checkr,
     term,
     nlist,
     mcmcr (>= 0.2.0.9014),
@@ -28,6 +27,7 @@ Suggests:
     doParallel,
     testthat
 Remotes:
+    poissonconsulting/chk,
     poissonconsulting/term,
     poissonconsulting/nlist,
     poissonconsulting/mcmcr

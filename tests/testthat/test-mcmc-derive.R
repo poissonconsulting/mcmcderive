@@ -187,7 +187,7 @@ test_that("mcmc_derive warnings and errors", {
   
   expect_warning(mcmc_derive(mcmcr, expr = "alpha2 <- beta * sigma + alpha", 
                              values = list(alpha = 1)),
-                 "the following parameter was also in values and so was dropped from object: 'alpha'")
+                 "the following parameters were also in values and so were dropped from object: 'alpha'")
   
   expect_warning(mcmc_derive(mcmcr, expr = "alpha2 <- beta * sigma + alpha", 
                              values = list(alpha3 = 1)),
@@ -195,10 +195,10 @@ test_that("mcmc_derive warnings and errors", {
   
   expect_warning(mcmc_derive(mcmcr, expr = "alpha2 <- beta + beta3 * sigma + alpha", 
                              values = list(alpha3 = 1, beta3 = 2)),
-                 "the following variable was not in expr and so was dropped from values: 'alpha3'") 
+                 "the following variables were not in expr and so were dropped from values: 'alpha3'") 
   
   expect_warning(mcmc_derive(mcmcr, expr = "alpha2 <- beta * alpha"),
-                 "the following parameter was not in expr and so was dropped from object: 'sigma'") 
+                 "the following parameters were not in expr and so were dropped from object: 'sigma'") 
   
   expect_error(mcmc_derive(mcmcr, expr = "unknown <- unknowable"),
                "none of the parameters in object are in expr")
@@ -208,12 +208,12 @@ test_that("mcmc_derive warnings and errors", {
                "expr must include at least one variable that is not in object or values")
   
   expect_error(mcmc_derive(mcmcr, expr = "alpha2 <- beta * sigma * alpha", monitor = "alpha3"),
-               "monitor 'alpha3' must match at least one of the following variable in expr: 'alpha2'")
+               "monitor 'alpha3' must match at least one of the following variables in expr: 'alpha2'")
   
   expect_error(mcmc_derive(mcmcr, expr = "alpha2 <- beta * sigma * alpha * alpha3", monitor = "2$"),
-               "the following derived parameter includes missing values: 'alpha2'")
+               "the following derived parameters include missing values: 'alpha2'")
 
   expect_error(mcmc_derive(mcmcr, expr = "gamma <- alpha", monitor = "something",
                            silent = TRUE),
-               "monitor 'something' must match at least one of the following variable in expr: 'gamma'")
+               "monitor 'something' must match at least one of the following variables in expr: 'gamma'")
 })

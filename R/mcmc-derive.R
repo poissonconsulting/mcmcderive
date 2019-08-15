@@ -30,7 +30,7 @@ mcmc_derive <- function(object, ...) {
 #' @export
 mcmc_derive.nlist <- function(object, expr, values = list(), monitor = ".*", 
                                   silent = FALSE, ...) {
-  check_unused(...)
+  chk_unused(...)
   object <- as.mcmcr(object)
   object <- mcmc_derive(object, expr = expr, values = values, 
                         monitor = monitor, silent = silent)
@@ -41,7 +41,7 @@ mcmc_derive.nlist <- function(object, expr, values = list(), monitor = ".*",
 #' @export
 mcmc_derive.nlists <- function(object, expr, values = list(), monitor = ".*", 
                                   silent = FALSE, ...) {
-  check_unused(...)
+  chk_unused(...)
   object <- as.mcmcr(object)
   object <- mcmc_derive(object, expr = expr, values = values, 
                         monitor = monitor, silent = silent)
@@ -52,7 +52,7 @@ mcmc_derive.nlists <- function(object, expr, values = list(), monitor = ".*",
 #' @export
 mcmc_derive.mcmc <- function(object, expr, values = list(), monitor = ".*", 
                                   silent = FALSE, ...) {
-  check_unused(...)
+  chk_unused(...)
   object <- as.mcmcr(object)
   object <- mcmc_derive(object, expr = expr, values = values, 
                         monitor = monitor, silent = silent)
@@ -63,7 +63,7 @@ mcmc_derive.mcmc <- function(object, expr, values = list(), monitor = ".*",
 #' @export
 mcmc_derive.mcmc.list <- function(object, expr, values = list(), monitor = ".*", 
                                   parallel = FALSE, silent = FALSE, ...) {
-  check_unused(...)
+  chk_unused(...)
   object <- as.mcmcr(object)
   object <- mcmc_derive(object, expr = expr, values = values, 
                         monitor = monitor, parallel = parallel, silent = silent)
@@ -74,16 +74,16 @@ mcmc_derive.mcmc.list <- function(object, expr, values = list(), monitor = ".*",
 #' @export
 mcmc_derive.mcmcr <- function(object, expr, values = list(), monitor = ".*", 
                               parallel = FALSE, silent = FALSE, ...) {
-  check_mcmcr(object)
-  check_string(expr)
-  check_list(values)
-  check_string(monitor)
-  check_flag(parallel)
-  check_flag(silent)
-  check_unused(...)
+  chk_string(expr)
+  chk_is(values, "list")
+  chk_string(monitor)
+  chk_flag(parallel)
+  chk_flag(silent)
+  chk_unused(...)
   
   if (length(values)) {
-    check_named(values, unique = TRUE)
+    chk_named(values)
+    chk_unique(names(values))
     object <- drop_overridden_parameters(object, values, silent = silent)
     values <- drop_absent_values(values, expr, silent = silent)
   }
@@ -98,7 +98,7 @@ mcmc_derive.mcmcr <- function(object, expr, values = list(), monitor = ".*",
 #' @export
 mcmc_derive.mcmcrs <- function(object, expr, values = list(), monitor = ".*", 
                                parallel = FALSE, silent = FALSE, ...) {
-  check_unused(...)
+  chk_unused(...)
   object <- lapply(object, mcmc_derive, expr = expr, values = values, 
                    monitor = monitor, parallel = parallel, silent = silent)
   as.mcmcrs(object)

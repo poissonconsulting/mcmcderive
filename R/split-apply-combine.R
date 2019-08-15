@@ -35,4 +35,5 @@ split_apply_combine <- function(object, expr, values, monitor, parallel) {
   object <- Reduce(bind_chains, object)
   
   check_no_missing_values(object)
+  object
 }
