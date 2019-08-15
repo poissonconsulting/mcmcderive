@@ -217,3 +217,40 @@ test_that("mcmc_derive warnings and errors", {
                            silent = TRUE),
                "monitor 'something' must match at least one of the following variables in expr: 'gamma'")
 })
+
+
+test_that("mcmc_derive with primary = TRUE", {
+  mcmcr <- subset(mcmcr::mcmcr_example, 1L, 1L)
+
+  expect_equal(mcmc_derive(mcmcr, "gamma <- alpha + beta", primary = FALSE, silent = TRUE),
+                   structure(list(gamma = structure(c(5.60693, 7.60693, 6.60693, 
+8.60693), .Dim = c(1L, 1L, 2L, 2L), class = "mcmcarray")), class = "mcmcr"))
+
+  # doesn't include alpha as primary = FALSE
+  expect_equal(mcmc_derive(mcmcr, 
+                           "gamma <- alpha + beta
+                           alpha <- alpha * 2", primary = FALSE, silent = TRUE),
+                   structure(list(gamma = structure(c(5.60693, 7.60693, 6.60693, 
+8.60693), .Dim = c(1L, 1L, 2L, 2L), class = "mcmcarray")), class = "mcmcr"))
+  
+  expect_equal(mcmc_derive(mcmcr, "gamma <- alpha + beta", primary = TRUE, silent = TRUE),
+                   structure(list(alpha = structure(c(7.17313, 8.17313), .Dim = c(1L, 
+1L, 2L), class = "mcmcarray"), beta = structure(c(-1.5662, -0.5662, 
+-0.5662, 0.4338), .Dim = c(1L, 1L, 2L, 2L), class = "mcmcarray"), 
+    gamma = structure(c(5.60693, 7.60693, 6.60693, 8.60693), .Dim = c(1L, 
+    1L, 2L, 2L), class = "mcmcarray"), sigma = structure(11.2331, .Dim = c(1L, 
+    1L, 1L), class = "mcmcarray")), class = "mcmcr"))
+  
+  # goes with original alpha
+  expect_equal(mcmc_derive(mcmcr, 
+                           "gamma <- alpha + beta
+                           alpha <- alpha * 2", primary = TRUE, silent = TRUE),
+                   structure(list(alpha = structure(c(7.17313, 8.17313), .Dim = c(1L, 
+1L, 2L), class = "mcmcarray"), beta = structure(c(-1.5662, -0.5662, 
+-0.5662, 0.4338), .Dim = c(1L, 1L, 2L, 2L), class = "mcmcarray"), 
+    gamma = structure(c(5.60693, 7.60693, 6.60693, 8.60693), .Dim = c(1L, 
+    1L, 2L, 2L), class = "mcmcarray"), sigma = structure(11.2331, .Dim = c(1L, 
+    1L, 1L), class = "mcmcarray")), class = "mcmcr"))
+  
+})
+
