@@ -20,11 +20,6 @@ subset_mcmcr_chains <- function(x, chains) {
   set_class(x, "mcmcr")
 }
 
-subset_mcmcr_parameters <- function(x, parameters) {
-  x <- x[parameters]
-  set_class(x, "mcmcr")
-}
-
 bind_iterations_mcmcarrays <- function(x) {
   x <- lapply(x, unclass)
   niters <- length(x)
