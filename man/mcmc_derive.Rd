@@ -62,9 +62,10 @@ Generates an MCMC object with derived parameters from an MCMC object.
 }
 \details{
 It's important to note that parameters in the expression that also
-occur in the object are not included in the new object 
+occur in the original object are not included in the new object 
 unless \code{primary = TRUE} in which case they are simply copied from the 
 original object to the new one.
+This applies even when the primary parameters are redefined in values.
 }
 \section{Methods (by class)}{
 \itemize{

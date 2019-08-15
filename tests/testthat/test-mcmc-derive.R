@@ -254,3 +254,28 @@ test_that("mcmc_derive with primary = TRUE", {
   
 })
 
+test_that("mcmc_derive with alpha", {
+  mcmcr <- subset(mcmcr::mcmcr_example, 1L, 1L)
+
+  expect_equal(mcmc_derive(mcmcr, 
+  "gamma <- alpha + beta
+   alpha <- alpha * 2", primary = FALSE, silent = TRUE),
+                   structure(list(gamma = structure(c(5.60693, 7.60693, 6.60693, 
+8.60693), .Dim = c(1L, 1L, 2L, 2L), class = "mcmcarray")), class = "mcmcr"))
+  
+  expect_equal(mcmc_derive(mcmcr, 
+  "gamma <- alpha + beta
+   alpha <- alpha * 2", values = list(alpha = 3), primary = FALSE, silent = TRUE),
+                   structure(list(gamma = structure(c(1.4338, 2.4338, 2.4338, 3.4338
+), .Dim = c(1L, 1L, 2L, 2L), class = "mcmcarray")), class = "mcmcr"))
+  
+  expect_equal(mcmc_derive(mcmcr, 
+  "gamma <- alpha + beta
+   alpha <- alpha * 2", values = list(alpha = 3), primary = TRUE, silent = TRUE),
+                   structure(list(alpha = structure(c(7.17313, 8.17313), .Dim = c(1L, 
+1L, 2L), class = "mcmcarray"), beta = structure(c(-1.5662, -0.5662, 
+-0.5662, 0.4338), .Dim = c(1L, 1L, 2L, 2L), class = "mcmcarray"), 
+    gamma = structure(c(1.4338, 2.4338, 2.4338, 3.4338), .Dim = c(1L, 
+    1L, 2L, 2L), class = "mcmcarray"), sigma = structure(11.2331, .Dim = c(1L, 
+    1L, 1L), class = "mcmcarray")), class = "mcmcr"))
+})
