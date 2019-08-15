@@ -279,3 +279,38 @@ test_that("mcmc_derive with alpha", {
     1L, 2L, 2L), class = "mcmcarray"), sigma = structure(11.2331, .Dim = c(1L, 
     1L, 1L), class = "mcmcarray")), class = "mcmcr"))
 })
+
+test_that("mcmc_derive.nlist", {
+  mcmcr <- subset(mcmcr::mcmcr_example, 1L, 1L)
+
+  values <- list()
+  
+  expect_equal(mcmc_derive(mcmcr, "gamma <- alpha + beta", values = values, 
+                           silent = TRUE),
+                   structure(list(gamma = structure(c(5.60693, 7.60693, 6.60693, 
+8.60693), .Dim = c(1L, 1L, 2L, 2L), class = "mcmcarray")), class = "mcmcr"))
+  
+  values <- list(3)
+  
+  expect_error(mcmc_derive(mcmcr, "gamma <- alpha + beta", values = values, 
+                           silent = TRUE), "`values` must be named[.]")
+  
+  values <- list(alpha = 3, alpha = 1)
+  
+  expect_error(mcmc_derive(mcmcr, "gamma <- alpha + beta", values = values, 
+                           silent = TRUE), "`names[(]values[)]` must be unique.")
+  
+  values <- list(alpha = 3)
+  
+  expect_equal(mcmc_derive(mcmcr, "gamma <- alpha + beta", values = values, silent = TRUE),
+                   structure(list(gamma = structure(c(1.4338, 2.4338, 2.4338, 3.4338
+), .Dim = c(1L, 1L, 2L, 2L), class = "mcmcarray")), class = "mcmcr"))
+
+
+    values <- nlist::nlist(alpha = 3)
+
+    expect_equal(mcmc_derive(mcmcr, "gamma <- alpha + beta", values = values, silent = TRUE),
+                   structure(list(gamma = structure(c(1.4338, 2.4338, 2.4338, 3.4338
+), .Dim = c(1L, 1L, 2L, 2L), class = "mcmcarray")), class = "mcmcr"))
+})
+

@@ -87,7 +87,11 @@ mcmc_derive.mcmcr <- function(object, expr, values = list(), monitor = ".*",
                               silent = FALSE, ...) {
   if(is_chk_on()) {
     chk_string(expr)
-    chk_is(values, "list")
+    chk_list(values)
+    if (length(values)) {
+      chk_named(values)
+      chk_unique(names(values))
+    }
     chk_string(monitor)
     chk_flag(primary)
     chk_flag(parallel)
@@ -97,8 +101,6 @@ mcmc_derive.mcmcr <- function(object, expr, values = list(), monitor = ".*",
   
   original <- object
   if (length(values)) {
-    chk_named(values)
-    chk_unique(names(values))
     object <- drop_overridden_parameters(object, values, silent = silent)
     values <- drop_absent_values(values, expr, silent = silent)
   }
