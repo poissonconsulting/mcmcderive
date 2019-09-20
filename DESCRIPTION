@@ -14,7 +14,7 @@ License: MIT + file LICENSE
 Depends:
     R (>= 3.4.0)
 Imports:
-    chk (>= 0.0.0.9010),
+    chk (>= 0.0.1.9025),
     abind,
     term,
     nlist,

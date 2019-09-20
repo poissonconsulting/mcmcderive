@@ -183,39 +183,39 @@ test_that("mcmc_derive warnings and errors", {
   
   expect_error(mcmc_derive(mcmcr, expr = "alpha <- beta", 
                            values = list(alpha = 1, beta = 2, sigma = 3)),
-               "all the parameters in object are also in values")
+               "^All the parameters in object are also in values[.]$")
   
   expect_warning(mcmc_derive(mcmcr, expr = "alpha2 <- beta * sigma + alpha", 
                              values = list(alpha = 1)),
-                 "the following parameters were also in values and so were dropped from object: 'alpha'")
+                 "^The following parameters were also in values and so were dropped from object: 'alpha'[.]$")
   
   expect_warning(mcmc_derive(mcmcr, expr = "alpha2 <- beta * sigma + alpha", 
                              values = list(alpha3 = 1)),
-                 "none of the variables in values are in expr")
+                 "^None of the variables in values are in expr[.]$")
   
   expect_warning(mcmc_derive(mcmcr, expr = "alpha2 <- beta + beta3 * sigma + alpha", 
                              values = list(alpha3 = 1, beta3 = 2)),
-                 "the following variables were not in expr and so were dropped from values: 'alpha3'") 
+                 "^The following variables were not in expr and so were dropped from values: 'alpha3'[.]$") 
   
   expect_warning(mcmc_derive(mcmcr, expr = "alpha2 <- beta * alpha"),
-                 "the following parameters were not in expr and so were dropped from object: 'sigma'") 
+                 "^The following parameters were not in expr and so were dropped from object: 'sigma'[.]$") 
   
   expect_error(mcmc_derive(mcmcr, expr = "unknown <- unknowable"),
-               "none of the parameters in object are in expr")
+               "^None of the parameters in object are in expr[.]$")
   
   
   expect_error(mcmc_derive(mcmcr, expr = "alpha <- beta * sigma"),
-               "expr must include at least one variable that is not in object or values")
+               "^`expr` must include at least one variable that is not in object or values[.]$")
   
   expect_error(mcmc_derive(mcmcr, expr = "alpha2 <- beta * sigma * alpha", monitor = "alpha3"),
-               "monitor 'alpha3' must match at least one of the following variables in expr: 'alpha2'")
+               "^`monitor` 'alpha3' must match at least one of the following variables in expr: 'alpha2'[.]$")
   
   expect_error(mcmc_derive(mcmcr, expr = "alpha2 <- beta * sigma * alpha * alpha3", monitor = "2$"),
-               "the following derived parameters include missing values: 'alpha2'")
+               "^The following derived parameters include missing values: 'alpha2'[.]$")
 
   expect_error(mcmc_derive(mcmcr, expr = "gamma <- alpha", monitor = "something",
                            silent = TRUE),
-               "monitor 'something' must match at least one of the following variables in expr: 'gamma'")
+               "^`monitor` 'something' must match at least one of the following variables in expr: 'gamma'[.]$")
 })
 
 
@@ -293,12 +293,12 @@ test_that("mcmc_derive.nlist", {
   values <- list(3)
   
   expect_error(mcmc_derive(mcmcr, "gamma <- alpha + beta", values = values, 
-                           silent = TRUE), "`values` must be named[.]")
+                           silent = TRUE), "`values` must be named[.]", class = "chk_error")
   
   values <- list(alpha = 3, alpha = 1)
   
   expect_error(mcmc_derive(mcmcr, "gamma <- alpha + beta", values = values, 
-                           silent = TRUE), "`names[(]values[)]` must be unique.")
+                           silent = TRUE), "`names[(]values[)]` must be unique.", class = "chk_error")
   
   values <- list(alpha = 3)
   

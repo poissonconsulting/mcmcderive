@@ -1,3 +1,4 @@
+- Tidyverse style error messages.
 - Added `primary = FALSE` argument to include original parameters as is.
 - Replaced `checkr` and `err` dependencies for `chk`
 - Added mcmc_derive() for nlist, nlists and mcmc objects
