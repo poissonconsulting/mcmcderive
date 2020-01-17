@@ -12,26 +12,68 @@
 \usage{
 mcmc_derive(object, ...)
 
-\method{mcmc_derive}{nlist}(object, expr, values = list(),
-  monitor = ".*", primary = FALSE, silent = FALSE, ...)
+\method{mcmc_derive}{nlist}(
+  object,
+  expr,
+  values = list(),
+  monitor = ".*",
+  primary = FALSE,
+  silent = FALSE,
+  ...
+)
 
-\method{mcmc_derive}{nlists}(object, expr, values = list(),
-  monitor = ".*", primary = FALSE, silent = FALSE, ...)
+\method{mcmc_derive}{nlists}(
+  object,
+  expr,
+  values = list(),
+  monitor = ".*",
+  primary = FALSE,
+  silent = FALSE,
+  ...
+)
 
-\method{mcmc_derive}{mcmc}(object, expr, values = list(),
-  monitor = ".*", primary = FALSE, silent = FALSE, ...)
+\method{mcmc_derive}{mcmc}(
+  object,
+  expr,
+  values = list(),
+  monitor = ".*",
+  primary = FALSE,
+  silent = FALSE,
+  ...
+)
 
-\method{mcmc_derive}{mcmc.list}(object, expr, values = list(),
-  monitor = ".*", primary = FALSE, parallel = FALSE,
-  silent = FALSE, ...)
+\method{mcmc_derive}{mcmc.list}(
+  object,
+  expr,
+  values = list(),
+  monitor = ".*",
+  primary = FALSE,
+  parallel = FALSE,
+  silent = FALSE,
+  ...
+)
 
-\method{mcmc_derive}{mcmcr}(object, expr, values = list(),
-  monitor = ".*", primary = FALSE, parallel = FALSE,
-  silent = FALSE, ...)
+\method{mcmc_derive}{mcmcr}(
+  object,
+  expr,
+  values = list(),
+  monitor = ".*",
+  primary = FALSE,
+  parallel = FALSE,
+  silent = FALSE,
+  ...
+)
 
-\method{mcmc_derive}{mcmcrs}(object, expr, values = list(),
-  monitor = ".*", primary = FALSE, parallel = FALSE,
-  silent = FALSE, ...)
+\method{mcmc_derive}{mcmcrs}(
+  object,
+  expr,
+  values = list(),
+  monitor = ".*",
+  primary = FALSE,
+  parallel = FALSE,
+  silent = FALSE,
+  ...
+)
 }
 \arguments{
 \item{object}{An MCMC object.}
