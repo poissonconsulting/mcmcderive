@@ -85,19 +85,17 @@ mcmc_derive.mcmc.list <- function(object, expr, values = list(), monitor = ".*",
 mcmc_derive.mcmcr <- function(object, expr, values = list(), monitor = ".*", 
                               primary = FALSE, parallel = FALSE, 
                               silent = FALSE, ...) {
-  if(is_chk_on()) {
-    chk_string(expr)
-    chk_list(values)
-    if (length(values)) {
-      chk_named(values)
-      chk_unique(names(values))
-    }
-    chk_string(monitor)
-    chk_flag(primary)
-    chk_flag(parallel)
-    chk_flag(silent)
-    chk_unused(...)
+  chk_string(expr)
+  chk_list(values)
+  if (length(values)) {
+    chk_named(values)
+    chk_unique(names(values))
   }
+  chk_string(monitor)
+  chk_flag(primary)
+  chk_flag(parallel)
+  chk_flag(silent)
+  chk_unused(...)
   
   original <- object
   if (length(values)) {
