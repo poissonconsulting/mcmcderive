@@ -1,2 +1,2 @@
-#' @import chk term mcmcr
+#' @import chk universals extras term mcmcr
 NULL
