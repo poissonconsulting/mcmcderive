@@ -119,6 +119,18 @@ test_that("mcmc_derive.mcmcrs", {
     6.60693, 8.60693), .Dim = c(1L, 1L, 2L, 2L), class = "mcmcarray")), class = "mcmcr")), class = "mcmcrs"))
 })
 
+test_that("mcmc_derive.mcmcr with all missing data.frame", {
+  mcmcr <- subset(mcmcr::mcmcr_example, 1L, 1L)
+
+  values <- data.frame(theta = c(2, 3))
+  
+  expect_equal(mcmc_derive(mcmcr, "prediction <- alpha + beta + theta", silent = TRUE,
+                           monitor = "^prediction$",
+                           values = values),
+                   structure(list(prediction = structure(c(7.60693, 10.60693, 8.60693, 
+11.60693), .Dim = c(1L, 1L, 2L, 2L), class = "mcmcarray")), class = "mcmcr"))
+})
+
 test_that("mcmc_derive in parallel", {
   
   mcmcr <- subset(mcmcr::mcmcr_example, 1:2, 1:2)

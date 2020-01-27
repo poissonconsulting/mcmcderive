@@ -2,9 +2,7 @@ variables <- function(expr) {
   all.vars(parse(text = expr))
 }
 
-is_NA <- function(x) {
-  identical(x, NA)
-}
+allNA <- function(x) all(is.na(x))
 
 set_class <- function(x, class) {
   class(x) <- class
@@ -124,8 +122,8 @@ bind_iterations_mcmcrs <- function(x) {
 }
 
 monitor_variables <- function(monitor, values) {
-  variables <- names(values[vapply(values, is_NA, TRUE)])
-  
+  variables <- names(values[vapply(values, allNA, TRUE)])
+
   match <- variables[grepl(monitor, variables)]
   if(!length(match)) {
     err("`monitor` '", monitor, 
