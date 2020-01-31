@@ -1,6 +1,6 @@
 Package: mcmcderive
 Title: Derive MCMC Parameters
-Version: 0.0.1.9009
+Version: 0.0.1.9010
 Authors@R: c(
     person("Joe", "Thorley", , "joe@poissonconsulting.ca", c("aut", "cre"), comment = c(ORCID = "0000-0002-7683-4592")),
     person("Poisson Consulting", role = c("cph", "fnd"))
@@ -20,7 +20,7 @@ Imports:
     extras,
     term,
     nlist,
-    mcmcr (>= 0.2.0.9015),
+    mcmcr (>= 0.2.0.9021),
     purrr
 Suggests:
     covr,
