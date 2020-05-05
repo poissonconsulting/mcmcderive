@@ -8,13 +8,11 @@ output: github_document
 
 <!-- badges: start -->
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
-[![Travis-CI Build Status](https://travis-ci.org/poissonconsulting/mcmcderive.svg?branch=master)](https://travis-ci.org/poissonconsulting/mcmcderive)
-[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/poissonconsulting/mcmcderive?branch=master&svg=true)](https://ci.appveyor.com/project/poissonconsulting/mcmcderive)
+[![R build status](https://github.com/poissonconsulting/mcmcderive/workflows/R-CMD-check/badge.svg)](https://github.com/poissonconsulting/mcmcderive/actions)
 [![Coverage Status](https://img.shields.io/codecov/c/github/poissonconsulting/mcmcderive/master.svg)](https://codecov.io/github/poissonconsulting/mcmcderive?branch=master)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![CRAN status](https://www.r-pkg.org/badges/version/mcmcderive)](https://cran.r-project.org/package=mcmcderive)
 ![CRAN downloads](http://cranlogs.r-pkg.org/badges/mcmcderive)
-[![R build status](https://github.com/poissonconsulting/mcmcderive/workflows/R-CMD-check/badge.svg)](https://github.com/poissonconsulting/mcmcderive/actions)
 [![Codecov test coverage](https://codecov.io/gh/poissonconsulting/mcmcderive/branch/master/graph/badge.svg)](https://codecov.io/gh/poissonconsulting/mcmcderive?branch=master)
 <!-- badges: end -->
 
