@@ -1,6 +1,8 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
+# mcmcderive
+
 <!-- badges: start -->
 
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
@@ -16,8 +18,6 @@ status](https://www.r-pkg.org/badges/version/mcmcderive)](https://cran.r-project
 [![Codecov test
 coverage](https://codecov.io/gh/poissonconsulting/mcmcderive/branch/master/graph/badge.svg)](https://codecov.io/gh/poissonconsulting/mcmcderive?branch=master)
 <!-- badges: end -->
-
-# mcmcderive
 
 ## Why `mcmcderive`?
 
