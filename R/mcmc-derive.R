@@ -37,7 +37,7 @@ mcmc_derive <- function(object, ...) {
 #' @describeIn mcmc_derive Get derived parameters for an \code{\link[nlist]{nlist-object}}
 #' @export
 mcmc_derive.nlist <- function(object, expr, values = list(), monitor = ".*", 
-                              primary = FALSE, silent = FALSE, ...) {
+                              primary = FALSE, silent = getOption("mcmcderive.silent", FALSE), ...) {
   chk_unused(...)
   object <- as.mcmcr(object)
   object <- mcmc_derive(object, expr = expr, values = values, 
@@ -48,7 +48,7 @@ mcmc_derive.nlist <- function(object, expr, values = list(), monitor = ".*",
 #' @describeIn mcmc_derive Get derived parameters for an \code{\link[nlist]{nlists-object}}
 #' @export
 mcmc_derive.nlists <- function(object, expr, values = list(), monitor = ".*", 
-                               primary = FALSE, silent = FALSE, ...) {
+                               primary = FALSE, silent = getOption("mcmcderive.silent", FALSE), ...) {
   chk_unused(...)
   object <- as.mcmcr(object)
   object <- mcmc_derive(object, expr = expr, values = values, 
@@ -59,7 +59,7 @@ mcmc_derive.nlists <- function(object, expr, values = list(), monitor = ".*",
 #' @describeIn mcmc_derive Get derived parameters for an \code{\link[coda]{mcmc}} object
 #' @export
 mcmc_derive.mcmc <- function(object, expr, values = list(), monitor = ".*", 
-                             primary = FALSE, silent = FALSE, ...) {
+                             primary = FALSE, silent = getOption("mcmcderive.silent", FALSE), ...) {
   chk_unused(...)
   object <- as.mcmcr(object)
   object <- mcmc_derive(object, expr = expr, values = values, 
@@ -71,7 +71,7 @@ mcmc_derive.mcmc <- function(object, expr, values = list(), monitor = ".*",
 #' @export
 mcmc_derive.mcmc.list <- function(object, expr, values = list(), monitor = ".*", 
                                   primary = FALSE, parallel = FALSE, 
-                                  silent = FALSE, ...) {
+                                  silent = getOption("mcmcderive.silent", FALSE), ...) {
   chk_unused(...)
   object <- as.mcmcr(object)
   object <- mcmc_derive(object, expr = expr, values = values, 
@@ -84,7 +84,7 @@ mcmc_derive.mcmc.list <- function(object, expr, values = list(), monitor = ".*",
 #' @export
 mcmc_derive.mcmcr <- function(object, expr, values = list(), monitor = ".*", 
                               primary = FALSE, parallel = FALSE, 
-                              silent = FALSE, ...) {
+                              silent = getOption("mcmcderive.silent", FALSE), ...) {
   chk_string(expr)
   chk_list(values)
   if (length(values)) {
@@ -118,7 +118,7 @@ mcmc_derive.mcmcr <- function(object, expr, values = list(), monitor = ".*",
 #' @describeIn mcmc_derive Get derived parameters for an \code{\link[mcmcr]{mcmcrs-object}}
 #' @export
 mcmc_derive.mcmcrs <- function(object, expr, values = list(), monitor = ".*", 
-                               primary = FALSE, parallel = FALSE, silent = FALSE, ...) {
+                               primary = FALSE, parallel = FALSE, silent = getOption("mcmcderive.silent", FALSE), ...) {
   chk_unused(...)
   object <- lapply(object, mcmc_derive, expr = expr, values = values, 
                    monitor = monitor, primary = primary, parallel = parallel, 

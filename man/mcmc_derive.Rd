@@ -18,7 +18,7 @@ mcmc_derive(object, ...)
   values = list(),
   monitor = ".*",
   primary = FALSE,
-  silent = FALSE,
+  silent = getOption("mcmcderive.silent", FALSE),
   ...
 )
 
@@ -28,7 +28,7 @@ mcmc_derive(object, ...)
   values = list(),
   monitor = ".*",
   primary = FALSE,
-  silent = FALSE,
+  silent = getOption("mcmcderive.silent", FALSE),
   ...
 )
 
@@ -38,7 +38,7 @@ mcmc_derive(object, ...)
   values = list(),
   monitor = ".*",
   primary = FALSE,
-  silent = FALSE,
+  silent = getOption("mcmcderive.silent", FALSE),
   ...
 )
 
@@ -49,7 +49,7 @@ mcmc_derive(object, ...)
   monitor = ".*",
   primary = FALSE,
   parallel = FALSE,
-  silent = FALSE,
+  silent = getOption("mcmcderive.silent", FALSE),
   ...
 )
 
@@ -60,7 +60,7 @@ mcmc_derive(object, ...)
   monitor = ".*",
   primary = FALSE,
   parallel = FALSE,
-  silent = FALSE,
+  silent = getOption("mcmcderive.silent", FALSE),
   ...
 )
 
@@ -71,7 +71,7 @@ mcmc_derive(object, ...)
   monitor = ".*",
   primary = FALSE,
   parallel = FALSE,
-  silent = FALSE,
+  silent = getOption("mcmcderive.silent", FALSE),
   ...
 )
 }
