@@ -80,12 +80,12 @@ mcmc_derive(object, ...)
 
 \item{...}{Unused.}
 
-\item{expr}{A string of the R code defining the values of the 
+\item{expr}{A string of the R code defining the values of the
 derived parameter(s) with respect to the parameters in object.}
 
 \item{values}{A named list of additional R objects to evaluate in the R expression.}
 
-\item{monitor}{A regular expression specifying the 
+\item{monitor}{A regular expression specifying the
 derived parameter(s) in expr to monitor.}
 
 \item{primary}{A flag specifying whether to include the original primary
@@ -93,7 +93,7 @@ parameters in the new MCMC object.}
 
 \item{silent}{A flag specifying whether to suppress messages and warnings.}
 
-\item{parallel}{A flag specifying whether to generate the derived parameters 
+\item{parallel}{A flag specifying whether to generate the derived parameters
 for each chain in parallel.}
 }
 \value{
@@ -104,24 +104,24 @@ Generates an MCMC object with derived parameters from an MCMC object.
 }
 \details{
 It's important to note that parameters in the expression that also
-occur in the original object are not included in the new object 
-unless \code{primary = TRUE} in which case they are simply copied from the 
+occur in the original object are not included in the new object
+unless \code{primary = TRUE} in which case they are simply copied from the
 original object to the new one.
 This applies even when the primary parameters are redefined in values.
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{nlist}: Get derived parameters for an \code{\link[nlist]{nlist-object}}
+\item \code{nlist}: Get derived parameters for an \code{\link[nlist:nlist]{nlist::nlist-object()}}
 
-\item \code{nlists}: Get derived parameters for an \code{\link[nlist]{nlists-object}}
+\item \code{nlists}: Get derived parameters for an \code{\link[nlist:nlists]{nlist::nlists-object()}}
 
-\item \code{mcmc}: Get derived parameters for an \code{\link[coda]{mcmc}} object
+\item \code{mcmc}: Get derived parameters for an \code{\link[coda:mcmc]{coda::mcmc()}} object
 
-\item \code{mcmc.list}: Get derived parameters for an \code{\link[coda]{mcmc.list}} object
+\item \code{mcmc.list}: Get derived parameters for an \code{\link[coda:mcmc.list]{coda::mcmc.list()}} object
 
-\item \code{mcmcr}: Get derived parameters for an \code{\link[mcmcr]{mcmcr-object}}
+\item \code{mcmcr}: Get derived parameters for an \code{\link[mcmcr:mcmcr-object]{mcmcr::mcmcr-object()}}
 
-\item \code{mcmcrs}: Get derived parameters for an \code{\link[mcmcr]{mcmcrs-object}}
+\item \code{mcmcrs}: Get derived parameters for an \code{\link[mcmcr:mcmcrs-object]{mcmcr::mcmcrs-object()}}
 }}
 
 \examples{

@@ -4,7 +4,7 @@
 #' 
 #' It's important to note that parameters in the expression that also
 #' occur in the original object are not included in the new object 
-#' unless \code{primary = TRUE} in which case they are simply copied from the 
+#' unless `primary = TRUE` in which case they are simply copied from the 
 #' original object to the new one.
 #' This applies even when the primary parameters are redefined in values.
 #'
@@ -34,7 +34,7 @@ mcmc_derive <- function(object, ...) {
   UseMethod("mcmc_derive")
 }
 
-#' @describeIn mcmc_derive Get derived parameters for an \code{\link[nlist]{nlist-object}}
+#' @describeIn mcmc_derive Get derived parameters for an [nlist::nlist-object()]
 #' @export
 mcmc_derive.nlist <- function(object, expr, values = list(), monitor = ".*", 
                               primary = FALSE, silent = getOption("mcmcderive.silent", FALSE), ...) {
@@ -45,7 +45,7 @@ mcmc_derive.nlist <- function(object, expr, values = list(), monitor = ".*",
   nlist::as_nlist(object)
 }
 
-#' @describeIn mcmc_derive Get derived parameters for an \code{\link[nlist]{nlists-object}}
+#' @describeIn mcmc_derive Get derived parameters for an [nlist::nlists-object()]
 #' @export
 mcmc_derive.nlists <- function(object, expr, values = list(), monitor = ".*", 
                                primary = FALSE, silent = getOption("mcmcderive.silent", FALSE), ...) {
@@ -56,7 +56,7 @@ mcmc_derive.nlists <- function(object, expr, values = list(), monitor = ".*",
   nlist::as_nlists(object)
 }
 
-#' @describeIn mcmc_derive Get derived parameters for an \code{\link[coda]{mcmc}} object
+#' @describeIn mcmc_derive Get derived parameters for an [coda::mcmc()] object
 #' @export
 mcmc_derive.mcmc <- function(object, expr, values = list(), monitor = ".*", 
                              primary = FALSE, silent = getOption("mcmcderive.silent", FALSE), ...) {
@@ -67,7 +67,7 @@ mcmc_derive.mcmc <- function(object, expr, values = list(), monitor = ".*",
   coda::as.mcmc(object)
 }
 
-#' @describeIn mcmc_derive Get derived parameters for an \code{\link[coda]{mcmc.list}} object
+#' @describeIn mcmc_derive Get derived parameters for an [coda::mcmc.list()] object
 #' @export
 mcmc_derive.mcmc.list <- function(object, expr, values = list(), monitor = ".*", 
                                   primary = FALSE, parallel = FALSE, 
@@ -80,7 +80,7 @@ mcmc_derive.mcmc.list <- function(object, expr, values = list(), monitor = ".*",
   coda::as.mcmc.list(object)
 }
 
-#' @describeIn mcmc_derive Get derived parameters for an \code{\link[mcmcr]{mcmcr-object}}
+#' @describeIn mcmc_derive Get derived parameters for an [mcmcr::mcmcr-object()]
 #' @export
 mcmc_derive.mcmcr <- function(object, expr, values = list(), monitor = ".*", 
                               primary = FALSE, parallel = FALSE, 
@@ -115,7 +115,7 @@ mcmc_derive.mcmcr <- function(object, expr, values = list(), monitor = ".*",
   object
 }
 
-#' @describeIn mcmc_derive Get derived parameters for an \code{\link[mcmcr]{mcmcrs-object}}
+#' @describeIn mcmc_derive Get derived parameters for an [mcmcr::mcmcrs-object()]
 #' @export
 mcmc_derive.mcmcrs <- function(object, expr, values = list(), monitor = ".*", 
                                primary = FALSE, parallel = FALSE, silent = getOption("mcmcderive.silent", FALSE), ...) {
