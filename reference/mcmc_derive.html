@@ -204,7 +204,7 @@
     </tr>
     <tr>
       <th>expr</th>
-      <td><p>A string of the R code defining the values of the 
+      <td><p>A string of the R code defining the values of the
 derived parameter(s) with respect to the parameters in object.</p></td>
     </tr>
     <tr>
@@ -213,7 +213,7 @@ derived parameter(s) with respect to the parameters in object.</p></td>
     </tr>
     <tr>
       <th>monitor</th>
-      <td><p>A regular expression specifying the 
+      <td><p>A regular expression specifying the
 derived parameter(s) in expr to monitor.</p></td>
     </tr>
     <tr>
@@ -227,7 +227,7 @@ parameters in the new MCMC object.</p></td>
     </tr>
     <tr>
       <th>parallel</th>
-      <td><p>A flag specifying whether to generate the derived parameters 
+      <td><p>A flag specifying whether to generate the derived parameters
 for each chain in parallel.</p></td>
     </tr>
     </table>
@@ -238,20 +238,20 @@ for each chain in parallel.</p></td>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>It's important to note that parameters in the expression that also
-occur in the original object are not included in the new object 
-unless <code>primary = TRUE</code> in which case they are simply copied from the 
+occur in the original object are not included in the new object
+unless <code>primary = TRUE</code> in which case they are simply copied from the
 original object to the new one.
 This applies even when the primary parameters are redefined in values.</p>
     <h2 class="hasAnchor" id="methods-by-class-"><a class="anchor" href="#methods-by-class-"></a>Methods (by class)</h2>
 
     
 <ul>
-<li><p><code>nlist</code>: Get derived parameters for an <code><a href='https://rdrr.io/pkg/nlist/man/nlist.html'>nlist-object</a></code></p></li>
-<li><p><code>nlists</code>: Get derived parameters for an <code><a href='https://rdrr.io/pkg/nlist/man/nlists.html'>nlists-object</a></code></p></li>
-<li><p><code>mcmc</code>: Get derived parameters for an <code><a href='https://rdrr.io/pkg/coda/man/mcmc.html'>mcmc</a></code> object</p></li>
-<li><p><code>mcmc.list</code>: Get derived parameters for an <code><a href='https://rdrr.io/pkg/coda/man/mcmc.list.html'>mcmc.list</a></code> object</p></li>
-<li><p><code>mcmcr</code>: Get derived parameters for an <code><a href='https://rdrr.io/pkg/mcmcr/man/mcmcr-object.html'>mcmcr-object</a></code></p></li>
-<li><p><code>mcmcrs</code>: Get derived parameters for an <code><a href='https://rdrr.io/pkg/mcmcr/man/mcmcrs-object.html'>mcmcrs-object</a></code></p></li>
+<li><p><code>nlist</code>: Get derived parameters for an <code><a href='https://rdrr.io/pkg/nlist/man/nlist.html'>nlist::nlist-object()</a></code></p></li>
+<li><p><code>nlists</code>: Get derived parameters for an <code><a href='https://rdrr.io/pkg/nlist/man/nlists.html'>nlist::nlists-object()</a></code></p></li>
+<li><p><code>mcmc</code>: Get derived parameters for an <code><a href='https://rdrr.io/pkg/coda/man/mcmc.html'>coda::mcmc()</a></code> object</p></li>
+<li><p><code>mcmc.list</code>: Get derived parameters for an <code><a href='https://rdrr.io/pkg/coda/man/mcmc.list.html'>coda::mcmc.list()</a></code> object</p></li>
+<li><p><code>mcmcr</code>: Get derived parameters for an <code><a href='https://rdrr.io/pkg/mcmcr/man/mcmcr-object.html'>mcmcr::mcmcr-object()</a></code></p></li>
+<li><p><code>mcmcrs</code>: Get derived parameters for an <code><a href='https://rdrr.io/pkg/mcmcr/man/mcmcrs-object.html'>mcmcr::mcmcrs-object()</a></code></p></li>
 </ul>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
