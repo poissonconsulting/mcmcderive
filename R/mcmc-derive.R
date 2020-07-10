@@ -42,7 +42,7 @@ mcmc_derive.nlist <- function(object, expr, values = list(), monitor = ".*",
   object <- as.mcmcr(object)
   object <- mcmc_derive(object, expr = expr, values = values, 
                         monitor = monitor, primary = primary, silent = silent)
-  nlist::as.nlist(object)
+  nlist::as_nlist(object)
 }
 
 #' @describeIn mcmc_derive Get derived parameters for an \code{\link[nlist]{nlists-object}}
@@ -53,7 +53,7 @@ mcmc_derive.nlists <- function(object, expr, values = list(), monitor = ".*",
   object <- as.mcmcr(object)
   object <- mcmc_derive(object, expr = expr, values = values, 
                         monitor = monitor, primary = primary, silent = silent)
-  nlist::as.nlists(object)
+  nlist::as_nlists(object)
 }
 
 #' @describeIn mcmc_derive Get derived parameters for an \code{\link[coda]{mcmc}} object
@@ -109,7 +109,7 @@ mcmc_derive.mcmcr <- function(object, expr, values = list(), monitor = ".*",
   object <- split_apply_combine(object, expr, values, monitor, parallel)
   
   if(primary) {
-    original <- subset(original, par = setdiff(pars(original), pars(object)))
+    original <- subset(original, pars = setdiff(pars(original), pars(object)))
     object <- bind_parameters(object, original)  
   }
   object
