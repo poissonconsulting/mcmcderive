@@ -8,15 +8,13 @@
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 [![R build
 status](https://github.com/poissonconsulting/mcmcderive/workflows/R-CMD-check/badge.svg)](https://github.com/poissonconsulting/mcmcderive/actions)
-[![Coverage
-Status](https://img.shields.io/codecov/c/github/poissonconsulting/mcmcderive/master.svg)](https://codecov.io/github/poissonconsulting/mcmcderive?branch=master)
+[![Codecov test
+coverage](https://codecov.io/gh/poissonconsulting/mcmcderive/branch/master/graph/badge.svg)](https://codecov.io/gh/poissonconsulting/mcmcderive?branch=master)
 [![License:
 MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/mcmcderive)](https://cran.r-project.org/package=mcmcderive)
 ![CRAN downloads](http://cranlogs.r-pkg.org/badges/mcmcderive)
-[![Codecov test
-coverage](https://codecov.io/gh/poissonconsulting/mcmcderive/branch/master/graph/badge.svg)](https://codecov.io/gh/poissonconsulting/mcmcderive?branch=master)
 <!-- badges: end -->
 
 ## Why `mcmcderive`?
@@ -27,7 +25,7 @@ Carlo Markov Chain (MCMC) samples using R code.
 This is useful because it means Bayesian models can be fitted without
 the inclusion of derived parameters which add unnecessary clutter and
 slows model fitting. For more information on MCMC samples see Brooks et
-al. (2011).
+al. (2011).
 
 ## Installation
 
