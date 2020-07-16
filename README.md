@@ -43,6 +43,34 @@ To install the latest development version from
 
 ``` r
 library(mcmcderive)
+#> Registered S3 methods overwritten by 'mcmcr':
+#>   method                    from      
+#>   as_nlist.mcmc             nlist     
+#>   as_nlist.mcmc.list        nlist     
+#>   as_nlists.mcmc            nlist     
+#>   as_term.mcmc              nlist     
+#>   collapse_chains.default   universals
+#>   collapse_chains.mcmc.list nlist     
+#>   complete_terms.mcmc       nlist     
+#>   nchains.mcmc              nlist     
+#>   nchains.mcmc.list         nlist     
+#>   niters.mcmc               nlist     
+#>   niters.mcmc.list          nlist     
+#>   npdims.mcmc.list          nlist     
+#>   nterms.mcmc               nlist     
+#>   nterms.mcmc.list          nlist     
+#>   pars.mcmc                 nlist     
+#>   pars.mcmc.list            nlist     
+#>   pdims.mcmc                nlist     
+#>   pdims.mcmc.list           nlist     
+#>   set_pars.mcmc             nlist     
+#>   set_pars.mcmc.list        nlist     
+#>   sort.mcmc                 nlist     
+#>   sort.mcmc.list            nlist     
+#>   subset.mcmc               nlist     
+#>   subset.mcmc.list          nlist     
+#>   tidy.mcmc                 nlist     
+#>   tidy.mcmc.list            nlist
 
 mcmcr::mcmcr_example
 #> $alpha
@@ -98,8 +126,8 @@ In order for this to work it is necessary to:
 
 ### Extras
 
-To facilitate the translation of model code into R code the `mcmcderive`
-package also provides the R equivalent to common model functions such as
+To facilitate the translation of model code into R code the `extras`
+package provides the R equivalent to common model functions such as
 `pow()`, `phi()` and `log() <-`.
 
 ## Contribution

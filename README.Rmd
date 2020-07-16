@@ -69,7 +69,7 @@ In order for this to work it is necessary to:
 
 ### Extras
 
-To facilitate the translation of model code into R code the `mcmcderive` package also provides the R equivalent to common model functions such as `pow()`, `phi()` and `log() <- `.
+To facilitate the translation of model code into R code the `extras` package provides the R equivalent to common model functions such as `pow()`, `phi()` and `log() <- `.
 
 ## Contribution
 
