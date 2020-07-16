@@ -22,7 +22,7 @@ Imports:
     extras,
     term,
     nlist,
-    mcmcr (>= 0.2.0.9021),
+    mcmcr (>= 0.3.0),
     purrr
 Suggests:
     covr,
@@ -30,8 +30,6 @@ Suggests:
     plyr,
     doParallel,
     testthat
-Remotes:
-    poissonconsulting/mcmcr
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.1.9000
