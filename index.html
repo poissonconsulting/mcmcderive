@@ -42,12 +42,6 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="reference/index.html">Reference</a>
 </li>
 <li>
@@ -57,7 +51,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/poissonconsulting/mcmcderive/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -95,38 +89,10 @@
 <div id="demonstration" class="section level2">
 <h2 class="hasAnchor">
 <a href="#demonstration" class="anchor"></a>Demonstration</h2>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://github.com/poissonconsulting/mcmcderive">mcmcderive</a></span>)
-<span class="co">#&gt; Registered S3 methods overwritten by 'mcmcr':</span>
-<span class="co">#&gt;   method                    from      </span>
-<span class="co">#&gt;   as_nlist.mcmc             nlist     </span>
-<span class="co">#&gt;   as_nlist.mcmc.list        nlist     </span>
-<span class="co">#&gt;   as_nlists.mcmc            nlist     </span>
-<span class="co">#&gt;   as_term.mcmc              nlist     </span>
-<span class="co">#&gt;   collapse_chains.default   universals</span>
-<span class="co">#&gt;   collapse_chains.mcmc.list nlist     </span>
-<span class="co">#&gt;   complete_terms.mcmc       nlist     </span>
-<span class="co">#&gt;   nchains.mcmc              nlist     </span>
-<span class="co">#&gt;   nchains.mcmc.list         nlist     </span>
-<span class="co">#&gt;   niters.mcmc               nlist     </span>
-<span class="co">#&gt;   niters.mcmc.list          nlist     </span>
-<span class="co">#&gt;   npdims.mcmc.list          nlist     </span>
-<span class="co">#&gt;   nterms.mcmc               nlist     </span>
-<span class="co">#&gt;   nterms.mcmc.list          nlist     </span>
-<span class="co">#&gt;   pars.mcmc                 nlist     </span>
-<span class="co">#&gt;   pars.mcmc.list            nlist     </span>
-<span class="co">#&gt;   pdims.mcmc                nlist     </span>
-<span class="co">#&gt;   pdims.mcmc.list           nlist     </span>
-<span class="co">#&gt;   set_pars.mcmc             nlist     </span>
-<span class="co">#&gt;   set_pars.mcmc.list        nlist     </span>
-<span class="co">#&gt;   sort.mcmc                 nlist     </span>
-<span class="co">#&gt;   sort.mcmc.list            nlist     </span>
-<span class="co">#&gt;   subset.mcmc               nlist     </span>
-<span class="co">#&gt;   subset.mcmc.list          nlist     </span>
-<span class="co">#&gt;   tidy.mcmc                 nlist     </span>
-<span class="co">#&gt;   tidy.mcmc.list            nlist</span>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/poissonconsulting/mcmcderive">mcmcderive</a></span><span class="op">)</span>
 
-<span class="kw">mcmcr</span>::<span class="kw"><a href="https://rdrr.io/pkg/mcmcr/man/mcmcr_example.html">mcmcr_example</a></span>
+<span class="fu">mcmcr</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/mcmcr/man/mcmcr_example.html">mcmcr_example</a></span>
 <span class="co">#&gt; $alpha</span>
 <span class="co">#&gt; [1] 3.718025 4.718025</span>
 <span class="co">#&gt; </span>
@@ -147,10 +113,12 @@
 <span class="co">#&gt; nchains:  2 </span>
 <span class="co">#&gt; niters:  400</span>
 
-<span class="kw">expr</span> <span class="op">&lt;-</span> <span class="st">"
+<span class="va">expr</span> <span class="op">&lt;-</span> <span class="st">"
   log(alpha2) &lt;- alpha
   gamma &lt;- sum(alpha) * sigma
-"</span>xpr <a href="reference/mcmc_derive.html">mcmc_derive</a>(<span class="kw">mcmcr</span>::<span class="kw"><a href="https://rdrr.io/pkg/mcmcr/man/mcmcr_example.html">mcmcr_example</a></span>, <span class="kw">expr</span>, silent = <span class="fl">TRUE</span>)
+"</span>
+
+<span class="fu"><a href="reference/mcmc_derive.html">mcmc_derive</a></span><span class="op">(</span><span class="fu">mcmcr</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/mcmcr/man/mcmcr_example.html">mcmcr_example</a></span>, <span class="va">expr</span>, silent <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="co">#&gt; $alpha2</span>
 <span class="co">#&gt; [1]  41.18352 111.94841</span>
 <span class="co">#&gt; </span>
@@ -161,13 +129,16 @@
 <span class="co">#&gt; [1] 6.60742</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; nchains:  2 </span>
-<span class="co">#&gt; niters:  400</span>
-</pre></div>
+<span class="co">#&gt; niters:  400</span></code></pre></div>
 <div id="parallel-chains" class="section level3">
 <h3 class="hasAnchor">
 <a href="#parallel-chains" class="anchor"></a>Parallel Chains</h3>
 <p>If the MCMC object has multiple chains the run time can be substantially reduced by generating the derived parameters for each chain in parallel. In order for this to work it is necessary to:</p>
-<p>1) Ensure plyr and doParallel are installed using <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages(c("plyr", "doParallel"))</a></code>. 2) Register a parallel backend using <code><a href="https://rdrr.io/pkg/doParallel/man/registerDoParallel.html">doParallel::registerDoParallel(4)</a></code>. 3) Set <code>parallel = TRUE</code> in the call to <code><a href="reference/mcmc_derive.html">mcmc_derive()</a></code>.</p>
+<ol style="list-style-type: decimal">
+<li>Ensure plyr and doParallel are installed using <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages(c("plyr", "doParallel"))</a></code>.</li>
+<li>Register a parallel backend using <code><a href="https://rdrr.io/pkg/doParallel/man/registerDoParallel.html">doParallel::registerDoParallel(4)</a></code>.</li>
+<li>Set <code>parallel = TRUE</code> in the call to <code><a href="reference/mcmc_derive.html">mcmc_derive()</a></code>.</li>
+</ol>
 </div>
 <div id="extras" class="section level3">
 <h3 class="hasAnchor">
@@ -231,7 +202,7 @@
   <div class="dev-status">
 <h2>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://www.tidyverse.org/lifecycle/#maturing"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></li>
+<li><a href="https://lifecycle.r-lib.org/articles/stages.html#stable"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" alt="Lifecycle: stable"></a></li>
 <li><a href="https://github.com/poissonconsulting/mcmcderive/actions"><img src="https://github.com/poissonconsulting/mcmcderive/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
 <li><a href="https://codecov.io/gh/poissonconsulting/mcmcderive?branch=master"><img src="https://codecov.io/gh/poissonconsulting/mcmcderive/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></li>
 <li><a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License: MIT"></a></li>
@@ -247,7 +218,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
 </div>
 
       </footer>
