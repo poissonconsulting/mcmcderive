@@ -5,7 +5,8 @@
 
 <!-- badges: start -->
 
-[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+[![Lifecycle:
+stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![R build
 status](https://github.com/poissonconsulting/mcmcderive/workflows/R-CMD-check/badge.svg)](https://github.com/poissonconsulting/mcmcderive/actions)
 [![Codecov test
@@ -43,34 +44,6 @@ To install the latest development version from
 
 ``` r
 library(mcmcderive)
-#> Registered S3 methods overwritten by 'mcmcr':
-#>   method                    from      
-#>   as_nlist.mcmc             nlist     
-#>   as_nlist.mcmc.list        nlist     
-#>   as_nlists.mcmc            nlist     
-#>   as_term.mcmc              nlist     
-#>   collapse_chains.default   universals
-#>   collapse_chains.mcmc.list nlist     
-#>   complete_terms.mcmc       nlist     
-#>   nchains.mcmc              nlist     
-#>   nchains.mcmc.list         nlist     
-#>   niters.mcmc               nlist     
-#>   niters.mcmc.list          nlist     
-#>   npdims.mcmc.list          nlist     
-#>   nterms.mcmc               nlist     
-#>   nterms.mcmc.list          nlist     
-#>   pars.mcmc                 nlist     
-#>   pars.mcmc.list            nlist     
-#>   pdims.mcmc                nlist     
-#>   pdims.mcmc.list           nlist     
-#>   set_pars.mcmc             nlist     
-#>   set_pars.mcmc.list        nlist     
-#>   sort.mcmc                 nlist     
-#>   sort.mcmc.list            nlist     
-#>   subset.mcmc               nlist     
-#>   subset.mcmc.list          nlist     
-#>   tidy.mcmc                 nlist     
-#>   tidy.mcmc.list            nlist
 
 mcmcr::mcmcr_example
 #> $alpha
@@ -118,11 +91,11 @@ If the MCMC object has multiple chains the run time can be substantially
 reduced by generating the derived parameters for each chain in parallel.
 In order for this to work it is necessary to:
 
-1)  Ensure plyr and doParallel are installed using
+1.  Ensure plyr and doParallel are installed using
     `install.packages(c("plyr", "doParallel"))`.
-2)  Register a parallel backend using
+2.  Register a parallel backend using
     `doParallel::registerDoParallel(4)`.
-3)  Set `parallel = TRUE` in the call to `mcmc_derive()`.
+3.  Set `parallel = TRUE` in the call to `mcmc_derive()`.
 
 ### Extras
 
