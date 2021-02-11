@@ -8,9 +8,9 @@ test_that("mcmc_derive.nlist", {
     z <- y[1,2]
   "
 
-  expect_identical(
+  expect_equal(
     mcmc_derive(nlist, expr, silent = TRUE),
-    structure(list(gamma = c(3, 4), z = 3L), class = "nlist")
+    nlist::nlist(gamma = c(3, 4), z = 3L)
   )
 })
 
@@ -25,12 +25,13 @@ test_that("mcmc_derive.nlists", {
     z <- y[1,2]
   "
 
-  expect_identical(
+  expect_equal(
     mcmc_derive(nlist, expr, silent = TRUE),
-    structure(list(
-      structure(list(gamma = c(3, 4), z = 3L), class = "nlist"),
-      structure(list(gamma = c(5, 6), z = 2L), class = "nlist")
-    ), class = "nlists")
+    
+    nlist <- nlist::nlists(
+      nlist::nlist(gamma = c(3, 4), z = 3L),
+      nlist::nlist(gamma = c(5, 6), z = 2L)
+    )
   )
 })
 
