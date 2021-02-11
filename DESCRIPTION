@@ -24,10 +24,9 @@ Imports:
     abind,
     chk,
     extras,
-    mcmcr (>= 0.3.0),
+    mcmcr,
     nlist,
     purrr,
-    term,
     universals
 Suggests:
     coda,
