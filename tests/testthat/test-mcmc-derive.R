@@ -179,6 +179,8 @@ test_that("mcmc_derive.mcmcr with all missing data.frame", {
 })
 
 test_that("mcmc_derive in parallel", {
+  skip_on_os("windows") # not working on GitHub actions but is on check_win_devel()
+  # need to switch to furrr
   mcmcr <- subset(mcmcr::mcmcr_example, 1:2, 1:2)
 
   expr <- "
