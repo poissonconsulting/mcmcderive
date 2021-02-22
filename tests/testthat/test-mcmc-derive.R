@@ -1,5 +1,3 @@
-context("mcmc-derive")
-
 test_that("mcmc_derive.nlist", {
   nlist <- nlist::nlist(x = 1:2, y = matrix(1:4, 2))
 
