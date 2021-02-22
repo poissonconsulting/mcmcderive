@@ -315,10 +315,9 @@ test_that("mcmc_derive warnings and errors", {
     "^`monitor` 'alpha3' must match at least one of the following variables in expr: 'alpha2'[.]$"
   )
 
-  expect_error(
+  expect_identical(
     mcmc_derive(mcmcr, expr = "alpha2 <- beta * sigma * alpha * alpha3", monitor = "2$"),
-    "^The following derived parameters include missing values: 'alpha2'[.]$"
-  )
+    mcmcr::fill_all(set_pars(subset(mcmcr, pars = "beta"), "alpha2"), NA_real_))
 
   expect_error(
     mcmc_derive(mcmcr,
