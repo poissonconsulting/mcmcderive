@@ -1,3 +1,10 @@
+<!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
+
+# mcmcderive 0.1.2
+
+- Remove requirement that derived parameters don't have any missing values.
+
+
 # mcmcderive 0.1.1.9000
 
 - Internal changes only.
