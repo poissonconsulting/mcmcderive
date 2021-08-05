@@ -2,17 +2,7 @@
 
 # mcmcderive 0.1.2
 
-- Remove requirement that derived parameters don't have any missing values.
-
-
-# mcmcderive 0.1.1.9000
-
-- Internal changes only.
-
-
-# mcmcderive 0.1.1
-
-- Internal changes only.
+- Removed constraint that derived parameters do not have any missing values.
 
 # mcmcderive 0.1.0
 
