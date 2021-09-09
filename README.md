@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# mcmcderive
+# mcmcderive <img src="man/figures/logo.png" align="right" />
 
 <!-- badges: start -->
 
@@ -90,11 +90,11 @@ If the MCMC object has multiple chains the run time can be substantially
 reduced by generating the derived parameters for each chain in parallel.
 In order for this to work it is necessary to:
 
-1)  Ensure plyr and doParallel are installed using
+1.  Ensure plyr and doParallel are installed using
     `install.packages(c("plyr", "doParallel"))`.
-2)  Register a parallel backend using
+2.  Register a parallel backend using
     `doParallel::registerDoParallel(4)`.
-3)  Set `parallel = TRUE` in the call to `mcmc_derive()`.
+3.  Set `parallel = TRUE` in the call to `mcmc_derive()`.
 
 ### Extras
 
