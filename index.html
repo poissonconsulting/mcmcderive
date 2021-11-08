@@ -44,7 +44,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">mcmcderive</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.2.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.2.9000</span>
       </span>
     </div>
 
@@ -59,7 +59,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/poissonconsulting/mcmcderive/">
+  <a href="https://github.com/poissonconsulting/mcmcderive/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -76,29 +76,28 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="mcmcderive-" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#mcmcderive-" class="anchor" aria-hidden="true"></a>mcmcderive <img src="reference/figures/logo.png" align="right">
+<div class="section level1">
+<div class="page-header"><h1 id="mcmcderive-">mcmcderive <img src="reference/figures/logo.png" align="right"><a class="anchor" aria-label="anchor" href="#mcmcderive-"></a>
 </h1></div>
 <!-- badges: start -->
 
-<div id="why-mcmcderive" class="section level2">
-<h2 class="hasAnchor">
-<a href="#why-mcmcderive" class="anchor" aria-hidden="true"></a>Why <code>mcmcderive</code>?</h2>
+<div class="section level2">
+<h2 id="why-mcmcderive">Why <code>mcmcderive</code>?<a class="anchor" aria-label="anchor" href="#why-mcmcderive"></a>
+</h2>
 <p><code>mcmcderive</code> is an R package to generate derived parameter(s) from Monte Carlo Markov Chain (MCMC) samples using R code.</p>
 <p>This is useful because it means Bayesian models can be fitted without the inclusion of derived parameters which add unnecessary clutter and slows model fitting. For more information on MCMC samples see Brooks et al. (2011).</p>
 </div>
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor" aria-hidden="true"></a>Installation</h2>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
 <p>To install the latest release version from <a href="https://cran.r-project.org/package=mcmcderive" class="external-link">CRAN</a></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">install.packages</span>(<span class="st">"mcmcderive"</span>)</span></code></pre></div>
 <p>To install the latest development version from <a href="https://github.com/poissonconsulting/mcmcderive" class="external-link">GitHub</a></p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>remotes<span class="op">::</span><span class="kw">install_github</span>(<span class="st">"poissonconsulting/mcmcderive"</span>)</span></code></pre></div>
 </div>
-<div id="demonstration" class="section level2">
-<h2 class="hasAnchor">
-<a href="#demonstration" class="anchor" aria-hidden="true"></a>Demonstration</h2>
+<div class="section level2">
+<h2 id="demonstration">Demonstration<a class="anchor" aria-label="anchor" href="#demonstration"></a>
+</h2>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/poissonconsulting/mcmcderive" class="external-link">mcmcderive</a></span><span class="op">)</span>
 
@@ -140,9 +139,9 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt; nchains:  2 </span>
 <span class="co">#&gt; niters:  400</span></code></pre></div>
-<div id="parallel-chains" class="section level3">
-<h3 class="hasAnchor">
-<a href="#parallel-chains" class="anchor" aria-hidden="true"></a>Parallel Chains</h3>
+<div class="section level3">
+<h3 id="parallel-chains">Parallel Chains<a class="anchor" aria-label="anchor" href="#parallel-chains"></a>
+</h3>
 <p>If the MCMC object has multiple chains the run time can be substantially reduced by generating the derived parameters for each chain in parallel. In order for this to work it is necessary to:</p>
 <ol style="list-style-type: decimal">
 <li>Ensure plyr and doParallel are installed using <code>install.packages(c("plyr", "doParallel"))</code>.</li>
@@ -150,26 +149,26 @@
 <li>Set <code>parallel = TRUE</code> in the call to <code><a href="reference/mcmc_derive.html">mcmc_derive()</a></code>.</li>
 </ol>
 </div>
-<div id="extras" class="section level3">
-<h3 class="hasAnchor">
-<a href="#extras" class="anchor" aria-hidden="true"></a>Extras</h3>
+<div class="section level3">
+<h3 id="extras">Extras<a class="anchor" aria-label="anchor" href="#extras"></a>
+</h3>
 <p>To facilitate the translation of model code into R code the <code>extras</code> package provides the R equivalent to common model functions such as <code>pow()</code>, <code>phi()</code> and <code>log() &lt;-</code>.</p>
 </div>
 </div>
-<div id="contribution" class="section level2">
-<h2 class="hasAnchor">
-<a href="#contribution" class="anchor" aria-hidden="true"></a>Contribution</h2>
+<div class="section level2">
+<h2 id="contribution">Contribution<a class="anchor" aria-label="anchor" href="#contribution"></a>
+</h2>
 <p>Please report any <a href="https://github.com/poissonconsulting/mcmcderive/issues" class="external-link">issues</a>.</p>
 <p><a href="https://github.com/poissonconsulting/mcmcderive/pulls" class="external-link">Pull requests</a> are always welcome.</p>
 </div>
-<div id="code-of-conduct" class="section level2">
-<h2 class="hasAnchor">
-<a href="#code-of-conduct" class="anchor" aria-hidden="true"></a>Code of Conduct</h2>
+<div class="section level2">
+<h2 id="code-of-conduct">Code of Conduct<a class="anchor" aria-label="anchor" href="#code-of-conduct"></a>
+</h2>
 <p>Please note that the mcmcderive project is released with a <a href="https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html" class="external-link">Contributor Code of Conduct</a>. By contributing to this project, you agree to abide by its terms.</p>
 </div>
-<div id="references" class="section level2">
-<h2 class="hasAnchor">
-<a href="#references" class="anchor" aria-hidden="true"></a>References</h2>
+<div class="section level2">
+<h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
+</h2>
 <p>Brooks, S., Gelman, A., Jones, G.L., and Meng, X.-L. (Editors). 2011. Handbook for Markov Chain Monte Carlo. Taylor &amp; Francis, Boca Raton.</p>
 </div>
 </div>
@@ -179,12 +178,9 @@
     <div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=mcmcderive">https://​cloud.r-project.org/​package=mcmcderive</a>
-</li>
-<li>Browse source code at <br><a href="https://github.com/poissonconsulting/mcmcderive/">https://​github.com/​poissonconsulting/​mcmcderive/​</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/poissonconsulting/mcmcderive/issues">https://​github.com/​poissonconsulting/​mcmcderive/​issues</a>
-</li>
+<li><a href="https://cloud.r-project.org/package=mcmcderive" class="external-link">View on CRAN</a></li>
+<li><a href="https://github.com/poissonconsulting/mcmcderive/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/poissonconsulting/mcmcderive/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
 
@@ -192,7 +188,7 @@
 <h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li><a href="LICENSE.html">Full license</a></li>
-<li><small><a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
+<li><small><a href="https://opensource.org/licenses/mit-license.php" class="external-link">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
 </ul>
 </div>
 
@@ -207,7 +203,7 @@
 <div class="developers">
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>Joe Thorley <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-7683-4592" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Joe Thorley <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-7683-4592" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 <li>Poisson Consulting <br><small class="roles"> Copyright holder, funder </small>  </li>
 </ul>
 </div>
@@ -234,7 +230,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.9000.9000.9000.</p>
 </div>
 
       </footer>
