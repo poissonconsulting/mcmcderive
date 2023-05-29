@@ -111,19 +111,19 @@ This applies even when the primary parameters are redefined in values.
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{nlist}: Get derived parameters for an \code{\link[nlist:nlist]{nlist::nlist-object()}}
+\item \code{mcmc_derive(nlist)}: Get derived parameters for an \code{\link[nlist:nlist]{nlist::nlist-object()}}
 
-\item \code{nlists}: Get derived parameters for an \code{\link[nlist:nlists]{nlist::nlists-object()}}
+\item \code{mcmc_derive(nlists)}: Get derived parameters for an \code{\link[nlist:nlists]{nlist::nlists-object()}}
 
-\item \code{mcmc}: Get derived parameters for an \code{\link[coda:mcmc]{coda::mcmc()}} object
+\item \code{mcmc_derive(mcmc)}: Get derived parameters for an \code{\link[coda:mcmc]{coda::mcmc()}} object
 
-\item \code{mcmc.list}: Get derived parameters for an \code{\link[coda:mcmc.list]{coda::mcmc.list()}} object
+\item \code{mcmc_derive(mcmc.list)}: Get derived parameters for an \code{\link[coda:mcmc.list]{coda::mcmc.list()}} object
 
-\item \code{mcmcr}: Get derived parameters for an \code{\link[mcmcr:mcmcr-object]{mcmcr::mcmcr-object()}}
+\item \code{mcmc_derive(mcmcr)}: Get derived parameters for an \code{\link[mcmcr:mcmcr-object]{mcmcr::mcmcr-object()}}
 
-\item \code{mcmcrs}: Get derived parameters for an \code{\link[mcmcr:mcmcrs-object]{mcmcr::mcmcrs-object()}}
+\item \code{mcmc_derive(mcmcrs)}: Get derived parameters for an \code{\link[mcmcr:mcmcrs-object]{mcmcr::mcmcrs-object()}}
+
 }}
-
 \examples{
 mcmcr::mcmcr_example
 
