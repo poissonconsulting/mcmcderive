@@ -93,7 +93,14 @@ mcmc_derive.mcmc.list <- function(object, expr, values = list(), monitor = ".*",
 mcmc_derive.mcmcr <- function(object, expr, values = list(), monitor = ".*",
                               primary = FALSE, parallel = FALSE,
                               silent = getOption("mcmcderive.silent", FALSE), ...) {
-  chk_string(expr)
+
+  expr <- enexpr(expr)
+  if (is_string(expr)) {
+    expr <- parse(text = expr)
+    chk_length(expr)
+    expr <- expr[[1]]
+  }
+
   chk_list(values)
   if (length(values)) {
     chk_named(values)

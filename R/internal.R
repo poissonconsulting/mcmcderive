@@ -1,5 +1,5 @@
 variables <- function(expr) {
-  all.vars(parse(text = expr))
+  all.vars(expr)
 }
 
 allNA <- function(x) all(is.na(x))
@@ -152,8 +152,6 @@ split_apply_combine_chain <- function(i, object, expr, values, monitor) {
 }
 
 split_apply_combine <- function(object, expr, values, monitor, parallel) {
-  expr <- parse(text = expr)
-
   if (parallel) {
     if (!requireNamespace("plyr", quietly = TRUE)) {
       err("plyr is required to run mcmc_derive on chains in parallel")
