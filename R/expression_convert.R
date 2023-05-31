@@ -20,7 +20,7 @@ switch_expr <- function(x, ...) {
   )
 }
 
-iteration_rec <- function(x) {
+iteration_removal <- function(x) {
   switch_expr(
     x,
     # Base cases
@@ -38,12 +38,12 @@ iteration_rec <- function(x) {
         } 
         # cbind switch for [ with multiple arguments
         if (length(x) > 3) {
-          args1 <- purrr::map(as.list(x)[c(3, 4)], iteration_rec)
+          args1 <- purrr::map(as.list(x)[c(3, 4)], iteration_removal)
           fun1 <- rlang::call2(rlang::expr(cbind), !!!args1)
           return(rlang::call2(x[[1]], x[[2]], fun1))
         }
       }
-      args <- purrr::map(as.list(x)[-1], iteration_rec)
+      args <- purrr::map(as.list(x)[-1], iteration_removal)
       rlang::call2(x[[1]], !!!args)
     },
     pairlist = {
@@ -52,7 +52,7 @@ iteration_rec <- function(x) {
   )
 }
 
-loop_rec <- function(x) {
+loop_removal <- function(x) {
   switch_expr(
     x,
     # Base cases
@@ -66,7 +66,7 @@ loop_rec <- function(x) {
       if (identical(x[[1]], rlang::sym("for"))) {
         return(x[[4]])
       }
-      args <- purrr::map(as.list(x)[-1], iteration_rec)
+      args <- purrr::map(as.list(x)[-1], iteration_removal)
       rlang::call2(x[[1]], !!!args)
     },
     pairlist = {
@@ -76,8 +76,9 @@ loop_rec <- function(x) {
 }
 
 #' Convert New Expression
-#' 
-#' Takes the new_expr and removes the for loop and add cbind
+#'
+#' Takes an expression as a string and removes the for loop and adds cbind for
+#' arrays.
 #'
 #' @param x A string
 #'
@@ -90,5 +91,5 @@ loop_rec <- function(x) {
 #' expression_convert("for(i in 1:length(LogLength)) {eWeightLength[i] <- b0 + bDayte * Dayte[i]}")
 #' expression_convert("for(i in 1:nObs) {eAnnual[i] <- bAnn[Ann[i]] + bSA[Site[i], Ann[i]]}")
 expression_convert <- function(x) {
-  loop_rec(iteration_rec(rlang::parse_expr(x)))
+  loop_removal(iteration_removal(rlang::parse_expr(x)))
 }

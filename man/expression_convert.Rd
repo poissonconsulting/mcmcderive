@@ -13,7 +13,8 @@ expression_convert(x)
 An expression
 }
 \description{
-Takes the new_expr and removes the for loop and add cbind
+Takes an expression as a string and removes the for loop and adds cbind for
+arrays.
 }
 \examples{
 expression_convert("log(eCount[i]) <- b0")
