@@ -1,0 +1,94 @@
+# Inspiration from Advanced R 
+expr_type <- function(x) {
+  if (rlang::is_syntactic_literal(x)) {
+    "constant"
+  } else if (is.symbol(x)) {
+    "symbol"
+  } else if (is.call(x)) {
+    "call"
+  } else if (is.pairlist(x)) {
+    "pairlist"
+  } else {
+    typeof(x)
+  }
+}
+
+switch_expr <- function(x, ...) {
+  switch(expr_type(x),
+         ...,
+         stop("Don't know how to handle type ", typeof(x), call. = FALSE)
+  )
+}
+
+iteration_rec <- function(x) {
+  switch_expr(
+    x,
+    # Base cases
+    constant = x,
+    symbol = {
+      x
+    },
+    # Recursive cases
+    call = {
+      # go into [ to remove i's or add cbind
+      if (identical(x[[1]], rlang::sym("["))) {
+        # remove the iteration variable i
+        if (identical(x[[3]], rlang::sym("i"))) {
+          return(x[[2]])
+        } 
+        # cbind switch for [ with multiple arguments
+        if (length(x) > 3) {
+          args1 <- purrr::map(as.list(x)[c(3, 4)], iteration_rec)
+          fun1 <- rlang::call2(rlang::expr(cbind), !!!args1)
+          return(rlang::call2(x[[1]], x[[2]], fun1))
+        }
+      }
+      args <- purrr::map(as.list(x)[-1], iteration_rec)
+      rlang::call2(x[[1]], !!!args)
+    },
+    pairlist = {
+      x
+    }
+  )
+}
+
+loop_rec <- function(x) {
+  switch_expr(
+    x,
+    # Base cases
+    constant = x,
+    symbol = {
+      x
+    },
+    # Recursive cases
+    call = {
+      # return body of for loop, ie remove for loop line
+      if (identical(x[[1]], rlang::sym("for"))) {
+        return(x[[4]])
+      }
+      args <- purrr::map(as.list(x)[-1], iteration_rec)
+      rlang::call2(x[[1]], !!!args)
+    },
+    pairlist = {
+      x
+    }
+  )
+}
+
+#' Convert New Expression
+#' 
+#' Takes the new_expr and removes the for loop and add cbind
+#'
+#' @param x A string
+#'
+#' @return An expression
+#' @export
+#'
+#' @examples
+#' expression_convert("log(eCount[i]) <- b0")
+#' expression_convert("for(i in 1:nObs) {eCount[i] <- b0}")
+#' expression_convert("for(i in 1:length(LogLength)) {eWeightLength[i] <- b0 + bDayte * Dayte[i]}")
+#' expression_convert("for(i in 1:nObs) {eAnnual[i] <- bAnn[Ann[i]] + bSA[Site[i], Ann[i]]}")
+expression_convert <- function(x) {
+  loop_rec(iteration_rec(rlang::parse_expr(x)))
+}
