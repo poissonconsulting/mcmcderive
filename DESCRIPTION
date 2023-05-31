@@ -26,6 +26,7 @@ Imports:
     mcmcr,
     nlist,
     purrr,
+    rlang,
     universals
 Suggests:
     coda,
