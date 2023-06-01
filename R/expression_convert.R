@@ -20,7 +20,7 @@ switch_expr <- function(x, ...) {
   )
 }
 
-iteration_removal <- function(x) {
+iteration_removal <- function(x, iteration_var) {
   switch_expr(
     x,
     # Base cases
@@ -33,17 +33,25 @@ iteration_removal <- function(x) {
       # go into [ to remove i's or add cbind
       if (identical(x[[1]], rlang::sym("["))) {
         # remove the iteration variable i
-        if (identical(x[[3]], rlang::sym("i"))) {
+        if (identical(x[[3]], rlang::sym(iteration_var))) {
           return(x[[2]])
         } 
         # cbind switch for [ with multiple arguments
         if (length(x) > 3) {
-          args1 <- purrr::map(as.list(x)[c(3, 4)], iteration_removal)
+          args1 <- purrr::map2(
+            as.list(x)[c(3, 4)], 
+            rlang::as_string(iteration_var), 
+            iteration_removal
+          )
           fun1 <- rlang::call2(rlang::expr(cbind), !!!args1)
           return(rlang::call2(x[[1]], x[[2]], fun1))
         }
       }
-      args <- purrr::map(as.list(x)[-1], iteration_removal)
+      args <- purrr::map2(
+        as.list(x)[-1], 
+        rlang::as_string(iteration_var), 
+        iteration_removal
+      )
       rlang::call2(x[[1]], !!!args)
     },
     pairlist = {
@@ -90,5 +98,11 @@ loop_removal <- function(x) {
 #' expression_convert("for(i in 1:length(LogLength)) {eWeightLength[i] <- b0 + bDayte * Dayte[i]}")
 #' expression_convert("for(i in 1:nObs) {eAnnual[i] <- bAnn[Ann[i]] + bSA[Site[i], Ann[i]]}")
 expression_convert <- function(x) {
-  loop_removal(iteration_removal(x))
+  if (identical(x[[1]], rlang::sym("for"))) {
+    loop_removal(
+      iteration_removal(x, x[[2]])
+    )
+  } else {
+    x
+  }
 }

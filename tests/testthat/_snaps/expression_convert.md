@@ -1,10 +1,3 @@
-# simple expr with iteration var replaced
-
-    Code
-      expression_convert(rlang::expr(log(eCount[i]) <- b0))
-    Output
-      log(eCount) <- b0
-
 # simple expr with iteration var replaced and for loop removed
 
     Code
@@ -112,11 +105,15 @@
 # varibles that generate a sequences with :
 
     Code
-      expression_convert(rlang::expr(eGrowth[i] <- max(0, (bLinf - LengthAtRelease[i]
-      ) * (1 - exp(-sum(eK[Year[i]:(Year[i] + dYears[i] - 1)]))))))
+      expression_convert(rlang::expr(for (i in 1:length(Year)) {
+        eGrowth[i] <- max(0, (bLinf - LengthAtRelease[i]) * (1 - exp(-sum(eK[Year[i]:
+          (Year[i] + dYears[i] - 1)]))))
+      }))
     Output
-      eGrowth <- max(0, (bLinf - LengthAtRelease) * (1 - exp(-sum(eK[Year:(Year + 
-          dYears - 1)]))))
+      {
+          eGrowth <- max(0, (bLinf - LengthAtRelease) * (1 - exp(-sum(eK[Year:(Year + 
+              dYears - 1)]))))
+      }
 
 # cbind with var and constant
 

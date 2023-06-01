@@ -1,11 +1,3 @@
-test_that("simple expr with iteration var replaced", {
-  expect_snapshot(
-    expression_convert(rlang::expr(
-      log(eCount[i]) <- b0)
-    )
-  )
-})
-
 test_that("simple expr with iteration var replaced and for loop removed", {
   expect_snapshot(
     expression_convert(rlang::expr(
@@ -79,7 +71,9 @@ test_that("expr with non iteration", {
 test_that("varibles that generate a sequences with :", {
   expect_snapshot(
     expression_convert(rlang::expr(
-      eGrowth[i] <- max(0, (bLinf - LengthAtRelease[i]) * (1 - exp(-sum(eK[Year[i]:(Year[i] + dYears[i] - 1)]))))
+      for (i in 1:length(Year)) {
+        eGrowth[i] <- max(0, (bLinf - LengthAtRelease[i]) * (1 - exp(-sum(eK[Year[i]:(Year[i] + dYears[i] - 1)]))))
+      }
     ))
   )
 })
