@@ -7,14 +7,13 @@
 expression_convert(x)
 }
 \arguments{
-\item{x}{A string}
+\item{x}{An expression}
 }
 \value{
 An expression
 }
 \description{
-Takes an expression as a string and removes the for loop and adds cbind for
-arrays.
+Takes an expression and removes the for loop and adds \code{cbind} for arrays.
 }
 \examples{
 expression_convert("log(eCount[i]) <- b0")

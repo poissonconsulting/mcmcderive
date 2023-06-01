@@ -77,10 +77,9 @@ loop_removal <- function(x) {
 
 #' Convert New Expression
 #'
-#' Takes an expression as a string and removes the for loop and adds cbind for
-#' arrays.
+#' Takes an expression and removes the for loop and adds `cbind` for arrays.
 #'
-#' @param x A string
+#' @param x An expression
 #'
 #' @return An expression
 #' @export
@@ -91,5 +90,5 @@ loop_removal <- function(x) {
 #' expression_convert("for(i in 1:length(LogLength)) {eWeightLength[i] <- b0 + bDayte * Dayte[i]}")
 #' expression_convert("for(i in 1:nObs) {eAnnual[i] <- bAnn[Ann[i]] + bSA[Site[i], Ann[i]]}")
 expression_convert <- function(x) {
-  loop_removal(iteration_removal(rlang::parse_expr(x)))
+  loop_removal(iteration_removal(x))
 }
