@@ -88,3 +88,14 @@ test_that("cbind with var and constant", {
     ))
   )
 })
+
+test_that("code before for loop", {
+  expect_snapshot(
+    expression_convert(rlang::expr(
+      {
+        b0 <- 2
+        for(i in 1:nObs) {log(eCount[i]) <- b0}
+      }
+    ))
+  )
+})

@@ -128,3 +128,20 @@
           ePopn <- bPopn[cbind(Island, 1)]
       }
 
+# code before for loop
+
+    Code
+      expression_convert(rlang::expr({
+        b0 <- 2
+        for (i in 1:nObs) {
+          log(eCount[i]) <- b0
+        }
+      }))
+    Output
+      {
+          b0 <- 2
+          for (i in 1:nObs) {
+              log(eCount[i]) <- b0
+          }
+      }
+
