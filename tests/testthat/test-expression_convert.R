@@ -1,12 +1,12 @@
 test_that("simple expr with iteration var replaced", {
-  expr_test <- "log(eCount[i]) <- b0"
+  expr_test <- rlang::expr(log(eCount[i]) <- b0)
   output <- expression_convert(expr_test)
   
   expect_equal(output, rlang::expr(log(eCount) <- b0))
 })
 
 test_that("simple expr with iteration var replaced and for loop removed", {
-  expr_test <- "for(i in 1:nObs) {log(eCount[i]) <- b0}"
+  expr_test <- rlang::expr(for(i in 1:nObs) {log(eCount[i]) <- b0})
   output <- expression_convert(expr_test)
   expect_equal(output, rlang::expr({
     log(eCount) <- b0
@@ -14,19 +14,19 @@ test_that("simple expr with iteration var replaced and for loop removed", {
 })
 
 test_that("iteration var replaced with squared term", {
-  expr_test <- "for(i in 1:length(LogLength)) {
+  expr_test <- rlang::expr(for(i in 1:length(LogLength)) {
   eWeightLength[i] <- bWeightLength + bDayte * Dayte[i] + bDayte2 * Dayte[i]^2 
-  }"
+  })
   output <- expression_convert(expr_test)
   expect_equal(output, rlang::expr({eWeightLength <- bWeightLength + bDayte * Dayte + bDayte2 * Dayte^2}))
 })
 
 test_that("iteration var replaced with prediction, fit and residual term ", {
-  expr_test <- "for(i in 1:nObs) {
+  expr_test <- rlang::expr(for(i in 1:nObs) {
   log(prediction[i]) <-  bWeight + eWeightLength[i] * LogLength[i]
   fit[i] <- log(prediction[i])
   residual[i] <- res_lnorm(Weight[i], fit[i], sWeight)
-  }"
+  })
   output <- expression_convert(expr_test)
   expect_equal(
     output, 
@@ -39,11 +39,11 @@ test_that("iteration var replaced with prediction, fit and residual term ", {
 })
 
 test_that("iteration var replaced and cbind added to arrays", {
-  expr_test <- "for(i in 1:nObs) {
+  expr_test <- rlang::expr(for(i in 1:nObs) {
   log(eCount[i]) <- b0 + bYear * Year[i] + bAnnual[Annual[i]] + bSiteAnnual[Site[i], Annual[i]] 
   fit[i] <- eCount[i]
   residual[i] <- res_gamma_pois(Count[i], fit[i], sSiteAnnualQuadrat)
-  }"
+  })
   output <- expression_convert(expr_test)
   expect_equal(
     output, 
@@ -56,11 +56,11 @@ test_that("iteration var replaced and cbind added to arrays", {
 })
 
 test_that("expr with mutli lines", {
-  expr_test <- "for(i in 1:nObs) {
+  expr_test <- rlang::expr(for(i in 1:nObs) {
   log(eCount[i]) <- b0 + bYear * Year[i] + bKelpLine * KelpLine[i] + bSite[Site[i]] + bAnnual[Annual[i]] + bSiteAnnual[Site[i], Annual[i]] 
   log(eCountKelpline[i]) <- b0 + bKelpLine + bYear * Year[i] + bAnnual[Annual[i]] + bSite[Site[i]] + bSiteAnnual[Site[i],Annual[i]]
   log(eCountBarren[i]) <- b0 + bYear * Year[i] + bAnnual[Annual[i]] + bSite[Site[i]] + bSiteAnnual[Site[i],Annual[i]]
-  }"
+  })
   output <- expression_convert(expr_test)
   expect_equal(
     output, 
@@ -73,7 +73,7 @@ test_that("expr with mutli lines", {
 })
 
 test_that("expr with non iteration", {
-  expr_test <- "{max_age <- round(bA_max)
+  expr_test <- rlang::expr({max_age <- round(bA_max)
   age <- 1:max_age
   length <- bL_inf * (1 - exp(-bk * (age - ba0)))
   fecundity <- 10^(-5 + 3 * log(fl2tl(length), base = 2))
@@ -81,7 +81,7 @@ test_that("expr with non iteration", {
   survivorship <- cumprod(survival)
   maturity <- age^14 / (bAs^14 + age^14)
   eggs <- survivorship * maturity * fecundity * 0.50
-  prediction <- 1/sum(eggs)}"
+  prediction <- 1/sum(eggs)})
   output <- expression_convert(expr_test)
   expect_equal(
     output, 
@@ -100,7 +100,7 @@ test_that("expr with non iteration", {
 })
 
 test_that("expr with odd format", {
-  expr_test <- "eGrowth[i] <- max(0, (bLinf - LengthAtRelease[i]) * (1 - exp(-sum(eK[Year[i]:(Year[i] + dYears[i] - 1)]))))"
+  expr_test <- rlang::expr(eGrowth[i] <- max(0, (bLinf - LengthAtRelease[i]) * (1 - exp(-sum(eK[Year[i]:(Year[i] + dYears[i] - 1)])))))
   output <- expression_convert(expr_test)
   expect_equal(
     output, 
@@ -111,10 +111,10 @@ test_that("expr with odd format", {
 })
 
 test_that("cbind with var and constant", {
-  expr_test <- "for(i in 1:nObs) {
+  expr_test <- rlang::expr(for(i in 1:nObs) {
     eDensity[i] <- bDensity[Island[i],Day[i]]
     ePopn[i] <- bPopn[Island[i],1]
-  }"
+  })
   output <- expression_convert(expr_test)
   expect_equal(
     output, 
