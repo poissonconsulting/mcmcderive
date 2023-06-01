@@ -7,7 +7,7 @@
 
 [![Lifecycle:
 stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
-[![R-CMD-check](https://github.com/poissonconsulting/mcmcderive/workflows/R-CMD-check/badge.svg)](https://github.com/poissonconsulting/mcmcderive/actions)
+[![R-CMD-check](https://github.com/poissonconsulting/mcmcderive/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/poissonconsulting/mcmcderive/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
 coverage](https://codecov.io/gh/poissonconsulting/mcmcderive/branch/master/graph/badge.svg)](https://codecov.io/gh/poissonconsulting/mcmcderive?branch=master)
 [![License:
@@ -90,11 +90,11 @@ If the MCMC object has multiple chains the run time can be substantially
 reduced by generating the derived parameters for each chain in parallel.
 In order for this to work it is necessary to:
 
-1.  Ensure plyr and doParallel are installed using
+1)  Ensure plyr and doParallel are installed using
     `install.packages(c("plyr", "doParallel"))`.
-2.  Register a parallel backend using
+2)  Register a parallel backend using
     `doParallel::registerDoParallel(4)`.
-3.  Set `parallel = TRUE` in the call to `mcmc_derive()`.
+3)  Set `parallel = TRUE` in the call to `mcmc_derive()`.
 
 ### Extras
 
