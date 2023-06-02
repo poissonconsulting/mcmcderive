@@ -31,9 +31,9 @@ iteration_removal <- function(x, iteration_var) {
     # Recursive cases
     call = {
       # go into [ to remove i's or add cbind
-      if (identical(x[[1]], rlang::sym("["))) {
+      if (x[[1]] == "[") {
         # remove the iteration variable i
-        if (identical(x[[3]], rlang::sym(iteration_var))) {
+        if (x[[3]] == iteration_var) {
           return(x[[2]])
         }
         # cbind switch for [ with multiple arguments
@@ -74,14 +74,14 @@ iteration_removal <- function(x, iteration_var) {
 #' expression_convert(rlang::expr(for(i in 1:length(LogLength)) {eWeightLength[i] <- b0 + bDayte * Dayte[i]}))
 #' expression_convert(rlang::expr(for(i in 1:nObs) {eAnnual[i] <- bAnn[Ann[i]] + bSA[Site[i], Ann[i]]}))
 expression_convert <- function(x) {
-  if (identical(x[[1]], rlang::sym("for"))) {
+  if (x[[1]] == "for") {
     out <- iteration_removal(x = x[[4]], iteration_var = x[[2]])
 
-    if (length(out) == 2 && identical(out[[1]], rlang::sym("{"))) {
+    if (length(out) == 2 && out[[1]] == "{") {
       out <- out[[2]]
     }
     out
-  } else if (identical(x[[1]], rlang::sym("{"))) {
+  } else if (x[[1]] == "{") {
     args <- purrr::map(as.list(x)[-1], expression_convert)
     rlang::call2(x[[1]], !!!args)
   } else {
