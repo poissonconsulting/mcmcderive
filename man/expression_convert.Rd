@@ -16,8 +16,7 @@ An expression
 Takes an expression and removes the for loop and adds \code{cbind} for arrays.
 }
 \examples{
-expression_convert("log(eCount[i]) <- b0")
-expression_convert("for(i in 1:nObs) {eCount[i] <- b0}")
-expression_convert("for(i in 1:length(LogLength)) {eWeightLength[i] <- b0 + bDayte * Dayte[i]}")
-expression_convert("for(i in 1:nObs) {eAnnual[i] <- bAnn[Ann[i]] + bSA[Site[i], Ann[i]]}")
+expression_convert(rlang::expr(for(i in 1:nObs) {eCount[i] <- b0}))
+expression_convert(rlang::expr(for(i in 1:length(LogLength)) {eWeightLength[i] <- b0 + bDayte * Dayte[i]}))
+expression_convert(rlang::expr(for(i in 1:nObs) {eAnnual[i] <- bAnn[Ann[i]] + bSA[Site[i], Ann[i]]}))
 }
