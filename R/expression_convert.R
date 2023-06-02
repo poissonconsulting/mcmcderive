@@ -74,7 +74,7 @@ loop_removal <- function(x) {
       if (identical(x[[1]], rlang::sym("for"))) {
         return(x[[4]])
       }
-      args <- purrr::map(as.list(x)[-1], iteration_removal)
+      args <- purrr::map(as.list(x)[-1], loop_removal)
       rlang::call2(x[[1]], !!!args)
     },
     pairlist = {
