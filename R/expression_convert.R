@@ -1,4 +1,4 @@
-# Inspiration from Advanced R 
+# Inspiration from Advanced R
 expr_type <- function(x) {
   if (rlang::is_syntactic_literal(x)) {
     "constant"
@@ -35,12 +35,12 @@ iteration_removal <- function(x, iteration_var) {
         # remove the iteration variable i
         if (identical(x[[3]], rlang::sym(iteration_var))) {
           return(x[[2]])
-        } 
+        }
         # cbind switch for [ with multiple arguments
         if (length(x) > 3) {
           args1 <- purrr::map2(
-            as.list(x)[c(3, 4)], 
-            rlang::as_string(iteration_var), 
+            as.list(x)[c(3, 4)],
+            rlang::as_string(iteration_var),
             iteration_removal
           )
           fun1 <- rlang::call2(rlang::expr(cbind), !!!args1)
@@ -48,8 +48,8 @@ iteration_removal <- function(x, iteration_var) {
         }
       }
       args <- purrr::map2(
-        as.list(x)[-1], 
-        rlang::as_string(iteration_var), 
+        as.list(x)[-1],
+        rlang::as_string(iteration_var),
         iteration_removal
       )
       rlang::call2(x[[1]], !!!args)
