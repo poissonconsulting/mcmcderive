@@ -140,8 +140,8 @@
     Output
       {
           b0 <- 2
-          for (i in 1:nObs) {
-              log(eCount[i]) <- b0
+          {
+              log(eCount) <- b0
           }
       }
 

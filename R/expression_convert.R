@@ -101,6 +101,9 @@ expression_convert <- function(x) {
     loop_removal(
       iteration_removal(x, x[[2]])
     )
+  } else if (identical(x[[1]], rlang::sym("{"))) {
+    args <- purrr::map(as.list(x)[-1], expression_convert)
+    rlang::call2(x[[1]], !!!args)
   } else {
     x
   }
