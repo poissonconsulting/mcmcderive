@@ -97,9 +97,8 @@ loop_removal <- function(x) {
 #' expression_convert(rlang::expr(for(i in 1:nObs) {eAnnual[i] <- bAnn[Ann[i]] + bSA[Site[i], Ann[i]]}))
 expression_convert <- function(x) {
   if (identical(x[[1]], rlang::sym("for"))) {
-    out <- loop_removal(
-      iteration_removal(x, x[[2]])
-    )
+    out <- iteration_removal(loop_removal(x), x[[2]])
+
     if (length(out) == 2 && identical(out[[1]], rlang::sym("{"))) {
       out <- out[[2]]
     }
