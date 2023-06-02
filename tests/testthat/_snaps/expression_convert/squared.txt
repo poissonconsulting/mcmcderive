@@ -1,0 +1,4 @@
+{
+    eWeightLength <- bWeightLength + bDayte * Dayte + bDayte2 * 
+        Dayte^2
+}

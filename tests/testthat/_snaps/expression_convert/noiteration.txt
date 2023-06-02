@@ -1,0 +1,11 @@
+{
+    max_age <- round(bA_max)
+    age <- 1:max_age
+    length <- bL_inf * (1 - exp(-bk * (age - ba0)))
+    fecundity <- 10^(-5 + 3 * log(fl2tl(length), base = 2))
+    survival <- c(1, rep(bS_J, 2), rep(bS_A, max_age - 1))
+    survivorship <- cumprod(survival)
+    maturity <- age^14/(bAs^14 + age^14)
+    eggs <- survivorship * maturity * fecundity * 0.5
+    prediction <- 1/sum(eggs)
+}

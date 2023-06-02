@@ -1,0 +1,9 @@
+{
+    log(eCount) <- b0 + bYear * Year + bKelpLine * KelpLine + 
+        bSite[Site] + bAnnual[Annual] + bSiteAnnual[cbind(Site, 
+        Annual)]
+    log(eCountKelpline) <- b0 + bKelpLine + bYear * Year + bAnnual[Annual] + 
+        bSite[Site] + bSiteAnnual[cbind(Site, Annual)]
+    log(eCountBarren) <- b0 + bYear * Year + bAnnual[Annual] + 
+        bSite[Site] + bSiteAnnual[cbind(Site, Annual)]
+}

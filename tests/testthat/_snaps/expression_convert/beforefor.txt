@@ -1,0 +1,6 @@
+{
+    b0 <- 2
+    for (i in 1:nObs) {
+        log(eCount[i]) <- b0
+    }
+}

@@ -1,0 +1,6 @@
+{
+    log(eCount) <- b0 + bYear * Year + bAnnual[Annual] + bSiteAnnual[cbind(Site, 
+        Annual)]
+    fit <- eCount
+    residual <- res_gamma_pois(Count, fit, sSiteAnnualQuadrat)
+}

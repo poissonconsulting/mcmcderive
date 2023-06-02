@@ -1,0 +1,4 @@
+{
+    eGrowth <- max(0, (bLinf - LengthAtRelease) * (1 - exp(-sum(eK[Year:(Year + 
+        dYears - 1)]))))
+}

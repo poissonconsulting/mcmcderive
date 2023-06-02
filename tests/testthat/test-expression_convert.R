@@ -1,59 +1,60 @@
 test_that("simple expr with iteration var replaced and for loop removed", {
-  expect_snapshot(
-    expression_convert(rlang::expr(
-      for(i in 1:nObs) {log(eCount[i]) <- b0}
-    ))
-  )
+  expect_snapshot_expression(expression_convert(rlang::expr(
+    for(i in 1:nObs) {log(eCount[i]) <- b0}
+  )),
+  "simple")
 })
 
 test_that("iteration var replaced with squared term", {
-  expect_snapshot(
-    expression_convert(rlang::expr(
-      for(i in 1:length(LogLength)) {
-        eWeightLength[i] <- bWeightLength + bDayte * Dayte[i] + bDayte2 * Dayte[i]^2 
-      }
-    ))
-  )
+  expect_snapshot_expression(expression_convert(rlang::expr(
+    for(i in 1:length(LogLength)) {
+      eWeightLength[i] <- bWeightLength + bDayte * Dayte[i] + bDayte2 * Dayte[i]^2 
+    }
+  )),
+  "squared")
 })
 
 test_that("iteration var replaced with prediction, fit and residual term ", {
-  expect_snapshot(
+  expect_snapshot_expression(
     expression_convert(rlang::expr(
       for(i in 1:nObs) {
         log(prediction[i]) <-  bWeight + eWeightLength[i] * LogLength[i]
         fit[i] <- log(prediction[i])
         residual[i] <- res_lnorm(Weight[i], fit[i], sWeight)
       }
-    ))
+    )),
+    "predfitres"
   )
 })
 
 test_that("iteration var replaced and cbind added to arrays", {
-  expect_snapshot(
+  expect_snapshot_expression(
     expression_convert(rlang::expr(
       for(i in 1:nObs) {
         log(eCount[i]) <- b0 + bYear * Year[i] + bAnnual[Annual[i]] + bSiteAnnual[Site[i], Annual[i]] 
         fit[i] <- eCount[i]
         residual[i] <- res_gamma_pois(Count[i], fit[i], sSiteAnnualQuadrat)
       }
-    ))
+    )),
+    "arrays"
   )
 })
 
 test_that("expr with mutli lines", {
-  expect_snapshot(
+  expect_snapshot_expression(
     expression_convert(rlang::expr(
       for(i in 1:nObs) {
         log(eCount[i]) <- b0 + bYear * Year[i] + bKelpLine * KelpLine[i] + bSite[Site[i]] + bAnnual[Annual[i]] + bSiteAnnual[Site[i], Annual[i]] 
         log(eCountKelpline[i]) <- b0 + bKelpLine + bYear * Year[i] + bAnnual[Annual[i]] + bSite[Site[i]] + bSiteAnnual[Site[i],Annual[i]]
         log(eCountBarren[i]) <- b0 + bYear * Year[i] + bAnnual[Annual[i]] + bSite[Site[i]] + bSiteAnnual[Site[i],Annual[i]]
       }
-    ))
+    )),
+    "multilines"
   )
 })
 
 test_that("expr with non iteration", {
-  expect_snapshot(
+  expect_snapshot_expression(
     expression_convert(rlang::expr(
       {max_age <- round(bA_max)
       age <- 1:max_age
@@ -64,38 +65,42 @@ test_that("expr with non iteration", {
       maturity <- age^14 / (bAs^14 + age^14)
       eggs <- survivorship * maturity * fecundity * 0.50
       prediction <- 1/sum(eggs)}
-    ))
+    )),
+    "noiteration"
   )
 })
 
 test_that("varibles that generate a sequences with :", {
-  expect_snapshot(
+  expect_snapshot_expression(
     expression_convert(rlang::expr(
       for (i in 1:length(Year)) {
         eGrowth[i] <- max(0, (bLinf - LengthAtRelease[i]) * (1 - exp(-sum(eK[Year[i]:(Year[i] + dYears[i] - 1)]))))
       }
-    ))
+    )),
+    "seqwithcolon"
   )
 })
 
 test_that("cbind with var and constant", {
-  expect_snapshot(
+  expect_snapshot_expression(
     expression_convert(rlang::expr(
       for(i in 1:nObs) {
         eDensity[i] <- bDensity[Island[i],Day[i]]
         ePopn[i] <- bPopn[Island[i],1]
       }
-    ))
+    )),
+    "varandconstant"
   )
 })
 
 test_that("code before for loop", {
-  expect_snapshot(
+  expect_snapshot_expression(
     expression_convert(rlang::expr(
       {
         b0 <- 2
         for(i in 1:nObs) {log(eCount[i]) <- b0}
       }
-    ))
+    )),
+    "beforefor"
   )
 })

@@ -1,0 +1,5 @@
+{
+    log(prediction) <- bWeight + eWeightLength * LogLength
+    fit <- log(prediction)
+    residual <- res_lnorm(Weight, fit, sWeight)
+}

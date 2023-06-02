@@ -1,0 +1,4 @@
+{
+    eDensity <- bDensity[cbind(Island, Day)]
+    ePopn <- bPopn[cbind(Island, 1)]
+}
