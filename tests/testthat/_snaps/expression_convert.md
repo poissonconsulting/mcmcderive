@@ -97,7 +97,7 @@
           prediction <- 1/sum(eggs)
       }
 
-# varibles that generate a sequences with :
+# sum() inside the expression leaves the for loop unchanged
 
     Code
       expression_convert(rlang::expr(for (i in 1:length(Year)) {
@@ -105,8 +105,10 @@
           (Year[i] + dYears[i] - 1)]))))
       }))
     Output
-      eGrowth <- max(0, (bLinf - LengthAtRelease) * (1 - exp(-sum(eK[Year:(Year + 
-          dYears - 1)]))))
+      for (i in 1:length(Year)) {
+          eGrowth[i] <- max(0, (bLinf - LengthAtRelease[i]) * (1 - 
+              exp(-sum(eK[Year[i]:(Year[i] + dYears[i] - 1)]))))
+      }
 
 # cbind with var and constant
 

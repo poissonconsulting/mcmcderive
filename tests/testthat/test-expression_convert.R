@@ -10,7 +10,7 @@ test_that("iteration var replaced with squared term", {
   expect_snapshot(
     expression_convert(rlang::expr(
       for(i in 1:length(LogLength)) {
-        eWeightLength[i] <- bWeightLength + bDayte * Dayte[i] + bDayte2 * Dayte[i]^2 
+        eWeightLength[i] <- bWeightLength + bDayte * Dayte[i] + bDayte2 * Dayte[i]^2
       }
     ))
   )
@@ -32,7 +32,7 @@ test_that("iteration var replaced and cbind added to arrays", {
   expect_snapshot(
     expression_convert(rlang::expr(
       for(i in 1:nObs) {
-        log(eCount[i]) <- b0 + bYear * Year[i] + bAnnual[Annual[i]] + bSiteAnnual[Site[i], Annual[i]] 
+        log(eCount[i]) <- b0 + bYear * Year[i] + bAnnual[Annual[i]] + bSiteAnnual[Site[i], Annual[i]]
         fit[i] <- eCount[i]
         residual[i] <- res_gamma_pois(Count[i], fit[i], sSiteAnnualQuadrat)
       }
@@ -44,7 +44,7 @@ test_that("expr with mutli lines", {
   expect_snapshot(
     expression_convert(rlang::expr(
       for(i in 1:nObs) {
-        log(eCount[i]) <- b0 + bYear * Year[i] + bKelpLine * KelpLine[i] + bSite[Site[i]] + bAnnual[Annual[i]] + bSiteAnnual[Site[i], Annual[i]] 
+        log(eCount[i]) <- b0 + bYear * Year[i] + bKelpLine * KelpLine[i] + bSite[Site[i]] + bAnnual[Annual[i]] + bSiteAnnual[Site[i], Annual[i]]
         log(eCountKelpline[i]) <- b0 + bKelpLine + bYear * Year[i] + bAnnual[Annual[i]] + bSite[Site[i]] + bSiteAnnual[Site[i],Annual[i]]
         log(eCountBarren[i]) <- b0 + bYear * Year[i] + bAnnual[Annual[i]] + bSite[Site[i]] + bSiteAnnual[Site[i],Annual[i]]
       }
@@ -68,7 +68,7 @@ test_that("expr with non iteration", {
   )
 })
 
-test_that("varibles that generate a sequences with :", {
+test_that("sum() inside the expression leaves the for loop unchanged", {
   expect_snapshot(
     expression_convert(rlang::expr(
       for (i in 1:length(Year)) {

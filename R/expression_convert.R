@@ -46,11 +46,15 @@ iteration_removal <- function(x, iteration_var) {
           fun1 <- rlang::call2(rlang::expr(cbind), !!!args1)
           return(rlang::call2(x[[1]], x[[2]], fun1))
         }
+      } else if (x[[1]] == "for" || x[[1]] == "sum") {
+        rlang::abort("Not translating", class = "mcmcderive_unhandled_expr")
       }
-      args <- purrr::map2(
+
+      # Use base R variant because map2() catches all errors
+      args <- mapply(
         as.list(x)[-1],
         rlang::as_string(iteration_var),
-        iteration_removal
+        FUN = iteration_removal
       )
       rlang::call2(x[[1]], !!!args)
     },
@@ -75,11 +79,17 @@ iteration_removal <- function(x, iteration_var) {
 #' expression_convert(rlang::expr(for(i in 1:nObs) {eAnnual[i] <- bAnn[Ann[i]] + bSA[Site[i], Ann[i]]}))
 expression_convert <- function(x) {
   if (x[[1]] == "for") {
-    out <- iteration_removal(x = x[[4]], iteration_var = x[[2]])
+    out <- tryCatch(
+      iteration_removal(x = x[[4]], iteration_var = x[[2]]),
+      mcmcderive_unhandled_expr = function(e) {
+        x
+      }
+    )
 
     if (length(out) == 2 && out[[1]] == "{") {
       out <- out[[2]]
     }
+
     out
   } else if (x[[1]] == "{") {
     args <- purrr::map(as.list(x)[-1], expression_convert)
