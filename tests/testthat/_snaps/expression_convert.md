@@ -5,9 +5,7 @@
         log(eCount[i]) <- b0
       }))
     Output
-      {
-          log(eCount) <- b0
-      }
+      log(eCount) <- b0
 
 # iteration var replaced with squared term
 
@@ -16,10 +14,7 @@
         eWeightLength[i] <- bWeightLength + bDayte * Dayte[i] + bDayte2 * Dayte[i]^2
       }))
     Output
-      {
-          eWeightLength <- bWeightLength + bDayte * Dayte + bDayte2 * 
-              Dayte^2
-      }
+      eWeightLength <- bWeightLength + bDayte * Dayte + bDayte2 * Dayte^2
 
 # iteration var replaced with prediction, fit and residual term 
 
@@ -110,10 +105,8 @@
           (Year[i] + dYears[i] - 1)]))))
       }))
     Output
-      {
-          eGrowth <- max(0, (bLinf - LengthAtRelease) * (1 - exp(-sum(eK[Year:(Year + 
-              dYears - 1)]))))
-      }
+      eGrowth <- max(0, (bLinf - LengthAtRelease) * (1 - exp(-sum(eK[Year:(Year + 
+          dYears - 1)]))))
 
 # cbind with var and constant
 
@@ -140,8 +133,6 @@
     Output
       {
           b0 <- 2
-          {
-              log(eCount) <- b0
-          }
+          log(eCount) <- b0
       }
 
