@@ -39,7 +39,7 @@ iteration_removal <- function(x, iteration_var) {
         # cbind switch for [ with multiple arguments
         if (length(x) > 3) {
           args1 <- purrr::map2(
-            as.list(x)[c(3, 4)],
+            as.list(x)[-(1:2)],
             rlang::as_string(iteration_var),
             iteration_removal
           )

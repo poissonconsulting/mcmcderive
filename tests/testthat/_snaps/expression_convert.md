@@ -138,3 +138,18 @@
           log(eCount) <- b0
       }
 
+# more than two dimensions
+
+    Code
+      expression_convert(rlang::expr(for (i in 1:nObs) {
+        log(eCount[i]) <- b0 + bKelpLine * KelpLine[i] + bYear * Year[i] + bSite[Site[
+          i]] + bSiteAnnual[Site[i], Annual[i]] + bAnnual[Annual[i]]
+        dpois(eCount[i] * bSiteAnnualQuadrat[Site[i], Annual[i], Quadrat[i]])
+      }))
+    Output
+      {
+          log(eCount) <- b0 + bKelpLine * KelpLine + bYear * Year + 
+              bSite[Site] + bSiteAnnual[cbind(Site, Annual)] + bAnnual[Annual]
+          dpois(eCount * bSiteAnnualQuadrat[cbind(Site, Annual, Quadrat)])
+      }
+

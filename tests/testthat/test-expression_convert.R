@@ -99,3 +99,14 @@ test_that("code before for loop", {
     ))
   )
 })
+
+test_that("more than two dimensions", {
+  expect_snapshot(
+    expression_convert(rlang::expr(
+      for(i in 1:nObs) {
+        log(eCount[i]) <- b0 + bKelpLine * KelpLine[i] + bYear * Year[i] + bSite[Site[i]] + bSiteAnnual[Site[i], Annual[i]] +  bAnnual[Annual[i]]
+        dpois(eCount[i] * bSiteAnnualQuadrat[Site[i], Annual[i], Quadrat[i]])
+      }
+    ))
+  )
+})
