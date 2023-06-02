@@ -26,14 +26,16 @@ Imports:
     mcmcr,
     nlist,
     purrr,
+    rlang,
     universals
 Suggests:
     coda,
     covr,
     doParallel,
     plyr,
-    testthat
+    testthat (>= 3.0.0)
 Encoding: UTF-8
 Language: en-US
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
+Config/testthat/edition: 3
