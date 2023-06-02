@@ -60,28 +60,6 @@ iteration_removal <- function(x, iteration_var) {
   )
 }
 
-loop_removal <- function(x) {
-  switch_expr(
-    x,
-    # Base cases
-    constant = x,
-    symbol = {
-      x
-    },
-    # Recursive cases
-    call = {
-      # return body of for loop, ie remove for loop line
-      if (identical(x[[1]], rlang::sym("for"))) {
-        return(x[[4]])
-      }
-      x
-    },
-    pairlist = {
-      x
-    }
-  )
-}
-
 #' Convert New Expression
 #'
 #' Takes an expression and removes the for loop and adds `cbind` for arrays.
@@ -97,7 +75,7 @@ loop_removal <- function(x) {
 #' expression_convert(rlang::expr(for(i in 1:nObs) {eAnnual[i] <- bAnn[Ann[i]] + bSA[Site[i], Ann[i]]}))
 expression_convert <- function(x) {
   if (identical(x[[1]], rlang::sym("for"))) {
-    out <- iteration_removal(loop_removal(x), x[[2]])
+    out <- iteration_removal(x = x[[4]], iteration_var = x[[2]])
 
     if (length(out) == 2 && identical(out[[1]], rlang::sym("{"))) {
       out <- out[[2]]
