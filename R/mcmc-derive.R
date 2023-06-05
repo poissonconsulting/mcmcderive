@@ -41,7 +41,7 @@ mcmc_derive.nlist <- function(object, expr, values = list(), monitor = ".*",
   chk_unused(...)
   object <- as.mcmcr(object)
   object <- mcmc_derive(object,
-    expr = expr, values = values,
+    expr = {{ expr }}, values = values,
     monitor = monitor, primary = primary, silent = silent
   )
   nlist::as_nlist(object)
@@ -54,7 +54,7 @@ mcmc_derive.nlists <- function(object, expr, values = list(), monitor = ".*",
   chk_unused(...)
   object <- as.mcmcr(object)
   object <- mcmc_derive(object,
-    expr = expr, values = values,
+    expr = {{ expr }}, values = values,
     monitor = monitor, primary = primary, silent = silent
   )
   nlist::as_nlists(object)
@@ -67,7 +67,7 @@ mcmc_derive.mcmc <- function(object, expr, values = list(), monitor = ".*",
   chk_unused(...)
   object <- as.mcmcr(object)
   object <- mcmc_derive(object,
-    expr = expr, values = values,
+    expr = {{ expr }}, values = values,
     monitor = monitor, primary = primary, silent = silent
   )
   coda::as.mcmc(object)
@@ -81,7 +81,7 @@ mcmc_derive.mcmc.list <- function(object, expr, values = list(), monitor = ".*",
   chk_unused(...)
   object <- as.mcmcr(object)
   object <- mcmc_derive(object,
-    expr = expr, values = values,
+    expr = {{ expr }}, values = values,
     monitor = monitor, primary = primary,
     parallel = parallel, silent = silent
   )
@@ -94,12 +94,7 @@ mcmc_derive.mcmcr <- function(object, expr, values = list(), monitor = ".*",
                               primary = FALSE, parallel = FALSE,
                               silent = getOption("mcmcderive.silent", FALSE), ...) {
 
-  expr <- enexpr(expr)
-  if (is_string(expr)) {
-    expr <- parse(text = expr)
-    chk_length(expr)
-    expr <- expr[[1]]
-  }
+  expr <- enexpr_expr({{ expr }})
 
   chk_list(values)
   if (length(values)) {
@@ -136,9 +131,44 @@ mcmc_derive.mcmcrs <- function(object, expr, values = list(), monitor = ".*",
                                primary = FALSE, parallel = FALSE, silent = getOption("mcmcderive.silent", FALSE), ...) {
   chk_unused(...)
   object <- lapply(object, mcmc_derive,
-    expr = expr, values = values,
+    expr = {{ expr }}, values = values,
     monitor = monitor, primary = primary, parallel = parallel,
     silent = silent
   )
   as.mcmcrs(object)
+}
+
+#' Collect expr argument
+#'
+#' With compatibility support for passing the expression as a string.
+#'
+#' @param expr Must be passed as `{{ expr }}` by the caller.
+#' @return `expr` quoted and (if needed) parsed.
+#' @noRd
+enexpr_expr <- function(expr) {
+  expr <- enquo(expr)
+  if (quo_is_null(expr)) {
+    rlang::abort("`expr` cannot be `NULL`.")
+  }
+
+  if (is.name(quo_get_expr(expr))) {
+    # For the case where we pass expr as a string variable, or perhaps as a variable
+    # that holds a quoted expression
+    expr <- eval_tidy(expr)
+  } else {
+    expr <- quo_get_expr(expr)
+  }
+
+  if (is.character(expr)) {
+    # FIXME: Add compatibility warning?
+    expr <- parse_exprs(expr)
+    if (length(expr) == 1) {
+      expr <- expr[[1]]
+    } else {
+      expr <- call2("{", !!!expr)
+    }
+  }
+
+  chk_true(is.call(expr) || is.null(expr))
+  expr
 }
