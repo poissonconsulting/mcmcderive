@@ -74,10 +74,10 @@ iteration_removal <- function(x, iteration_var) {
 #' @export
 #'
 #' @examples
-#' expression_convert(rlang::expr(for(i in 1:nObs) {eCount[i] <- b0}))
-#' expression_convert(rlang::expr(for(i in 1:length(LogLength)) {eWeightLength[i] <- b0 + bDayte * Dayte[i]}))
-#' expression_convert(rlang::expr(for(i in 1:nObs) {eAnnual[i] <- bAnn[Ann[i]] + bSA[Site[i], Ann[i]]}))
-expression_convert <- function(x) {
+#' expression_vectorize(rlang::expr(for(i in 1:nObs) {eCount[i] <- b0}))
+#' expression_vectorize(rlang::expr(for(i in 1:length(LogLength)) {eWeightLength[i] <- b0 + bDayte * Dayte[i]}))
+#' expression_vectorize(rlang::expr(for(i in 1:nObs) {eAnnual[i] <- bAnn[Ann[i]] + bSA[Site[i], Ann[i]]}))
+expression_vectorize <- function(x) {
   if (x[[1]] == "for") {
     out <- tryCatch(
       iteration_removal(x = x[[4]], iteration_var = x[[2]]),
@@ -92,7 +92,7 @@ expression_convert <- function(x) {
 
     out
   } else if (x[[1]] == "{") {
-    args <- purrr::map(as.list(x)[-1], expression_convert)
+    args <- purrr::map(as.list(x)[-1], expression_vectorize)
     rlang::call2(x[[1]], !!!args)
   } else {
     x
