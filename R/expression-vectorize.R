@@ -75,8 +75,16 @@ iteration_removal <- function(x, iteration_var) {
 #'
 #' @examples
 #' expression_vectorize(rlang::expr(for(i in 1:nObs) {eCount[i] <- b0}))
-#' expression_vectorize(rlang::expr(for(i in 1:length(LogLength)) {eWeightLength[i] <- b0 + bDayte * Dayte[i]}))
-#' expression_vectorize(rlang::expr(for(i in 1:nObs) {eAnnual[i] <- bAnn[Ann[i]] + bSA[Site[i], Ann[i]]}))
+#' expression_vectorize(
+#'   rlang::expr(
+#'     for(i in 1:length(LogLength)) {eWeightLength[i] <- b0 + bDayte * Dayte[i]}
+#'   )
+#' )
+#' expression_vectorize(
+#'   rlang::expr(
+#'     for(i in 1:nObs) {eAnnual[i] <- bAnn[Ann[i]] + bSA[Site[i], Ann[i]]}
+#'   )
+#' )
 expression_vectorize <- function(x) {
   if (x[[1]] == "for") {
     out <- tryCatch(
