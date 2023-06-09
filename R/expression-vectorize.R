@@ -51,11 +51,7 @@ iteration_removal <- function(x, iteration_var) {
       }
 
       # Use base R variant because map2() catches all errors
-      args <- mapply(
-        as.list(x)[-1],
-        rlang::as_string(iteration_var),
-        FUN = iteration_removal
-      )
+      args <- lapply(as.list(x)[-1], iteration_removal, iteration_var = iteration_var)
       rlang::call2(x[[1]], !!!args)
     },
     pairlist = {
