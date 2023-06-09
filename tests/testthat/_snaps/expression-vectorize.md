@@ -1,7 +1,7 @@
 # simple expr with iteration var replaced and for loop removed
 
     Code
-      expression_convert(rlang::expr(for (i in 1:nObs) {
+      expression_vectorize(rlang::expr(for (i in 1:nObs) {
         log(eCount[i]) <- b0
       }))
     Output
@@ -10,7 +10,7 @@
 # iteration var replaced with squared term
 
     Code
-      expression_convert(rlang::expr(for (i in 1:length(LogLength)) {
+      expression_vectorize(rlang::expr(for (i in 1:length(LogLength)) {
         eWeightLength[i] <- bWeightLength + bDayte * Dayte[i] + bDayte2 * Dayte[i]^2
       }))
     Output
@@ -19,7 +19,7 @@
 # iteration var replaced with prediction, fit and residual term 
 
     Code
-      expression_convert(rlang::expr(for (i in 1:nObs) {
+      expression_vectorize(rlang::expr(for (i in 1:nObs) {
         log(prediction[i]) <- bWeight + eWeightLength[i] * LogLength[i]
         fit[i] <- log(prediction[i])
         residual[i] <- res_lnorm(Weight[i], fit[i], sWeight)
@@ -34,7 +34,7 @@
 # iteration var replaced and cbind added to arrays
 
     Code
-      expression_convert(rlang::expr(for (i in 1:nObs) {
+      expression_vectorize(rlang::expr(for (i in 1:nObs) {
         log(eCount[i]) <- b0 + bYear * Year[i] + bAnnual[Annual[i]] + bSiteAnnual[
           Site[i], Annual[i]]
         fit[i] <- eCount[i]
@@ -51,7 +51,7 @@
 # expr with mutli lines
 
     Code
-      expression_convert(rlang::expr(for (i in 1:nObs) {
+      expression_vectorize(rlang::expr(for (i in 1:nObs) {
         log(eCount[i]) <- b0 + bYear * Year[i] + bKelpLine * KelpLine[i] + bSite[Site[
           i]] + bAnnual[Annual[i]] + bSiteAnnual[Site[i], Annual[i]]
         log(eCountKelpline[i]) <- b0 + bKelpLine + bYear * Year[i] + bAnnual[Annual[i]] +
@@ -73,7 +73,7 @@
 # expr with non iteration
 
     Code
-      expression_convert(rlang::expr({
+      expression_vectorize(rlang::expr({
         max_age <- round(bA_max)
         age <- 1:max_age
         length <- bL_inf * (1 - exp(-bk * (age - ba0)))
@@ -100,7 +100,7 @@
 # sum() inside the expression leaves the for loop unchanged
 
     Code
-      expression_convert(rlang::expr(for (i in 1:length(Year)) {
+      expression_vectorize(rlang::expr(for (i in 1:length(Year)) {
         eGrowth[i] <- max(0, (bLinf - LengthAtRelease[i]) * (1 - exp(-sum(eK[Year[i]:
           (Year[i] + dYears[i] - 1)]))))
       }))
@@ -113,7 +113,7 @@
 # cbind with var and constant
 
     Code
-      expression_convert(rlang::expr(for (i in 1:nObs) {
+      expression_vectorize(rlang::expr(for (i in 1:nObs) {
         eDensity[i] <- bDensity[Island[i], Day[i]]
         ePopn[i] <- bPopn[Island[i], 1]
       }))
@@ -126,7 +126,7 @@
 # code before for loop
 
     Code
-      expression_convert(rlang::expr({
+      expression_vectorize(rlang::expr({
         b0 <- 2
         for (i in 1:nObs) {
           log(eCount[i]) <- b0
@@ -141,7 +141,7 @@
 # more than two dimensions
 
     Code
-      expression_convert(rlang::expr(for (i in 1:nObs) {
+      expression_vectorize(rlang::expr(for (i in 1:nObs) {
         log(eCount[i]) <- b0 + bKelpLine * KelpLine[i] + bYear * Year[i] + bSite[Site[
           i]] + bSiteAnnual[Site[i], Annual[i]] + bAnnual[Annual[i]]
         dpois(eCount[i] * bSiteAnnualQuadrat[Site[i], Annual[i], Quadrat[i]])
