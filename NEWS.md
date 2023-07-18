@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# mcmcderive 0.1.2.9001
+
+- Add `expression_vectorize()`.
+
+
 # mcmcderive 0.1.2.9000
 
 - Same as previous version.
