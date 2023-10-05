@@ -21,10 +21,15 @@ Useful links:
 \author{
 \strong{Maintainer}: Joe Thorley \email{joe@poissonconsulting.ca} (\href{https://orcid.org/0000-0002-7683-4592}{ORCID})
 
+Authors:
+\itemize{
+  \item Ayla Pearson (\href{https://orcid.org/0000-0001-7388-1222}{ORCID})
+  \item Kirill Müller (\href{https://orcid.org/0000-0002-1416-3412}{ORCID})
+}
+
 Other contributors:
 \itemize{
-  \item Ayla Pearson (\href{https://orcid.org/0000-0001-7388-1222}{ORCID}) [contributor]
-  \item Kirill Müller (\href{https://orcid.org/0000-0002-1416-3412}{ORCID}) [contributor]
+  \item Nadine Hussein \email{nadine@poissonconsulting.ca} (\href{https://orcid.org/0000-0003-4470-8361}{ORCID}) [contributor]
   \item Poisson Consulting [copyright holder, funder]
 }
 

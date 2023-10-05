@@ -1,22 +1,17 @@
 Package: mcmcderive
 Title: Derive MCMC Parameters
 Version: 0.1.2.9001
-Authors@R: 
-    c(person(given = "Joe",
-             family = "Thorley",
-             role = c("aut", "cre"),
-             email = "joe@poissonconsulting.ca",
-             comment = c(ORCID = "0000-0002-7683-4592")),
-      person(given = "Ayla",
-             family = "Pearson",
-             role = "ctb",
-             comment = c(ORCID = "0000-0001-7388-1222")),
-      person(given = "Kirill",
-             family = "Müller",
-             role = "ctb",
-             comment = c(ORCID = "0000-0002-1416-3412")),
-      person(given = "Poisson Consulting",
-             role = c("cph", "fnd")))
+Authors@R: c(
+    person("Joe", "Thorley", , "joe@poissonconsulting.ca", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-7683-4592")),
+    person("Ayla", "Pearson", role = "aut",
+           comment = c(ORCID = "0000-0001-7388-1222")),
+    person("Kirill", "Müller", role = "aut",
+           comment = c(ORCID = "0000-0002-1416-3412")),
+    person("Nadine", "Hussein", , "nadine@poissonconsulting.ca", role = "ctb",
+           comment = c(ORCID = "0000-0003-4470-8361")),
+    person("Poisson Consulting", role = c("cph", "fnd"))
+  )
 Description: Generates derived parameter(s) from Monte Carlo Markov Chain
     (MCMC) samples using R code. This allows Bayesian models to be fitted
     without the inclusion of derived parameters which add unnecessary
@@ -42,8 +37,8 @@ Suggests:
     doParallel,
     plyr,
     testthat (>= 3.0.0)
+Config/testthat/edition: 3
 Encoding: UTF-8
 Language: en-US
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
-Config/testthat/edition: 3
