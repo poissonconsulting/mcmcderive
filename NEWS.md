@@ -1,4 +1,11 @@
-<!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
+<!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
+
+# mcmcderive 0.1.2.9002
+
+## Bug fixes
+
+- Flatten double braces more aggressively (#21, #22).
+
 
 # mcmcderive 0.1.2.9001
 
