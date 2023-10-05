@@ -7,6 +7,21 @@
     Output
       log(eCount) <- b0
 
+# avoiding double braces (#21)
+
+    Code
+      expression_vectorize(rlang::expr({
+        for (i in 1:10) {
+          x[i] <- 1
+          y[i] <- 2
+        }
+      }))
+    Output
+      {
+          x <- 1
+          y <- 2
+      }
+
 # iteration var replaced with squared term
 
     Code

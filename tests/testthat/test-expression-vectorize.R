@@ -6,6 +6,17 @@ test_that("simple expr with iteration var replaced and for loop removed", {
   )
 })
 
+test_that("avoiding double braces (#21)", {
+  expect_snapshot(
+    expression_vectorize(rlang::expr({
+      for (i in 1:10) {
+        x[i] <- 1
+        y[i] <- 2
+      }
+    }))
+  )
+})
+
 test_that("iteration var replaced with squared term", {
   expect_snapshot(
     expression_vectorize(rlang::expr(
