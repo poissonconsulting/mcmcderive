@@ -90,15 +90,17 @@ expression_vectorize <- function(x) {
       }
     )
 
-    if (length(out) == 2 && out[[1]] == "{") {
-      out <- out[[2]]
-    }
-
     out
   } else if (x[[1]] == "{") {
     args <- purrr::map(as.list(x)[-1], expression_vectorize)
-    rlang::call2(x[[1]], !!!args)
+    out <- rlang::call2(x[[1]], !!!args)
   } else {
-    x
+    out <- x
   }
+
+  if (length(out) == 2 && out[[1]] == "{") {
+    out <- out[[2]]
+  }
+
+  out
 }
