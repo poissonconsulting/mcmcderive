@@ -21,7 +21,7 @@ License: MIT + file LICENSE
 URL: https://github.com/poissonconsulting/mcmcderive
 BugReports: https://github.com/poissonconsulting/mcmcderive/issues
 Depends:
-    R (>= 3.5)
+    R (>= 4.3)
 Imports:
     abind,
     chk,
