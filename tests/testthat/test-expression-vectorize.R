@@ -20,7 +20,7 @@ test_that("avoiding double braces (#21)", {
 test_that("iteration var replaced with squared term", {
   expect_snapshot(
     expression_vectorize(rlang::expr(
-      for(i in 1:length(LogLength)) {
+      for(i in seq_along(LogLength)) {
         eWeightLength[i] <- bWeightLength + bDayte * Dayte[i] + bDayte2 * Dayte[i]^2
       }
     ))
@@ -82,7 +82,7 @@ test_that("expr with non iteration", {
 test_that("sum() inside the expression leaves the for loop unchanged", {
   expect_snapshot(
     expression_vectorize(rlang::expr(
-      for (i in 1:length(Year)) {
+      for (i in seq_along(Year)) {
         eGrowth[i] <- max(0, (bLinf - LengthAtRelease[i]) * (1 - exp(-sum(eK[Year[i]:(Year[i] + dYears[i] - 1)]))))
       }
     ))
