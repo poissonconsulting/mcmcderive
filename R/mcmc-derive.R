@@ -93,7 +93,6 @@ mcmc_derive.mcmc.list <- function(object, expr, values = list(), monitor = ".*",
 mcmc_derive.mcmcr <- function(object, expr, values = list(), monitor = ".*",
                               primary = FALSE, parallel = FALSE,
                               silent = getOption("mcmcderive.silent", FALSE), ...) {
-
   expr <- enexpr_expr({{ expr }})
 
   chk_list(values)

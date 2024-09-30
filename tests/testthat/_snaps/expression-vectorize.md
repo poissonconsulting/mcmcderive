@@ -25,7 +25,7 @@
 # iteration var replaced with squared term
 
     Code
-      expression_vectorize(rlang::expr(for (i in 1:length(LogLength)) {
+      expression_vectorize(rlang::expr(for (i in seq_along(LogLength)) {
         eWeightLength[i] <- bWeightLength + bDayte * Dayte[i] + bDayte2 * Dayte[i]^2
       }))
     Output
@@ -115,12 +115,12 @@
 # sum() inside the expression leaves the for loop unchanged
 
     Code
-      expression_vectorize(rlang::expr(for (i in 1:length(Year)) {
+      expression_vectorize(rlang::expr(for (i in seq_along(Year)) {
         eGrowth[i] <- max(0, (bLinf - LengthAtRelease[i]) * (1 - exp(-sum(eK[Year[i]:
           (Year[i] + dYears[i] - 1)]))))
       }))
     Output
-      for (i in 1:length(Year)) {
+      for (i in seq_along(Year)) {
           eGrowth[i] <- max(0, (bLinf - LengthAtRelease[i]) * (1 - 
               exp(-sum(eK[Year[i]:(Year[i] + dYears[i] - 1)]))))
       }
