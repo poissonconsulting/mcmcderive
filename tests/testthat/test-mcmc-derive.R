@@ -17,7 +17,7 @@ test_that("mcmc_derive.nlist with expression ", {
 
   expr <- rlang::expr({
     gamma <- x + 2
-    z <- y[1,2]
+    z <- y[1, 2]
   })
 
   expect_equal(
@@ -30,7 +30,9 @@ test_that("mcmc_derive.nlist with expression passed in argument", {
   nlist <- nlist::nlist(x = 1:2, y = matrix(1:4, 2))
 
   expect_equal(
-    mcmc_derive(nlist, !!rlang::expr({gamma <- x + 2; z <- y[1,2]}), silent = TRUE),
+    mcmc_derive(nlist, !!rlang::expr({
+      gamma <- x + 2; z <- y[1, 2]
+    }), silent = TRUE),
     nlist::nlist(gamma = c(3, 4), z = 3L)
   )
 })
@@ -39,7 +41,12 @@ test_that("mcmc_derive.nlist with expression directly in it", {
   nlist <- nlist::nlist(x = 1:2, y = matrix(1:4, 2))
 
   expect_equal(
-    mcmc_derive(nlist, {gamma <- x + 2; z <- y[1,2]}, silent = TRUE),
+    mcmc_derive(nlist,
+      {
+        gamma <- x + 2; z <- y[1, 2]
+      },
+      silent = TRUE
+    ),
     nlist::nlist(gamma = c(3, 4), z = 3L)
   )
 })
@@ -73,7 +80,7 @@ test_that("mcmc_derive.nlists with expression", {
 
   expr <- rlang::expr({
     gamma <- x + 2
-    z <- y[1,2]
+    z <- y[1, 2]
   })
 
   expect_equal(
@@ -125,7 +132,7 @@ test_that("mcmc_derive.mcmc with expression", {
     gamma <- alpha + beta
     alpha2 <- alpha * 2
     znot <- alpha * 2
-    for(i in seq_along(x)) {
+    for (i in seq_along(x)) {
       alpha3[i] <- alpha[1] * x[i]
     }
   })
@@ -191,7 +198,7 @@ test_that("mcmc_derive.mcmc.list with expression", {
     gamma <- alpha + beta
     alpha2 <- alpha * 2
     znot <- alpha * 2
-    for(i in seq_along(x)) {
+    for (i in seq_along(x)) {
       alpha3[i] <- alpha[1] * x[i]
     }
   })
@@ -264,7 +271,7 @@ test_that("mcmc_derive.mcmcr with expression", {
     gamma <- alpha + beta
     alpha2 <- alpha * 2
     znot <- alpha * 2
-    for(i in seq_along(x)) {
+    for (i in seq_along(x)) {
       alpha3[i] <- alpha[1] * x[i]
     }
   })
@@ -320,7 +327,9 @@ test_that("mcmc_derive.mcmcrs with expression", {
   mcmcr <- subset(mcmcr::mcmcr_example, 1L, 1L)
   mcmcrs <- mcmcr::as.mcmcrs(list(mcmcr, mcmcr))
 
-  expr <- rlang::expr({gamma <- alpha + beta})
+  expr <- rlang::expr({
+    gamma <- alpha + beta
+  })
 
   expect_equal(
     mcmc_derive(mcmcrs, expr, silent = TRUE),
@@ -494,7 +503,8 @@ test_that("mcmc_derive warnings and errors", {
 
   expect_identical(
     mcmc_derive(mcmcr, expr = "alpha2 <- beta * sigma * alpha * alpha3", monitor = "2$"),
-    mcmcr::fill_all(set_pars(subset(mcmcr, pars = "beta"), "alpha2"), NA_real_))
+    mcmcr::fill_all(set_pars(subset(mcmcr, pars = "beta"), "alpha2"), NA_real_)
+  )
 
   expect_error(
     mcmc_derive(mcmcr,
