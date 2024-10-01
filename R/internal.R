@@ -153,9 +153,7 @@ split_apply_combine_chain <- function(i, object, expr, values, monitor) {
 
 split_apply_combine <- function(object, expr, values, monitor, parallel) {
   if (parallel) {
-    if (!requireNamespace("plyr", quietly = TRUE)) {
-      err("plyr is required to run mcmc_derive on chains in parallel")
-    }
+    rlang::check_installed("plyr", reason = "to run mcmc_derive on chains in parallel.")
     object <- plyr::llply(1:nchains(object), split_apply_combine_chain,
       object = object,
       .parallel = TRUE, expr = expr,
