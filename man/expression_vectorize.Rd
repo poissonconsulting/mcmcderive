@@ -16,15 +16,21 @@ An expression
 Takes an expression and removes the for loop and adds \code{cbind} for arrays.
 }
 \examples{
-expression_vectorize(rlang::expr(for(i in 1:nObs) {eCount[i] <- b0}))
+expression_vectorize(rlang::expr(for (i in 1:nObs) {
+  eCount[i] <- b0
+}))
 expression_vectorize(
   rlang::expr(
-    for(i in 1:length(LogLength)) {eWeightLength[i] <- b0 + bDayte * Dayte[i]}
+    for (i in 1:length(LogLength)) {
+      eWeightLength[i] <- b0 + bDayte * Dayte[i]
+    }
   )
 )
 expression_vectorize(
   rlang::expr(
-    for(i in 1:nObs) {eAnnual[i] <- bAnn[Ann[i]] + bSA[Site[i], Ann[i]]}
+    for (i in 1:nObs) {
+      eAnnual[i] <- bAnn[Ann[i]] + bSA[Site[i], Ann[i]]
+    }
   )
 )
 }
