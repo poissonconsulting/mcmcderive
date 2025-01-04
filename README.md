@@ -11,10 +11,10 @@ stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://
 [![Codecov test
 coverage](https://codecov.io/gh/poissonconsulting/mcmcderive/graph/badge.svg)](https://app.codecov.io/gh/poissonconsulting/mcmcderive)
 [![License:
-MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/license/mit/)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/mcmcderive)](https://cran.r-project.org/package=mcmcderive)
-![CRAN downloads](http://cranlogs.r-pkg.org/badges/mcmcderive)
+![CRAN downloads](https://cranlogs.r-pkg.org/badges/mcmcderive)
 <!-- badges: end -->
 
 ## Why `mcmcderive`?
@@ -27,22 +27,13 @@ the inclusion of derived parameters which add unnecessary clutter and
 slows model fitting. For more information on MCMC samples see Brooks et
 al. (2011).
 
-## Installation
-
-To install the latest release version from
-[CRAN](https://cran.r-project.org/package=mcmcderive)
-
-    install.packages("mcmcderive")
-
-To install the latest development version from
-[GitHub](https://github.com/poissonconsulting/mcmcderive)
-
-    remotes::install_github("poissonconsulting/mcmcderive")
-
 ## Demonstration
 
 ``` r
 library(mcmcderive)
+#> Registered S3 method overwritten by 'mcmcr':
+#>   method         from 
+#>   as.mcmc.nlists nlist
 
 mcmcr::mcmcr_example
 #> $alpha
@@ -101,6 +92,36 @@ In order for this to work it is necessary to:
 To facilitate the translation of model code into R code the `extras`
 package provides the R equivalent to common model functions such as
 `pow()`, `phi()` and `log() <-`.
+
+## Installation
+
+### Release
+
+To install the release version from
+[CRAN](https://CRAN.R-project.org/package=mcmcderive).
+
+``` r
+install.packages("mcmcderive")
+```
+
+The website for the release version is at
+<https://poissonconsulting.github.io/mcmcderive/>.
+
+### Development
+
+To install the development version from
+[r-universe](https://poissonconsulting.r-universe.dev/mcmcderive).
+
+``` r
+install.packages("mcmcderive", repos = c("https://poissonconsulting.r-universe.dev", "https://cloud.r-project.org"))
+```
+
+or from [GitHub](https://github.com/poissonconsulting/mcmcderive)
+
+``` r
+# install.packages("remotes")
+remotes::install_github("poissonconsulting/mcmcderive")
+```
 
 ## Contribution
 
