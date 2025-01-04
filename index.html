@@ -84,18 +84,13 @@
 <p>This is useful because it means Bayesian models can be fitted without the inclusion of derived parameters which add unnecessary clutter and slows model fitting. For more information on MCMC samples see Brooks et al. (2011).</p>
 </div>
 <div class="section level2">
-<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
-</h2>
-<p>To install the latest release version from <a href="https://cran.r-project.org/package=mcmcderive" class="external-link">CRAN</a></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"mcmcderive"</span>)</span></code></pre></div>
-<p>To install the latest development version from <a href="https://github.com/poissonconsulting/mcmcderive" class="external-link">GitHub</a></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"poissonconsulting/mcmcderive"</span>)</span></code></pre></div>
-</div>
-<div class="section level2">
 <h2 id="demonstration">Demonstration<a class="anchor" aria-label="anchor" href="#demonstration"></a>
 </h2>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/poissonconsulting/mcmcderive" class="external-link">mcmcderive</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; Registered S3 method overwritten by 'mcmcr':</span></span>
+<span><span class="co">#&gt;   method         from </span></span>
+<span><span class="co">#&gt;   as.mcmc.nlists nlist</span></span>
 <span></span>
 <span><span class="fu">mcmcr</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/mcmcr/man/mcmcr_example.html" class="external-link">mcmcr_example</a></span></span>
 <span><span class="co">#&gt; $alpha</span></span>
@@ -149,6 +144,29 @@
 <h3 id="extras">Extras<a class="anchor" aria-label="anchor" href="#extras"></a>
 </h3>
 <p>To facilitate the translation of model code into R code the <code>extras</code> package provides the R equivalent to common model functions such as <code>pow()</code>, <code>phi()</code> and <code>log() &lt;-</code>.</p>
+</div>
+</div>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
+<div class="section level3">
+<h3 id="release">Release<a class="anchor" aria-label="anchor" href="#release"></a>
+</h3>
+<p>To install the release version from <a href="https://CRAN.R-project.org/package=mcmcderive" class="external-link">CRAN</a>.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"mcmcderive"</span><span class="op">)</span></span></code></pre></div>
+<p>The website for the release version is at <a href="https://poissonconsulting.github.io/mcmcderive/" class="external-link uri">https://poissonconsulting.github.io/mcmcderive/</a>.</p>
+</div>
+<div class="section level3">
+<h3 id="development">Development<a class="anchor" aria-label="anchor" href="#development"></a>
+</h3>
+<p>To install the development version from <a href="https://poissonconsulting.r-universe.dev/mcmcderive" class="external-link">r-universe</a>.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"mcmcderive"</span>, repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"https://poissonconsulting.r-universe.dev"</span>, <span class="st">"https://cloud.r-project.org"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>or from <a href="https://github.com/poissonconsulting/mcmcderive" class="external-link">GitHub</a></p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"poissonconsulting/mcmcderive"</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -221,7 +239,7 @@
 <li><a href="https://lifecycle.r-lib.org/articles/stages.html#stable" class="external-link"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" alt="Lifecycle: stable"></a></li>
 <li><a href="https://github.com/poissonconsulting/mcmcderive/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/poissonconsulting/mcmcderive/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
 <li><a href="https://app.codecov.io/gh/poissonconsulting/mcmcderive" class="external-link"><img src="https://codecov.io/gh/poissonconsulting/mcmcderive/graph/badge.svg" alt="Codecov test coverage"></a></li>
-<li><a href="https://opensource.org/licenses/MIT" class="external-link"><img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License: MIT"></a></li>
+<li><a href="https://opensource.org/license/mit/" class="external-link"><img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License: MIT"></a></li>
 <li><a href="https://cran.r-project.org/package=mcmcderive" class="external-link"><img src="https://www.r-pkg.org/badges/version/mcmcderive" alt="CRAN status"></a></li>
 </ul>
 </div>
