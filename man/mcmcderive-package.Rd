@@ -14,6 +14,7 @@ Generates derived parameter(s) from Monte Carlo Markov Chain (MCMC) samples usin
 Useful links:
 \itemize{
   \item \url{https://github.com/poissonconsulting/mcmcderive}
+  \item \url{https://poissonconsulting.github.io/mcmcderive/}
   \item Report bugs at \url{https://github.com/poissonconsulting/mcmcderive/issues}
 }
 

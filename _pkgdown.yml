@@ -1,0 +1,7 @@
+url: https://poissonconsulting.github.io/mcmcderive/
+template:
+  bootstrap: 5
+  package: poissontemplate
+
+development:
+  mode: auto
