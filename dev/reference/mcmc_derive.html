@@ -169,13 +169,13 @@ This applies even when the primary parameters are redefined in values.</p>
 <li><p><code>mcmc_derive(nlists)</code>: Get derived parameters for an <code><a href="https://rdrr.io/pkg/nlist/man/nlists.html" class="external-link">nlist::nlists-object()</a></code></p></li>
 <li><p><code>mcmc_derive(mcmc)</code>: Get derived parameters for an <code><a href="https://rdrr.io/pkg/coda/man/mcmc.html" class="external-link">coda::mcmc()</a></code> object</p></li>
 <li><p><code>mcmc_derive(mcmc.list)</code>: Get derived parameters for an <code><a href="https://rdrr.io/pkg/coda/man/mcmc.list.html" class="external-link">coda::mcmc.list()</a></code> object</p></li>
-<li><p><code>mcmc_derive(mcmcr)</code>: Get derived parameters for an <code><a href="https://rdrr.io/pkg/mcmcr/man/mcmcr-object.html" class="external-link">mcmcr::mcmcr-object()</a></code></p></li>
-<li><p><code>mcmc_derive(mcmcrs)</code>: Get derived parameters for an <code><a href="https://rdrr.io/pkg/mcmcr/man/mcmcrs-object.html" class="external-link">mcmcr::mcmcrs-object()</a></code></p></li>
+<li><p><code>mcmc_derive(mcmcr)</code>: Get derived parameters for an <code><a href="https://poissonconsulting.github.io/mcmcr/reference/mcmcr-object.html" class="external-link">mcmcr::mcmcr-object()</a></code></p></li>
+<li><p><code>mcmc_derive(mcmcrs)</code>: Get derived parameters for an <code><a href="https://poissonconsulting.github.io/mcmcr/reference/mcmcrs-object.html" class="external-link">mcmcr::mcmcrs-object()</a></code></p></li>
 </ul></div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">mcmcr</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/mcmcr/man/mcmcr_example.html" class="external-link">mcmcr_example</a></span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">mcmcr</span><span class="fu">::</span><span class="va"><a href="https://poissonconsulting.github.io/mcmcr/reference/mcmcr_example.html" class="external-link">mcmcr_example</a></span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $alpha</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 3.718025 4.718025</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -201,7 +201,7 @@ This applies even when the primary parameters are redefined in values.</p>
 <span class="r-in"><span><span class="st"> log(alpha2) &lt;- alpha</span></span></span>
 <span class="r-in"><span><span class="st"> gamma &lt;- sum(alpha) * sigma"</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">mcmc_derive</span><span class="op">(</span><span class="fu">mcmcr</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/mcmcr/man/mcmcr_example.html" class="external-link">mcmcr_example</a></span>, <span class="va">expr</span>, silent <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">mcmc_derive</span><span class="op">(</span><span class="fu">mcmcr</span><span class="fu">::</span><span class="va"><a href="https://poissonconsulting.github.io/mcmcr/reference/mcmcr_example.html" class="external-link">mcmcr_example</a></span>, <span class="va">expr</span>, silent <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $alpha2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1]  41.18352 111.94841</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
