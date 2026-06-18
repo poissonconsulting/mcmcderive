@@ -1,3 +1,11 @@
+<!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
+
+# mcmcderive 0.1.2.9004
+
+* Add fledge-bump workflow
+* Add fledge-tag-on-merge workflow
+
+
 <!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
 
 # mcmcderive 0.1.2.9003
