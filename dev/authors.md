@@ -26,13 +26,13 @@ Source:
 [`DESCRIPTION`](https://github.com/poissonconsulting/mcmcderive/blob/main/DESCRIPTION)
 
 Thorley J, Pearson A, Müller K (2026). *mcmcderive: Derive MCMC
-Parameters*. R package version 0.1.2.9003,
+Parameters*. R package version 0.1.2.9004,
 <https://github.com/poissonconsulting/mcmcderive>.
 
     @Manual{,
       title = {mcmcderive: Derive MCMC Parameters},
       author = {Joe Thorley and Ayla Pearson and Kirill Müller},
       year = {2026},
-      note = {R package version 0.1.2.9003},
+      note = {R package version 0.1.2.9004},
       url = {https://github.com/poissonconsulting/mcmcderive},
     }

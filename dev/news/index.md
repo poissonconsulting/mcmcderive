@@ -1,5 +1,10 @@
 # Changelog
 
+## mcmcderive 0.1.2.9004
+
+- Add fledge-bump workflow
+- Add fledge-tag-on-merge workflow
+
 ## mcmcderive 0.1.2.9003
 
 - Internal changes.
