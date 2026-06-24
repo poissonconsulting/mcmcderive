@@ -1,5 +1,11 @@
 # Changelog
 
+## mcmcderive 0.1.2.9005
+
+- Standardize CI via reusable workflows (tier: important)
+- Guard tests against missing Suggests dependency for check-no-suggests
+  CI
+
 ## mcmcderive 0.1.2.9004
 
 - Add fledge-bump workflow
