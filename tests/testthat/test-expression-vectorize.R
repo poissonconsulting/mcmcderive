@@ -23,7 +23,9 @@ test_that("iteration var replaced with squared term", {
   expect_snapshot(
     expression_vectorize(rlang::expr(
       for (i in seq_along(LogLength)) {
-        eWeightLength[i] <- bWeightLength + bDayte * Dayte[i] + bDayte2 * Dayte[i]^2
+        eWeightLength[i] <- bWeightLength +
+          bDayte * Dayte[i] +
+          bDayte2 * Dayte[i]^2
       }
     ))
   )
@@ -45,7 +47,10 @@ test_that("iteration var replaced and cbind added to arrays", {
   expect_snapshot(
     expression_vectorize(rlang::expr(
       for (i in 1:nObs) {
-        log(eCount[i]) <- b0 + bYear * Year[i] + bAnnual[Annual[i]] + bSiteAnnual[Site[i], Annual[i]]
+        log(eCount[i]) <- b0 +
+          bYear * Year[i] +
+          bAnnual[Annual[i]] +
+          bSiteAnnual[Site[i], Annual[i]]
         fit[i] <- eCount[i]
         residual[i] <- res_gamma_pois(Count[i], fit[i], sSiteAnnualQuadrat)
       }
@@ -57,9 +62,23 @@ test_that("expr with mutli lines", {
   expect_snapshot(
     expression_vectorize(rlang::expr(
       for (i in 1:nObs) {
-        log(eCount[i]) <- b0 + bYear * Year[i] + bKelpLine * KelpLine[i] + bSite[Site[i]] + bAnnual[Annual[i]] + bSiteAnnual[Site[i], Annual[i]]
-        log(eCountKelpline[i]) <- b0 + bKelpLine + bYear * Year[i] + bAnnual[Annual[i]] + bSite[Site[i]] + bSiteAnnual[Site[i], Annual[i]]
-        log(eCountBarren[i]) <- b0 + bYear * Year[i] + bAnnual[Annual[i]] + bSite[Site[i]] + bSiteAnnual[Site[i], Annual[i]]
+        log(eCount[i]) <- b0 +
+          bYear * Year[i] +
+          bKelpLine * KelpLine[i] +
+          bSite[Site[i]] +
+          bAnnual[Annual[i]] +
+          bSiteAnnual[Site[i], Annual[i]]
+        log(eCountKelpline[i]) <- b0 +
+          bKelpLine +
+          bYear * Year[i] +
+          bAnnual[Annual[i]] +
+          bSite[Site[i]] +
+          bSiteAnnual[Site[i], Annual[i]]
+        log(eCountBarren[i]) <- b0 +
+          bYear * Year[i] +
+          bAnnual[Annual[i]] +
+          bSite[Site[i]] +
+          bSiteAnnual[Site[i], Annual[i]]
       }
     ))
   )
@@ -85,7 +104,11 @@ test_that("sum() inside the expression leaves the for loop unchanged", {
   expect_snapshot(
     expression_vectorize(rlang::expr(
       for (i in seq_along(Year)) {
-        eGrowth[i] <- max(0, (bLinf - LengthAtRelease[i]) * (1 - exp(-sum(eK[Year[i]:(Year[i] + dYears[i] - 1)]))))
+        eGrowth[i] <- max(
+          0,
+          (bLinf - LengthAtRelease[i]) *
+            (1 - exp(-sum(eK[Year[i]:(Year[i] + dYears[i] - 1)])))
+        )
       }
     ))
   )
@@ -117,7 +140,12 @@ test_that("more than two dimensions", {
   expect_snapshot(
     expression_vectorize(rlang::expr(
       for (i in 1:nObs) {
-        log(eCount[i]) <- b0 + bKelpLine * KelpLine[i] + bYear * Year[i] + bSite[Site[i]] + bSiteAnnual[Site[i], Annual[i]] + bAnnual[Annual[i]]
+        log(eCount[i]) <- b0 +
+          bKelpLine * KelpLine[i] +
+          bYear * Year[i] +
+          bSite[Site[i]] +
+          bSiteAnnual[Site[i], Annual[i]] +
+          bAnnual[Annual[i]]
         dpois(eCount[i] * bSiteAnnualQuadrat[Site[i], Annual[i], Quadrat[i]])
       }
     ))

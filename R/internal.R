@@ -17,7 +17,9 @@ add_new_variables <- function(values, object, expr, silent) {
   variables <- setdiff(variables, union(parameters, names_values))
 
   if (!length(variables)) {
-    err("`expr` must include at least one variable that is not in object or values")
+    err(
+      "`expr` must include at least one variable that is not in object or values"
+    )
   }
 
   values[variables] <- NA
@@ -49,7 +51,9 @@ drop_absent_values <- function(values, expr, silent) {
   drop <- name_values[!name_values %in% variables]
   if (length(drop)) {
     if (all(name_values %in% drop)) {
-      if (!silent) wrn("none of the variables in values are in expr")
+      if (!silent) {
+        wrn("none of the variables in values are in expr")
+      }
       return(list())
     }
     if (!silent) {
@@ -68,9 +72,14 @@ drop_absent_parameters <- function(object, expr, silent) {
   parameters <- pars(object)
   drop <- parameters[!parameters %in% variables]
   if (length(drop)) {
-    if (all(parameters %in% drop)) err("none of the parameters in object are in expr")
+    if (all(parameters %in% drop)) {
+      err("none of the parameters in object are in expr")
+    }
     if (!silent) {
-      wrn("the following parameters were not in expr and so were dropped from object: ", cc(drop))
+      wrn(
+        "the following parameters were not in expr and so were dropped from object: ",
+        cc(drop)
+      )
     }
     object <- subset(object, pars = setdiff(parameters, drop))
   }
@@ -85,7 +94,9 @@ subset_mcmcarray_chains <- function(x, chains) {
 subset_mcmcarray_iterations <- function(x, iterations) {
   x <- abind::asub(x, iterations, 2L, drop = FALSE)
   dim <- dim(x)[-c(1, 2)]
-  if (length(dim) == 1) dim <- NULL
+  if (length(dim) == 1) {
+    dim <- NULL
+  }
   dim(x) <- dim
   x
 }
@@ -123,7 +134,8 @@ monitor_variables <- function(monitor, values) {
   match <- variables[grepl(monitor, variables)]
   if (!length(match)) {
     err(
-      "`monitor` '", monitor,
+      "`monitor` '",
+      monitor,
       "' must match at least one of the following variables in expr: ",
       cc(variables, " or ")
     )
@@ -143,9 +155,13 @@ split_apply_combine_sample <- function(i, object, expr, values, monitor) {
 split_apply_combine_chain <- function(i, object, expr, values, monitor) {
   object <- subset_mcmcr_chains(object, chains = i)
 
-  object <- lapply(1:niters(object),
-    FUN = split_apply_combine_sample, object = object,
-    expr = expr, values = values, monitor = monitor
+  object <- lapply(
+    1:niters(object),
+    FUN = split_apply_combine_sample,
+    object = object,
+    expr = expr,
+    values = values,
+    monitor = monitor
   )
   object <- bind_iterations_mcmcrs(object)
   object
@@ -153,16 +169,27 @@ split_apply_combine_chain <- function(i, object, expr, values, monitor) {
 
 split_apply_combine <- function(object, expr, values, monitor, parallel) {
   if (parallel) {
-    rlang::check_installed("plyr", reason = "to run mcmc_derive on chains in parallel.")
-    object <- plyr::llply(1:nchains(object), split_apply_combine_chain,
+    rlang::check_installed(
+      "plyr",
+      reason = "to run mcmc_derive on chains in parallel."
+    )
+    object <- plyr::llply(
+      1:nchains(object),
+      split_apply_combine_chain,
       object = object,
-      .parallel = TRUE, expr = expr,
-      values = values, monitor = monitor
+      .parallel = TRUE,
+      expr = expr,
+      values = values,
+      monitor = monitor
     )
   } else {
-    object <- lapply(1:nchains(object), split_apply_combine_chain,
-      object = object, expr = expr,
-      values = values, monitor = monitor
+    object <- lapply(
+      1:nchains(object),
+      split_apply_combine_chain,
+      object = object,
+      expr = expr,
+      values = values,
+      monitor = monitor
     )
   }
 
