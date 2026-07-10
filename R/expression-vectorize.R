@@ -14,7 +14,8 @@ expr_type <- function(x) {
 }
 
 switch_expr <- function(x, ...) {
-  switch(expr_type(x),
+  switch(
+    expr_type(x),
     ...,
     stop("Don't know how to handle type ", typeof(x), call. = FALSE)
   )
@@ -51,7 +52,11 @@ iteration_removal <- function(x, iteration_var) {
       }
 
       # Use base R variant because map2() catches all errors
-      args <- lapply(as.list(x)[-1], iteration_removal, iteration_var = iteration_var)
+      args <- lapply(
+        as.list(x)[-1],
+        iteration_removal,
+        iteration_var = iteration_var
+      )
       rlang::call2(x[[1]], !!!args)
     },
     pairlist = {
