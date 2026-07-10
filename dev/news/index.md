@@ -1,5 +1,9 @@
 # Changelog
 
+## mcmcderive 0.1.2.9006
+
+- Same as previous version.
+
 ## mcmcderive 0.1.2.9005
 
 - Standardize CI via reusable workflows (tier: important)
