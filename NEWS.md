@@ -1,5 +1,10 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# mcmcderive 0.1.2.9007
+
+- Same as previous version.
+
+
 # mcmcderive 0.1.2.9006
 
 - Same as previous version.
