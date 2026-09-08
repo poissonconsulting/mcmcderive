@@ -765,9 +765,7 @@ test_that("mcmc_derive.mcmcr with all missing data.frame", {
 })
 
 test_that("mcmc_derive in parallel", {
-  skip_if_not_installed("doParallel")
-  skip_on_os("windows") # not working on GitHub actions but is on check_win_devel()
-  # need to switch to furrr
+  skip_if_not_installed("mirai")
   mcmcr <- subset(mcmcr::mcmcr_example, 1:2, 1:2)
 
   expr <- "
@@ -781,7 +779,8 @@ test_that("mcmc_derive in parallel", {
 
   values <- list(x = 2:10)
 
-  doParallel::registerDoParallel(2)
+  mirai::daemons(2)
+  withr::defer(mirai::daemons(0))
 
   expect_equal(
     mcmc_derive(
@@ -1352,5 +1351,24 @@ test_that("mcmc_derive.nlist", {
       ),
       class = "mcmcr"
     )
+  )
+})
+
+test_that("mcmc_derive parallel without daemons falls back to sequential", {
+  skip_if_not_installed("mirai")
+  skip_if(mirai::daemons_set())
+  mcmcr <- subset(mcmcr::mcmcr_example, 1:2, 1:2)
+
+  expect_message(
+    parallel <- mcmc_derive(
+      mcmcr,
+      "gamma <- alpha + beta * sigma",
+      parallel = TRUE
+    ),
+    "No mirai daemons set"
+  )
+  expect_identical(
+    parallel,
+    mcmc_derive(mcmcr, "gamma <- alpha + beta * sigma", parallel = FALSE)
   )
 })
