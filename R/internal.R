@@ -167,24 +167,43 @@ split_apply_combine_chain <- function(i, object, expr, values, monitor) {
   object
 }
 
-split_apply_combine <- function(object, expr, values, monitor, parallel) {
+split_apply_combine <- function(
+  object,
+  expr,
+  values,
+  monitor,
+  parallel,
+  silent
+) {
+  chains <- seq_len(nchains(object))
+  args <- list(object = object, expr = expr, values = values, monitor = monitor)
+
   if (parallel) {
     rlang::check_installed(
-      "plyr",
+      "mirai",
       reason = "to run mcmc_derive on chains in parallel."
     )
-    object <- plyr::llply(
-      1:nchains(object),
+    if (!mirai::daemons_set()) {
+      if (!silent) {
+        rlang::inform(c(
+          "No mirai daemons set so deriving chains sequentially.",
+          i = "Use e.g. `mirai::daemons(2)` to derive chains in parallel."
+        ))
+      }
+      parallel <- FALSE
+    }
+  }
+
+  if (parallel) {
+    object <- mirai::mirai_map(
+      chains,
       split_apply_combine_chain,
-      object = object,
-      .parallel = TRUE,
-      expr = expr,
-      values = values,
-      monitor = monitor
+      .args = args
     )
+    object <- mirai::collect_mirai(object, options = ".stop")
   } else {
     object <- lapply(
-      1:nchains(object),
+      chains,
       split_apply_combine_chain,
       object = object,
       expr = expr,

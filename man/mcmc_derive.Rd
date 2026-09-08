@@ -94,7 +94,8 @@ parameters in the new MCMC object.}
 \item{silent}{A flag specifying whether to suppress messages and warnings.}
 
 \item{parallel}{A flag specifying whether to generate the derived parameters
-for each chain in parallel.}
+for each chain in parallel using the mirai daemons set by \code{\link[mirai:daemons]{mirai::daemons()}}.
+If no daemons are set the chains are derived sequentially.}
 }
 \value{
 An MCMC object with the derived parameter(s).
@@ -111,9 +112,9 @@ This applies even when the primary parameters are redefined in values.
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{mcmc_derive(nlist)}: Get derived parameters for an \code{\link[nlist:nlist]{nlist::nlist-object()}}
+\item \code{mcmc_derive(nlist)}: Get derived parameters for an \code{\link[nlist:nlist-object]{nlist::nlist-object()}}
 
-\item \code{mcmc_derive(nlists)}: Get derived parameters for an \code{\link[nlist:nlists]{nlist::nlists-object()}}
+\item \code{mcmc_derive(nlists)}: Get derived parameters for an \code{\link[nlist:nlists-object]{nlist::nlists-object()}}
 
 \item \code{mcmc_derive(mcmc)}: Get derived parameters for an \code{\link[coda:mcmc]{coda::mcmc()}} object
 

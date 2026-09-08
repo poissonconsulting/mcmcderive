@@ -17,7 +17,8 @@
 #' @param primary A flag specifying whether to include the original primary
 #' parameters in the new MCMC object.
 #' @param parallel A flag specifying whether to generate the derived parameters
-#' for each chain in parallel.
+#' for each chain in parallel using the mirai daemons set by [mirai::daemons()].
+#' If no daemons are set the chains are derived sequentially.
 #' @param silent A flag specifying whether to suppress messages and warnings.
 #' @param ... Unused.
 #' @return An MCMC object with the derived parameter(s).
@@ -166,7 +167,14 @@ mcmc_derive.mcmcr <- function(
   values <- add_new_variables(values, object, expr, silent = silent)
   monitor <- monitor_variables(monitor, values)
 
-  object <- split_apply_combine(object, expr, values, monitor, parallel)
+  object <- split_apply_combine(
+    object,
+    expr,
+    values,
+    monitor,
+    parallel,
+    silent
+  )
 
   if (primary) {
     original <- subset(original, pars = setdiff(pars(original), pars(object)))
