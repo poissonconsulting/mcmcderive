@@ -130,10 +130,10 @@ redefined in values.
 ## Methods (by class)
 
 - `mcmc_derive(nlist)`: Get derived parameters for an
-  [`nlist::nlist-object()`](https://rdrr.io/pkg/nlist/man/nlist.html)
+  [`nlist::nlist-object()`](https://poissonconsulting.github.io/nlist/reference/nlist.html)
 
 - `mcmc_derive(nlists)`: Get derived parameters for an
-  [`nlist::nlists-object()`](https://rdrr.io/pkg/nlist/man/nlists.html)
+  [`nlist::nlists-object()`](https://poissonconsulting.github.io/nlist/reference/nlists.html)
 
 - `mcmc_derive(mcmc)`: Get derived parameters for an
   [`coda::mcmc()`](https://rdrr.io/pkg/coda/man/mcmc.html) object
