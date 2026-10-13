@@ -1,4 +1,9 @@
-<!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
+<!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
+
+# mcmcderive 0.1.2.9008
+
+- Same as previous version.
+
 
 # mcmcderive 0.1.2.9007
 
